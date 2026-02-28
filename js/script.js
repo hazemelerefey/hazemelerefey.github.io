@@ -62,7 +62,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('.section');
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -126,24 +126,33 @@ filterBtns.forEach(btn => {
 });
 
 // Contact Form submission (Prevent default for UI purposes)
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const btn = this.querySelector('button');
     const originalText = btn.innerHTML;
-    
+
     btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
     btn.style.opacity = '0.7';
-    
+
     // Simulate API Call
     setTimeout(() => {
         btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
         btn.style.backgroundColor = '#10b981';
         this.reset();
-        
+
         setTimeout(() => {
             btn.innerHTML = originalText;
             btn.style.backgroundColor = '';
             btn.style.opacity = '1';
         }, 3000);
     }, 1500);
+});
+
+// Initialize Animate On Scroll (AOS)
+document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
 });

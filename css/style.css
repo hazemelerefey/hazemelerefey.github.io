@@ -223,6 +223,7 @@ header {
 .highlight {
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -277,12 +278,16 @@ header {
 }
 
 @keyframes morph {
-    0%, 100% {
+
+    0%,
+    100% {
         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     }
+
     34% {
         border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
     }
+
     67% {
         border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
     }
@@ -368,7 +373,8 @@ header {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     border-radius: 5px;
-    width: 0; /* Animated by JS */
+    width: 0;
+    /* Animated by JS */
     transition: width 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
 }
 
@@ -378,7 +384,7 @@ header {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
-}
+    }
 
 .filter-btn {
     padding: 8px 20px;
@@ -594,20 +600,24 @@ footer {
         text-align: center;
         padding-top: 150px;
     }
+
     .hero-cta,
     .social-links-hero {
         justify-content: center;
     }
+
     .about-content,
     .skills-container,
     .contact-container {
         grid-template-columns: 1fr;
     }
+
     .blob {
         width: 300px;
         height: 300px;
         margin-bottom: 3rem;
     }
+
     .hero-title {
         font-size: 3rem;
     }
@@ -628,16 +638,57 @@ footer {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
+
     .nav-links.active {
         left: 0;
     }
+
     .hamburger {
         display: block;
     }
+
     .hero-title {
         font-size: 2.5rem;
     }
+
     .section {
         padding: 80px 5%;
+    }
+}
+
+/* Hero Image Profile */
+.hero-img-container {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    border: 6px solid var(--card-bg);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+    background-color: var(--border-color);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
     }
 }

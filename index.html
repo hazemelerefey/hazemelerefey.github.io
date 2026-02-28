@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hazem Elerefy | Frontend & Data Analytics</title>
-    <meta name="description" content="Portfolio of Hazem Elerefy, a professional Frontend Developer and Data Analyst specializing in modern web apps and data insights.">
+    <meta name="description"
+        content="Portfolio of Hazem Elerefy, a professional Frontend Developer and Data Analyst specializing in modern web apps and data insights.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body class="light-mode">
 
     <!-- Header & Navigation -->
@@ -34,34 +38,46 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section">
-        <div class="hero-content">
+        <div class="hero-content" data-aos="fade-right">
             <h1 class="hero-title">Hi, I'm <span class="highlight">Hazem Elerefy</span></h1>
             <h2 class="hero-subtitle">Frontend Developer & Data Analyst</h2>
-            <p class="hero-desc">I build pixel-perfect user interfaces and unlock actionable insights from complex datasets.</p>
+            <p class="hero-desc">I build pixel-perfect user interfaces and unlock actionable insights from complex
+                datasets.</p>
             <div class="hero-cta">
                 <a href="#projects" class="btn primary-btn">View My Work</a>
                 <a href="#contact" class="btn secondary-btn">Contact Me</a>
             </div>
             <div class="social-links-hero">
-                <a href="https://github.com/hazemelerefey" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/hazemelerefy" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/hazemelerefey" target="_blank" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/hazemelerefy" target="_blank" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin"></i></a>
             </div>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+            <div class="hero-img-container">
+                <img src="images/profile.jpg" onerror="this.src='https://github.com/hazemelerefey.png'"
+                    alt="Hazem Elerefy" class="hero-img">
+            </div>
             <div class="blob"></div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about section">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
         <div class="about-content">
-            <div class="about-text">
-                <p>Hello! I'm Hazem, a passionate developer with a unique dual skill set in <strong>Frontend Development</strong> and <strong>Data Analytics</strong>.</p>
-                <p>My journey started with designing intuitive user experiences, and it quickly evolved into harnessing the power of data to drive decision-making. Whether I'm crafting responsive React dashboards or engineering machine learning models to predict trends, my goal is always to deliver impactful solutions.</p>
-                <p>When I'm not coding or analyzing datasets, you can find me exploring new technologies, contributing to open-source, or analyzing public data for fun.</p>
+            <div class="about-text" data-aos="fade-right">
+                <p>Hello! I'm Hazem, a passionate developer with a unique dual skill set in <strong>Frontend
+                        Development</strong> and <strong>Data Analytics</strong>.</p>
+                <p>My journey started with designing intuitive user experiences, and it quickly evolved into harnessing
+                    the power of data to drive decision-making. Whether I'm crafting responsive React dashboards or
+                    engineering machine learning models to predict trends, my goal is always to deliver impactful
+                    solutions.</p>
+                <p>When I'm not coding or analyzing datasets, you can find me exploring new technologies, contributing
+                    to open-source, or analyzing public data for fun.</p>
             </div>
-            <div class="about-stats">
+            <div class="about-stats" data-aos="fade-left" data-aos-delay="200">
                 <div class="stat-box">
                     <h3>5+</h3>
                     <p>Frontend Apps</p>
@@ -80,10 +96,10 @@
 
     <!-- Skills Section -->
     <section id="skills" class="skills section">
-        <h2 class="section-title">My Skills</h2>
+        <h2 class="section-title" data-aos="fade-up">My Skills</h2>
         <div class="skills-container">
             <!-- Frontend Skills -->
-            <div class="skill-category">
+            <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
                 <h3>Frontend Engineering</h3>
                 <div class="skill-list">
                     <div class="skill-item">
@@ -91,33 +107,41 @@
                             <span>HTML5 / CSS3</span>
                             <span>90%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="90%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="90%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>JavaScript (ES6+)</span>
                             <span>85%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="85%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>React.js</span>
                             <span>80%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="80%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>Tailwind / SCSS</span>
                             <span>85%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="85%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Data Analytics Skills -->
-            <div class="skill-category">
+            <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
                 <h3>Data Analytics</h3>
                 <div class="skill-list">
                     <div class="skill-item">
@@ -125,28 +149,36 @@
                             <span>Python (Pandas, NumPy)</span>
                             <span>85%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="85%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>SQL / Databases</span>
                             <span>80%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="80%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>Power BI / Tableau</span>
                             <span>85%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="85%"></div>
+                        </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>Data Visualization (Matplotlib, Seaborn)</span>
                             <span>80%</span>
                         </div>
-                        <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="80%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,9 +187,9 @@
 
     <!-- Projects Section -->
     <section id="projects" class="projects section">
-        <h2 class="section-title">Featured Projects</h2>
-        
-        <div class="project-filters">
+        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+
+        <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="frontend">Frontend</button>
             <button class="filter-btn" data-filter="analytics">Data Analytics</button>
@@ -165,9 +197,10 @@
 
         <div class="projects-grid">
             <!-- FRONTEND PROJECTS -->
-            <div class="project-card" data-category="frontend">
+            <div class="project-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="E-Commerce Dashboard">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                        alt="E-Commerce Dashboard">
                 </div>
                 <div class="project-content">
                     <span class="project-badge">Frontend</span>
@@ -177,14 +210,16 @@
                         <span>React</span><span>Tailwind</span><span>Recharts</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="frontend">
+            <div class="project-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" alt="CineFlix Clone">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80"
+                        alt="CineFlix Clone">
                 </div>
                 <div class="project-content">
                     <span class="project-badge">Frontend</span>
@@ -194,14 +229,16 @@
                         <span>HTML/CSS</span><span>JS</span><span>REST API</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/frontend-cineflix-clone" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/frontend-cineflix-clone" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="frontend">
+            <div class="project-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=600&q=80" alt="Kanban Card">
+                    <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=600&q=80"
+                        alt="Kanban Card">
                 </div>
                 <div class="project-content">
                     <span class="project-badge">Frontend</span>
@@ -211,14 +248,16 @@
                         <span>React</span><span>Redux</span><span>DnD</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="frontend">
+            <div class="project-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Financial Calculators">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                        alt="Financial Calculators">
                 </div>
                 <div class="project-content">
                     <span class="project-badge">Frontend</span>
@@ -228,14 +267,16 @@
                         <span>JS</span><span>SCSS</span><span>Chart.js</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/frontend-financial-calculators" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/frontend-financial-calculators" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="frontend">
+            <div class="project-card" data-category="frontend" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Real Estate Finder">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80"
+                        alt="Real Estate Finder">
                 </div>
                 <div class="project-content">
                     <span class="project-badge">Frontend</span>
@@ -245,7 +286,8 @@
                         <span>Next.js</span><span>Leaflet</span><span>Styled-Components</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
@@ -253,7 +295,8 @@
             <!-- DATA ANALYTICS PROJECTS -->
             <div class="project-card" data-category="analytics">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Global Sales Forecast">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                        alt="Global Sales Forecast">
                 </div>
                 <div class="project-content">
                     <span class="project-badge analytics-badge">Data Analytics</span>
@@ -263,14 +306,16 @@
                         <span>Python</span><span>Pandas</span><span>Statsmodels</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/analytics-sales-forecasting" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/analytics-sales-forecasting" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="analytics">
+            <div class="project-card" data-category="analytics" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Customer Churn">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80"
+                        alt="Customer Churn">
                 </div>
                 <div class="project-content">
                     <span class="project-badge analytics-badge">Data Analytics</span>
@@ -280,14 +325,16 @@
                         <span>Scikit-Learn</span><span>SQL</span><span>Seaborn</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="analytics">
+            <div class="project-card" data-category="analytics" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=600&q=80" alt="Real Estate Analysis">
+                    <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&w=600&q=80"
+                        alt="Real Estate Analysis">
                 </div>
                 <div class="project-content">
                     <span class="project-badge analytics-badge">Data Analytics</span>
@@ -297,14 +344,16 @@
                         <span>Python</span><span>Matplotlib</span><span>Tableau</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/analytics-realestate-drivers" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/analytics-realestate-drivers" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="analytics">
+            <div class="project-card" data-category="analytics" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Healthcare Dashboard">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80"
+                        alt="Healthcare Dashboard">
                 </div>
                 <div class="project-content">
                     <span class="project-badge analytics-badge">Data Analytics</span>
@@ -314,14 +363,16 @@
                         <span>SQL</span><span>Power BI</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/analytics-healthcare-waits" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/analytics-healthcare-waits" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card" data-category="analytics">
+            <div class="project-card" data-category="analytics" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80" alt="Sentiment Analysis">
+                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&q=80"
+                        alt="Sentiment Analysis">
                 </div>
                 <div class="project-content">
                     <span class="project-badge analytics-badge">Data Analytics</span>
@@ -331,7 +382,8 @@
                         <span>Python</span><span>NLTK</span><span>Pandas</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/hazemelerefey/analytics-social-sentiment" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/hazemelerefey/analytics-social-sentiment" target="_blank"
+                            class="github-link"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
@@ -341,8 +393,8 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
+        <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+        <div class="contact-container" data-aos="fade-up" data-aos-delay="100">
             <div class="contact-info">
                 <h3>Let's talk about everything!</h3>
                 <p>Don't like forms? Send me an email. 👋</p>
@@ -372,7 +424,8 @@
                 <div class="form-group">
                     <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                 </div>
-                <button type="submit" class="btn primary-btn submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                <button type="submit" class="btn primary-btn submit-btn">Send Message <i
+                        class="fas fa-paper-plane"></i></button>
             </form>
         </div>
     </section>
@@ -382,6 +435,8 @@
         <p>&copy; 2026 Hazem Elerefy. Designed with <i class="fas fa-heart" style="color:#e91e63;"></i></p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
