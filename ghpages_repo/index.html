@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazem Elerefy | Frontend & Data Solutions</title>
+    <meta name="description" content="Portfolio of Hazem Elerefy, a professional Frontend Developer and Data Analyst.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Config for this Specific Design -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBase: '#0B0B0F',
+                        cardBase: '#15151D',
+                        cardBorder: '#232332',
+                        textMuted: '#8E8D9B',
+                    },
+                    animation: {
+                        'marquee-left': 'marquee-left 30s linear infinite',
+                    },
+                    keyframes: {
+                        'marquee-left': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fallback/Explicit CSS for Marquee -->
+    <style>
+        @keyframes marquee-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-marquee-left {
+            animation: marquee-left 30s linear infinite !important;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(0, -12px, 0);
+            }
+        }
+
+        .animate-float-1 {
+            animation: float 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+            will-change: transform;
+        }
+
+        .animate-float-2 {
+            animation: float 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 1.5s;
+            will-change: transform;
+        }
+
+        .animate-float-3 {
+            animation: float 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 3s;
+            will-change: transform;
+        }
+
+        .animate-float-4 {
+            animation: float 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.8s;
+            will-change: transform;
+        }
+    </style>
+
+
+
+    <!-- Custom Logic -->
+    <script src="js/app.js"></script>
+
+    <!-- Alpine.js Intersect Plugin (must load before Alpine core) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS (Glows, Gradients, Cards) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darkBase text-textMuted font-sans antialiased selection:bg-purple-500/30 selection:text-white"
+    x-data="appData()" @scroll.window="scrolled = (window.pageYOffset > 20)"
+    @keydown.escape.window="closeDashboard(); zoomModalOpen = false" x-init="
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    activeSection = entry.target.id;
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    ">
+
+    <!-- Lively Background Ambient Orbs -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-[10%] left-[5%] w-96 h-96 bg-pink-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[40%] right-[10%] w-[30rem] h-[30rem] bg-cyan-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[10%] left-[20%] w-[25rem] h-[25rem] bg-purple-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav :class="{ 'bg-darkBase/90 backdrop-blur-md border-b border-cardBorder py-4': scrolled, 'bg-transparent py-6': !scrolled }"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+
+            <!-- Logo -->
+            <a href="#" @click.prevent="activeView = 'home'; window.scrollTo(0,0)"
+                class="text-white font-bold text-xl tracking-wide flex items-center gap-3 group">
+                <!-- Interactive HEY SVG Logo -->
+                <svg width="48" height="24" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="transform transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+                    <text x="0" y="24" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900"
+                        font-size="28" fill="url(#hey-gradient)" letter-spacing="-1">HEY</text>
+                    <defs>
+                        <linearGradient id="hey-gradient" x1="0" y1="0" x2="60" y2="30" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#06B6D4" />
+                            <stop offset="0.5" stop-color="#A855F7" />
+                            <stop offset="1" stop-color="#EC4899" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="flex items-center gap-1">
+                    Hazem<span class="text-textMuted font-normal hidden md:inline">Elerefy</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links (Dynamic Tabs) -->
+            <div class="hidden md:flex items-center gap-8 text-base">
+                <button @click.prevent="activeView = 'home'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'home' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    Home
+                </button>
+
+                <button @click.prevent="activeView = 'portfolio'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    Portfolio
+                </button>
+
+                <button @click.prevent="activeView = 'workspace'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    My Workspace
+                </button>
+
+                <button @click.prevent="activeView = 'services'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    Services
+                </button>
+            </div>
+
+
+
+            <!-- Mobile Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition
+            class="md:hidden absolute top-full left-0 w-full bg-cardBase border-b border-cardBorder py-6 px-6 flex flex-col gap-6 shadow-2xl z-50">
+            <button @click="activeView = 'home'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'home' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                Home
+            </button>
+
+            <button @click="activeView = 'portfolio'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                Portfolio
+            </button>
+
+            <button @click="activeView = 'workspace'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                My Workspace
+            </button>
+
+            <button @click="activeView = 'services'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                Services
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <div x-show="activeView === 'home' || activeView === 'portfolio' || activeView === 'services'"
+        x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-95"
+        x-transition:enter-end="opacity-100 transform scale-100" style="display: none;">
+
+        <!-- HOME VIEW CONTENT -->
+        <div x-show="activeView === 'home'">
+            <!-- Hero Section -->
+            <header id="home"
+                class="relative min-h-[90vh] pt-40 pb-20 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+                <!-- The Live Video Collaboration Banner -->
+                <div class="absolute inset-0 z-0 overflow-hidden">
+                    <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
+                        <source src="images/banner.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-b from-darkBase/70 via-darkBase/60 to-darkBase"></div>
+                </div>
+
+                <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+                    <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
+                        <span
+                            class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Front
+                            End & Data Analyst</span>
+                    </div>
+
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+                        class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
+                        Hazem <span class="text-gradient-cyan-pink">Elerefy</span>
+                    </h1>
+
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                        class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10 text-center mx-auto">
+                        Bridging the gap between stunning visual interfaces and complex data architecture. I specialize
+                        in building highly interactive, beautifully designed websites powered by deep data insights and
+                        machine learning models.
+                    </p>
+
+
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
+                        class="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
+                        <a href="#" @click.prevent="activeView = 'portfolio'; window.scrollTo(0,0)"
+                            class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300">
+                            <span class="relative z-10 flex items-center font-bold tracking-wide">
+                                Explore My Portfolio <i class="fas fa-arrow-right ml-3 text-lg"></i>
+                            </span>
+                            <div
+                                class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
+                            </div>
+                        </a>
+                        <a href="#" @click.prevent="activeView = 'services'; window.scrollTo(0,0)"
+                            class="btn-pill relative group !bg-transparent !text-white !border-white/30 hover:!border-cyan-400 hover:!bg-cyan-500/10 transition-all duration-300">
+                            <span class="relative z-10 flex items-center font-bold tracking-wide">
+                                <i class="fas fa-briefcase mr-2"></i> View My Services
+                            </span>
+                        </a>
+                    </div>
+
+
+                    <!-- Floating Stats Cloud -->
+                    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-16 lg:mt-24 mb-6 relative z-10 w-full px-4"
+                        x-data="{ shown: false }" x-intersect.once="shown = true">
+
+                        <!-- Stat 1: Projects -->
+                        <div class="animate-float-1 transform md:-translate-y-6" data-aos="fade-up"
+                            data-aos-delay="400">
+                            <div
+                                class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
+                                <div
+                                    class="absolute inset-0 bg-cyan-500/5 rounded-2xl blur-xl group-hover:bg-cyan-500/10 transition-all">
+                                </div>
+                                <div
+                                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                                    <i
+                                        class="fas fa-project-diagram text-cyan-400 text-lg md:text-xl group-hover:scale-110 transition-transform"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
+                                        <span x-text="shown ? '50+' : '0'"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
+                                            :class="shown && 'transition-all duration-1000'"></span>
+                                    </div>
+                                    <div
+                                        class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
+                                        Projects</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stat 2: Clients -->
+                        <div class="animate-float-2 transform md:translate-y-4" data-aos="fade-up" data-aos-delay="500">
+                            <div
+                                class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
+                                <div
+                                    class="absolute inset-0 bg-pink-500/5 rounded-2xl blur-xl group-hover:bg-pink-500/10 transition-all">
+                                </div>
+                                <div
+                                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 shadow-[0_0_10px_rgba(236,72,153,0.2)]">
+                                    <i
+                                        class="fas fa-smile-beam text-pink-400 text-lg md:text-xl group-hover:scale-110 transition-transform"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
+                                        <span x-text="shown ? '30+' : '0'"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-500"
+                                            :class="shown && 'transition-all duration-1000'"></span>
+                                    </div>
+                                    <div
+                                        class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
+                                        Clients</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stat 3: Experience -->
+                        <div class="animate-float-3 transform md:-translate-y-2" data-aos="fade-up"
+                            data-aos-delay="600">
+                            <div
+                                class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
+                                <div
+                                    class="absolute inset-0 bg-purple-500/5 rounded-2xl blur-xl group-hover:bg-purple-500/10 transition-all">
+                                </div>
+                                <div
+                                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                                    <i
+                                        class="fas fa-crown text-purple-400 text-lg md:text-xl group-hover:scale-110 transition-transform"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
+                                        <span x-text="shown ? '3+' : '0'"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500"
+                                            :class="shown && 'transition-all duration-1000'"></span>
+                                    </div>
+                                    <div
+                                        class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
+                                        Years</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stat 4: Platforms -->
+                        <div class="animate-float-4 transform md:translate-y-6" data-aos="fade-up" data-aos-delay="700">
+                            <div
+                                class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
+                                <div
+                                    class="absolute inset-0 bg-amber-500/5 rounded-2xl blur-xl group-hover:bg-amber-500/10 transition-all">
+                                </div>
+                                <div
+                                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.2)]">
+                                    <i
+                                        class="fas fa-globe text-amber-400 text-lg md:text-xl group-hover:scale-110 transition-transform"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
+                                        <span x-text="shown ? '5' : '0'"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500"
+                                            :class="shown && 'transition-all duration-1000'"></span>
+                                    </div>
+                                    <div
+                                        class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
+                                        Platforms</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Scroll Down Indicator -->
+                    <div data-aos="fade-up" data-aos-delay="800" class="mt-8 animate-bounce w-full text-center">
+                        <i class="fas fa-chevron-down text-textMuted text-2xl opacity-50"></i>
+                    </div>
+                </div>
+            </header>
+
+
+
+
+            <!-- ═══════════════════ WHAT I CAN DO (SKILLS) ═══════════════════ -->
+            <section id="expertise-home"
+                class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10 border-t border-cardBorder">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-pink-400 text-xs font-bold mb-2 block">My Skills</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">What I Can <span
+                            class="text-gradient-cyan-pink">Do</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1: Frontend Development -->
+                    <div data-aos="fade-up" data-aos-duration="800" class="expertise-card">
+                        <div class="glow-corner glow-cyan"></div>
+                        <div class="icon-box cyan">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Premium Websites</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Full-scale corporate websites and web applications with robust architecture and stunning
+                            visual storytelling.
+                        </p>
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> Custom React/Next.js Dev</li>
+                            <li><i class="fas fa-check-circle"></i> Modern Tailwind Interfaces</li>
+                            <li><i class="fas fa-check-circle"></i> SEO Ready Structure</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: UI/UX -->
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100" class="expertise-card">
+                        <div class="glow-corner glow-magenta"></div>
+                        <div class="icon-box magenta">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">UI/UX Design</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Interface design that is intuitive, accessible, and delighting. We map user journeys
+                            that make sense.
+                        </p>
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> Design Systems</li>
+                            <li><i class="fas fa-check-circle"></i> Rapid Prototyping</li>
+                            <li><i class="fas fa-check-circle"></i> Responsive Animation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Data Analytics & ML -->
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200"
+                        class="expertise-card lg:col-span-1 md:col-span-2">
+                        <div class="glow-corner glow-purple"></div>
+                        <div class="icon-box purple">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Data Analytics & ML</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Transforming complex raw datasets into interactive business intelligence dashboards and
+                            predictive models.
+                        </p>
+                        <ul class="check-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-4">
+                            <li><i class="fas fa-check-circle"></i> Interactive Power BI Dashboards</li>
+                            <li><i class="fas fa-check-circle"></i> Python Automation & SQL</li>
+                            <li><i class="fas fa-check-circle"></i> Predictive ML Models</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════ FEATURED PROJECTS ═══════════════════ -->
+            <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">Featured
+                        Work</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Recent <span
+                            class="text-gradient-cyan-pink">Projects</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1: Healthcare -->
+                    <div data-aos="fade-right" data-aos-duration="800"
+                        class="group relative rounded-3xl overflow-hidden bg-cardBase border border-cardBorder hover:border-pink-500/40 transition-all duration-500 cursor-pointer"
+                        @click="activeView = 'portfolio'; window.scrollTo(0,0)">
+                        <div
+                            class="absolute top-0 right-0 w-40 h-40 bg-pink-500/10 rounded-full blur-[60px] group-hover:bg-pink-500/20 transition-all">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <div class="rounded-2xl overflow-hidden mb-6 border border-cardBorder shadow-xl">
+                                <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard"
+                                    class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="text-xs font-bold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">Power
+                                    BI</span>
+                                <span
+                                    class="text-xs font-bold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">Healthcare</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">
+                                Healthcare Patient Dashboard</h3>
+                            <p class="text-textMuted text-sm leading-relaxed">A data-driven healthcare analytics
+                                platform processing 10,000+ patient records with real-time KPIs.</p>
+                            <div
+                                class="mt-4 flex items-center text-sm font-bold text-pink-400 gap-2 group-hover:translate-x-2 transition-transform">
+                                View in Portfolio <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Global Sales -->
+                    <div data-aos="fade-left" data-aos-duration="800"
+                        class="group relative rounded-3xl overflow-hidden bg-cardBase border border-cardBorder hover:border-purple-500/40 transition-all duration-500 cursor-pointer"
+                        @click="activeView = 'portfolio'; window.scrollTo(0,0)">
+                        <div
+                            class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-[60px] group-hover:bg-purple-500/20 transition-all">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <div class="rounded-2xl overflow-hidden mb-6 border border-cardBorder shadow-xl">
+                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard"
+                                    class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="text-xs font-bold px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full">Power
+                                    BI</span>
+                                <span
+                                    class="text-xs font-bold px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full">Finance</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                                Global Sales Performance</h3>
+                            <p class="text-textMuted text-sm leading-relaxed">Executive-level dashboard overseeing
+                                global market performance with geographic drill-downs and financial mapping.</p>
+                            <div
+                                class="mt-4 flex items-center text-sm font-bold text-purple-400 gap-2 group-hover:translate-x-2 transition-transform">
+                                View in Portfolio <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════ TECH STACK MARQUEE ═══════════════════ -->
+            <section class="py-20 relative overflow-hidden border-t border-cardBorder">
+                <div class="text-center mb-12 px-6" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-purple-400 text-xs font-bold mb-2 block">Tech
+                        Arsenal</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Tools I <span
+                            class="text-gradient-cyan-pink">Master</span></h2>
+                </div>
+
+                <!-- Infinite Auto-Scrolling Skills Bar Container -->
+                <div class="relative flex overflow-hidden group"
+                    style="-webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);">
+                    <!-- The Scrolling Content (Seamless Loop) -->
+                    <div
+                        class="flex gap-6 animate-marquee-left whitespace-nowrap hover:[animation-play-state:paused] py-4">
+
+                        <!-- Core Frontend -->
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300">
+                            <i class="fab fa-html5 text-orange-400 text-2xl"></i><span
+                                class="text-white font-semibold">HTML5</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
+                            <i class="fab fa-css3-alt text-blue-400 text-2xl"></i><span
+                                class="text-white font-semibold">CSS3</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-yellow-400/50 hover:shadow-[0_0_20px_rgba(250,204,21,0.15)] transition-all duration-300">
+                            <i class="fab fa-js text-yellow-400 text-2xl"></i><span
+                                class="text-white font-semibold">JavaScript</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300">
+                            <i class="fab fa-react text-cyan-400 text-2xl"></i><span
+                                class="text-white font-semibold">React</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
+                            <i class="fas fa-bolt text-white text-2xl"></i><span
+                                class="text-white font-semibold">Next.js</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-indigo-400/50 hover:shadow-[0_0_20px_rgba(129,140,248,0.15)] transition-all duration-300">
+                            <i class="fas fa-file-code text-indigo-400 text-2xl"></i><span
+                                class="text-white font-semibold">C++</span>
+                        </div>
+
+                        <!-- Core Data -->
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-yellow-300/50 hover:shadow-[0_0_20px_rgba(253,224,71,0.15)] transition-all duration-300">
+                            <i class="fab fa-python text-yellow-300 text-2xl"></i><span
+                                class="text-white font-semibold">Python</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] transition-all duration-300">
+                            <i class="fas fa-database text-cyan-400 text-2xl"></i><span
+                                class="text-white font-semibold">SQL</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-green-500/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-all duration-300">
+                            <i class="fas fa-file-excel text-green-500 text-2xl"></i><span
+                                class="text-white font-semibold">Excel</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] transition-all duration-300">
+                            <i class="fas fa-chart-bar text-amber-400 text-2xl"></i><span
+                                class="text-white font-semibold">Power BI</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300">
+                            <i class="fas fa-project-diagram text-orange-500 text-2xl"></i><span
+                                class="text-white font-semibold">Orange</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] transition-all duration-300">
+                            <i class="fas fa-brain text-purple-400 text-2xl"></i><span
+                                class="text-white font-semibold">Machine Learning</span>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate Content for Seamless Loop -->
+                    <div class="flex gap-6 animate-marquee-left whitespace-nowrap hover:[animation-play-state:paused] py-4 ml-6"
+                        aria-hidden="true">
+                        <!-- Core Frontend -->
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300">
+                            <i class="fab fa-html5 text-orange-400 text-2xl"></i><span
+                                class="text-white font-semibold">HTML5</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
+                            <i class="fab fa-css3-alt text-blue-400 text-2xl"></i><span
+                                class="text-white font-semibold">CSS3</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-yellow-400/50 hover:shadow-[0_0_20px_rgba(250,204,21,0.15)] transition-all duration-300">
+                            <i class="fab fa-js text-yellow-400 text-2xl"></i><span
+                                class="text-white font-semibold">JavaScript</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300">
+                            <i class="fab fa-react text-cyan-400 text-2xl"></i><span
+                                class="text-white font-semibold">React</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
+                            <i class="fas fa-bolt text-white text-2xl"></i><span
+                                class="text-white font-semibold">Next.js</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-indigo-400/50 hover:shadow-[0_0_20px_rgba(129,140,248,0.15)] transition-all duration-300">
+                            <i class="fas fa-file-code text-indigo-400 text-2xl"></i><span
+                                class="text-white font-semibold">C++</span>
+                        </div>
+
+                        <!-- Core Data -->
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-yellow-300/50 hover:shadow-[0_0_20px_rgba(253,224,71,0.15)] transition-all duration-300">
+                            <i class="fab fa-python text-yellow-300 text-2xl"></i><span
+                                class="text-white font-semibold">Python</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] transition-all duration-300">
+                            <i class="fas fa-database text-cyan-400 text-2xl"></i><span
+                                class="text-white font-semibold">SQL</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-green-500/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] transition-all duration-300">
+                            <i class="fas fa-file-excel text-green-500 text-2xl"></i><span
+                                class="text-white font-semibold">Excel</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] transition-all duration-300">
+                            <i class="fas fa-chart-bar text-amber-400 text-2xl"></i><span
+                                class="text-white font-semibold">Power BI</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300">
+                            <i class="fas fa-project-diagram text-orange-500 text-2xl"></i><span
+                                class="text-white font-semibold">Orange</span>
+                        </div>
+                        <div
+                            class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] transition-all duration-300">
+                            <i class="fas fa-brain text-purple-400 text-2xl"></i><span
+                                class="text-white font-semibold">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════ TRUST / PLATFORM LOGOS ═══════════════════ -->
+            <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto border-t border-cardBorder">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">Trusted
+                        Across</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Available on <span
+                            class="text-gradient-cyan-pink">5 Platforms</span> Worldwide</h2>
+                    <p class="text-textMuted max-w-xl mx-auto">Delivering quality freelance work across the world's
+                        leading platforms with consistently high ratings.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 md:gap-8" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://www.upwork.com/freelancers/~01095d37046356f7d5" target="_blank"
+                        class="bg-cardBase border border-cardBorder rounded-2xl px-8 py-5 flex items-center gap-3 hover:border-[#14A800]/50 hover:shadow-[0_0_25px_rgba(20,168,0,0.15)] transition-all duration-300 group">
+                        <i class="fas fa-briefcase text-[#14A800] text-xl"></i>
+                        <span class="text-white font-bold group-hover:text-[#14A800] transition-colors">Upwork</span>
+                    </a>
+                    <a href="https://www.freelancer.com/u/hazemawed53" target="_blank"
+                        class="bg-cardBase border border-cardBorder rounded-2xl px-8 py-5 flex items-center gap-3 hover:border-[#29B2FE]/50 hover:shadow-[0_0_25px_rgba(41,178,254,0.15)] transition-all duration-300 group">
+                        <i class="fas fa-code text-[#29B2FE] text-xl"></i>
+                        <span
+                            class="text-white font-bold group-hover:text-[#29B2FE] transition-colors">Freelancer</span>
+                    </a>
+                    <a href="https://pph.me/hazemelerefy" target="_blank"
+                        class="bg-cardBase border border-cardBorder rounded-2xl px-8 py-5 flex items-center gap-3 hover:border-[#FF7300]/50 hover:shadow-[0_0_25px_rgba(255,115,0,0.15)] transition-all duration-300 group">
+                        <i class="fas fa-hourglass-half text-[#FF7300] text-xl"></i>
+                        <span
+                            class="text-white font-bold group-hover:text-[#FF7300] transition-colors">PeoplePerHour</span>
+                    </a>
+                    <a href="https://mostaql.com/u/zoo_ma" target="_blank"
+                        class="bg-cardBase border border-cardBorder rounded-2xl px-8 py-5 flex items-center gap-3 hover:border-[#2386c8]/50 hover:shadow-[0_0_25px_rgba(35,134,200,0.15)] transition-all duration-300 group">
+                        <i class="fas fa-star text-[#2386c8] text-xl"></i>
+                        <span class="text-white font-bold group-hover:text-[#2386c8] transition-colors">Mostaql</span>
+                    </a>
+                    <a href="https://khamsat.com/user/hazemkhaled53" target="_blank"
+                        class="bg-cardBase border border-cardBorder rounded-2xl px-8 py-5 flex items-center gap-3 hover:border-[#20af5a]/50 hover:shadow-[0_0_25px_rgba(32,175,90,0.15)] transition-all duration-300 group">
+                        <i class="fas fa-shopping-cart text-[#20af5a] text-xl"></i>
+                        <span class="text-white font-bold group-hover:text-[#20af5a] transition-colors">Khamsat</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ═══════════════════ QUICK CTA BANNER ═══════════════════ -->
+            <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto">
+                <div data-aos="zoom-in"
+                    class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-cardBase via-cardBase to-cardBase border border-cardBorder p-12 md:p-16 text-center">
+                    <!-- Background glows -->
+                    <div class="absolute -top-20 -left-20 w-64 h-64 bg-cyan-500/15 rounded-full blur-[80px]"></div>
+                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-pink-500/15 rounded-full blur-[80px]"></div>
+
+                    <div class="relative z-10">
+                        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Ready to bring your ideas to <span
+                                class="text-gradient-cyan-pink">life</span>?</h2>
+                        <p class="text-textMuted text-lg mb-8 max-w-xl mx-auto">Let's collaborate on something
+                            extraordinary. Whether it's a stunning website or a powerful data dashboard.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="#" @click.prevent="activeView = 'services'; window.scrollTo(0,0)"
+                                class="btn-pill !bg-gradient-to-r from-cyan-500 to-pink-500 !text-white border-none shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(236,72,153,0.5)] transition-all !px-8 !py-4">
+                                <i class="fas fa-rocket mr-2"></i> Hire Me
+                            </a>
+                            <a href="#" @click.prevent="activeView = 'portfolio'; window.scrollTo(0,0)"
+                                class="btn-pill !bg-transparent !text-white !border-white/30 hover:!border-white hover:!bg-white/5 transition-all !px-8 !py-4">
+                                <i class="fas fa-eye mr-2"></i> See My Work
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PORTFOLIO VIEW CONTENT -->
+        <div x-show="activeView === 'portfolio'">
+            <!-- Hero Section -->
+            <header id="portfolio-hero"
+                class="relative min-h-[90vh] pt-40 pb-20 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+
+                <!-- Background Gradient -->
+                <div class="absolute inset-0 z-0 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-darkBase via-cardBase to-darkBase opacity-80">
+                    </div>
+                </div>
+
+                <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <!-- Profile Picture Column (Rectangle format) -->
+                    <div data-aos="zoom-in" data-aos-duration="1000"
+                        class="md:w-1/3 flex justify-center order-2 md:order-1">
+                        <div
+                            class="relative w-64 h-80 md:w-80 md:h-96 rounded-2xl p-2 bg-gradient-to-tr from-pink-400 via-purple-500 to-cyan-500 shadow-[0_0_50px_rgba(6,182,212,0.3)] hover:shadow-[0_0_80px_rgba(236,72,153,0.4)] transition-shadow duration-500 animate-float">
+                            <img src="images/profile.jpg" alt="Hazem Khaled Ezat Profile"
+                                class="w-full h-full object-cover rounded-xl">
+                        </div>
+                    </div>
+
+                    <!-- Text Column -->
+                    <div
+                        class="md:w-2/3 text-center md:text-left order-1 md:order-2 flex flex-col items-center md:items-start">
+
+                        <!-- Intro Label -->
+                        <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
+                            <span
+                                class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Front
+                                End & Data Analyst</span>
+                        </div>
+
+                        <!-- Main Headline -->
+                        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+                            class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
+                            Hazem <span class="text-gradient-cyan-pink">Khaled Ezat</span>
+                        </h1>
+
+                        <!-- Subheadline -->
+                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                            class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10">
+                            Bridging the gap between stunning visual interfaces and complex data architecture. I
+                            specialize
+                            in
+                            building highly interactive, beautifully designed websites powered by deep data insights
+                            and
+                            machine
+                            learning models.
+                        </p>
+
+                        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
+                            class="flex flex-col sm:flex-row gap-4 mt-4">
+                            <!-- High-Visibility CV Download Background Trigger -->
+                            <a href="assets/Hazemelerefy CV.pdf" download="Hazemelerefy_CV.pdf" @click.prevent="
+                            fetch($el.href)
+                                .then(res => res.blob())
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.style.display = 'none';
+                                    a.href = url;
+                                    a.download = $el.getAttribute('download');
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    window.URL.revokeObjectURL(url);
+                                })
+                                .catch(() => window.open($el.href, '_blank'));
+                        " class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300">
+                                <span class="relative z-10 flex items-center font-bold tracking-wide">
+                                    <i class="fas fa-file-download mr-2 text-lg"></i> Download My CV
+                                </span>
+                                <div
+                                    class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
+                                </div>
+                            </a>
+                            <!-- Let's Connect CTA & Socials -->
+                            <div class="flex items-center gap-3">
+                                <a href="#contact"
+                                    class="btn-pill !bg-darkBase/50 backdrop-blur-md !text-white !border-cardBorder hover:!border-white hover:!bg-white/10 transition-colors duration-300">
+                                    Let's Connect
+                                </a>
+                                <a href="https://github.com/hazemelerefey" target="_blank" rel="noopener noreferrer"
+                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/hazemelerefy" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(10,102,194,0.3)]">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Work/Projects Pipeline Section -->
+            <section id="work"
+                class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-40 overflow-visible">
+                <div class="mb-32 lg:mb-40 relative z-10" data-aos="fade-right">
+                    <span class="uppercase tracking-[0.2em] text-pink-400 text-xs font-bold mb-2 block">Portfolio</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">My <span
+                            class="text-gradient-pink-cyan">Projects</span></h2>
+                    <p class="text-textMuted text-lg max-w-2xl">A selection of recent projects showcasing dynamic
+                        frontend
+                        engineering and deep data analysis pipelines.</p>
+                </div>
+
+                <div class="relative z-50 overflow-visible w-full">
+                    
+                    
+                    <!-- Portfolio Filter Options -->
+                    <div class="flex justify-center mb-12" data-aos="fade-up">
+                        <div class="inline-flex bg-darkBase/80 backdrop-blur-sm border border-cardBorder p-1.5 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] flex-wrap justify-center gap-2">
+                            <button @click="portfolioFilter = 'all'" 
+                                    :class="portfolioFilter === 'all' ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                                <i class="fas fa-layer-group"></i> All Projects
+                            </button>
+                            <button @click="portfolioFilter = 'frontend'" 
+                                    :class="portfolioFilter === 'frontend' ? 'bg-pink-500/20 text-pink-400 border-pink-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                                <i class="fas fa-code"></i> Frontend
+                            </button>
+                            <button @click="portfolioFilter = 'analytics'" 
+                                    :class="portfolioFilter === 'analytics' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                                <i class="fas fa-chart-line"></i> Analytics
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6 Unified Project Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 relative z-20">
+
+                        <!-- Project 1: E-Commerce Platform (Frontend) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(236,72,153,0.15)] hover:border-pink-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <!-- Image Container with Zoom -->
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/ecommerce-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/ecommerce-dashboard.png" alt="E-Commerce Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-pink-500/20 text-pink-400 border border-pink-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">UI/UX</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Card Content -->
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Enterprise E-Commerce</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A high-performance modern storefront built with React, Next.js, and TailwindCSS. Features complex cart state, responsive product grids, and sleek glassmorphism UI components.</p>
+                                
+                                <!-- Rating footer -->
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.ecommerce.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.ecommerce.hoverScore >= star || (!ratings.ecommerce.hoverScore && ratings.ecommerce.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('ecommerce', star)" @mouseleave="resetHover('ecommerce')" @click="setRating('ecommerce', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button class="text-pink-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: SaaS Task Management (Frontend) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/saas-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/saas-dashboard.png" alt="SaaS Task Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SaaS</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">SaaS Task Management</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A premium productivity dashboard featuring deep state management for complex Kanban boards, progress analytics, and team collaboration views with glowing neon accents.</p>
+                                
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.saas.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.saas.hoverScore >= star || (!ratings.saas.hoverScore && ratings.saas.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('saas', star)" @mouseleave="resetHover('saas')" @click="setRating('saas', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button class="text-cyan-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Real Estate Booking (Frontend) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/real-estate.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/real-estate.png" alt="Real Estate Booking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Web App</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Vue.js</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Real Estate Booking</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A highly interactive property booking system showcasing complex API integrations for dynamic search filters, map-based layouts, and real-time pricing calculations.</p>
+                                
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.real_estate.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.real_estate.hoverScore >= star || (!ratings.real_estate.hoverScore && ratings.real_estate.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('real_estate', star)" @mouseleave="resetHover('real_estate')" @click="setRating('real_estate', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button class="text-purple-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Healthcare Analytics (Analytics) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/healthcare-dashboard.png" alt="Healthcare Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">BI Dashboard</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Healthcare Analytics</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A comprehensive dashboard tracking patient flow, operational efficiency, and waitlist trends. Covers full data lifecycle: extraction, Star Schema modeling, and advanced DAX.</p>
+                                
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.healthcare.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('healthcare', star)" @mouseleave="resetHover('healthcare')" @click="setRating('healthcare', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button @click="openDashboard('healthcare')" class="text-emerald-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Open App <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: Global Sales Performance (Analytics) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Executive</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SQL & DAX</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Global Sales Oversight</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">An executive-level tool overseeing global market performance. Built through rigorous data integration and geographic normalization to enable instant spatial drill-downs without lag.</p>
+                                
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.global_sales.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('global_sales', star)" @mouseleave="resetHover('global_sales')" @click="setRating('global_sales', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button @click="openDashboard('global_sales')" class="text-amber-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Open App <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: Predictive Customer Churn (Analytics) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
+                             x-transition:enter="transition-all duration-500"
+                             x-transition:enter-start="opacity-0 translate-y-8"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full">
+                            
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                 @click="zoomedImageSrc = 'images/customer-churn.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/customer-churn.png" alt="Predictive ML Model" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+                                
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine Learning</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
+                                </div>
+                                
+                                <div class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Predictive Churn Model</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A sci-kit learn predictive classification model that identifies at-risk telecom customers. Visualized via interactive SHAP value charts identifying key predictive factors.</p>
+                                
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.churn.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.churn.hoverScore >= star || (!ratings.churn.hoverScore && ratings.churn.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('churn', star)" @mouseleave="resetHover('churn')" @click="setRating('churn', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button class="text-red-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- END PORTFOLIO GRID -->
+
+                    
+                <!-- Work Process Section (Moved to end of Portfolio) -->
+                <section id="process" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder">
+                    <div class="text-center mb-16" data-aos="fade-up">
+                        <span
+                            class="uppercase tracking-[0.2em] text-purple-400 text-xs font-bold mb-2 block">Methodology</span>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white">How I Work</h2>
+                    </div>
+
+                    <div class="relative">
+                        <!-- Vertical Line -->
+                        <div
+                            class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 opacity-30">
+                        </div>
+
+                        <div class="space-y-12">
+                            <!-- Step 1 -->
+                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up">
+                                <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                                    <div
+                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                        </div>
+                                        <h3 class="text-2xl font-bold text-white mb-2">1. Discovery & Strategy</h3>
+                                        <p class="text-textMuted text-sm">Understanding your goals, target audience, and
+                                            parsing
+                                            the data requirements before writing a single line of code.</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-cyan-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                                    1</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                                data-aos-delay="100">
+                                <div class="md:w-1/2"></div>
+                                <div
+                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-purple-500 rounded-full items-center justify-center z-10 text-purple-400 font-bold shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                                    2</div>
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <div
+                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-purple-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px]">
+                                        </div>
+                                        <h3 class="text-2xl font-bold text-white mb-2">2. UI/UX Design & Prototyping
+                                        </h3>
+                                        <p class="text-textMuted text-sm">Creating high-fidelity Figma designs, focusing
+                                            on
+                                            modern aesthetics, glassmorphism, and intuitive user journeys.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                                data-aos-delay="200">
+                                <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                                    <div
+                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                        </div>
+                                        <h3 class="text-2xl font-bold text-white mb-2">3. Development & Data Integration
+                                        </h3>
+                                        <p class="text-textMuted text-sm">Building the frontend with React/Tailwind and
+                                            connecting it to scalable databases or machine learning pipelines.</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-pink-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+                                    3</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                                data-aos-delay="300">
+                                <div class="md:w-1/2"></div>
+                                <div
+                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-white rounded-full items-center justify-center z-10 text-white font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                                    4</div>
+                                <div class="md:w-1/2 text-center md:text-left">
+                                    <div
+                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-white/50 transition-colors shadow-lg relative overflow-hidden">
+                                        <div
+                                            class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-[40px]">
+                                        </div>
+                                        <h3 class="text-2xl font-bold text-white mb-2">4. Testing & Deployment</h3>
+                                        <p class="text-textMuted text-sm">Ensuring optimal performance, responsive
+                                            design across
+                                            all devices, and deploying with CI/CD for seamless updates.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> <!-- END PORTFOLIO VIEW -->
+    </div> <!-- END HOME/PORTFOLIO CONTAINER -->
+
+    <!-- Global Footer / CTA -->
+    <div x-show="activeView !== 'workspace' && activeView !== 'services'" x-transition>
+        <footer id="contact"
+            class="bg-cardBase border-t border-cardBorder pt-24 pb-12 px-6 mt-12 relative overflow-hidden">
+            <!-- Background Glow -->
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-pink-500/10 rounded-full blur-[100px] pointer-events-none">
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="zoom-in">
+                <span class="uppercase tracking-[0.2em] text-pink-400 text-xs font-bold mb-4 block">Let's Connect</span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to collaborate?</h2>
+                <p class="text-textMuted text-lg mb-10 max-w-2xl mx-auto">
+                    Whether you need a cutting-edge web application built from scratch or a massive dataset analyzed for
+                    business
+                    intelligence, let's talk.
+                </p>
+                <a href="mailto:hazem@example.com"
+                    class="btn-pill !text-lg !px-8 !py-4 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] transition-all">
+                    Send an Email
+                </a>
+
+                <div
+                    class="mt-20 pt-8 border-t border-cardBorder flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-white font-bold text-xl">HE.</div>
+                    <p class="text-textMuted text-sm">&copy; 2026 Hazem Khaled Ezat. All Rights Reserved.</p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/hazemelerefey" target="_blank"
+                            class="w-10 h-10 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center text-textMuted hover:text-white hover:border-white transition-all"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/hazemelerefy" target="_blank"
+                            class="w-10 h-10 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center text-textMuted hover:text-white hover:border-white transition-all"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MY WORKSPACE VIEW CONTENT -->
+    <div x-show="activeView === 'workspace'" x-cloak x-transition:enter="transition ease-out duration-500 delay-100"
+        x-transition:enter-start="opacity-0 transform translate-y-8"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+
+        <!-- Workspace Header -->
+        <div class="text-center mb-16">
+            <span class="uppercase tracking-[0.2em] text-pink-500 text-xs font-bold mb-2 block">GitHub Portfolio</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">My <span
+                    class="text-gradient-cyan-pink">Workspace</span></h1>
+            <p class="text-textMuted max-w-2xl mx-auto mb-10">Explore my open-source projects, components, and data
+                visualizations directly from GitHub, categorized by discipline.</p>
+
+            <!-- Tab Switcher -->
+            <div
+                class="inline-flex items-center bg-cardBase p-1 rounded-full border border-cardBorder shadow-lg relative z-10 w-full max-w-md mx-auto">
+                <button @click="workspaceTab = 'frontend'"
+                    :class="{'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-md': workspaceTab === 'frontend', 'text-textMuted hover:text-white': workspaceTab !== 'frontend'}"
+                    class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                    <i class="fas fa-laptop-code mr-2"></i> Frontend
+                </button>
+                <button @click="workspaceTab = 'analytics'"
+                    :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-md': workspaceTab === 'analytics', 'text-textMuted hover:text-white': workspaceTab !== 'analytics'}"
+                    class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                    <i class="fas fa-chart-pie mr-2"></i> Analytics
+                </button>
+            </div>
+        </div>
+
+        <!-- Frontend Workspace Content -->
+        <div x-show="workspaceTab === 'frontend'" x-transition:enter="transition ease-in-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Github Repo Card 1 -->
+            <a href="https://github.com/hazemelerefey/ecommerce-dashboard" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">React</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">E-Commerce
+                    Dashboard</h3>
+                <p class="text-textMuted text-sm mb-6">A high-performance modern dashboard built with Next.js,
+                    TailwindCSS, and interactive Recharts.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 124</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 12</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 2 -->
+            <a href="https://github.com/hazemelerefey/premium-ui-kit" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">Alpine.js</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Premium UI Kit
+                </h3>
+                <p class="text-textMuted text-sm mb-6">A collection of dark-mode UI components including animated
+                    navbars and glass UI cards.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 89</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 4</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 3 -->
+            <a href="https://github.com/hazemelerefey/taskflow-vue" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">Vue</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">TaskFlow App
+                </h3>
+                <p class="text-textMuted text-sm mb-6">A beautiful, drag-and-drop Kanban board application focused on
+                    smooth micro-interactions.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 210</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 34</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Analytics Workspace Content -->
+        <div x-show="workspaceTab === 'analytics'" x-cloak x-transition:enter="transition ease-in-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Github Repo Card 4 -->
+            <a href="https://github.com/hazemelerefey/churn-prediction" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">Python</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Customer Churn
+                    Prediction</h3>
+                <p class="text-textMuted text-sm mb-6">Machine learning pipeline using Random Forest to predict telecom
+                    customer retention rate.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 45</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 8</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 5 -->
+            <a href="https://github.com/hazemelerefey/sales-forecasting" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">Jupyter</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Sales
+                    Forecasting Model</h3>
+                <p class="text-textMuted text-sm mb-6">Time-series analysis employing ARIMA models to predict quarterly
+                    revenue across regions.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 112</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 21</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 6 -->
+            <a href="https://github.com/hazemelerefey/data-warehouse-logs" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">SQL</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Data
+                    Warehousing Logs</h3>
+                <p class="text-textMuted text-sm mb-6">Optimized complex SQL query structure mapping large datasets into
+                    interactive Tableau dashboards.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 88</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 15</span>
+                </div>
+            </a>
+        </div>
+
+    </div> <!-- END WORKSPACE VIEW -->
+
+    <!-- SERVICES VIEW CONTENT -->
+    <div x-show="activeView === 'services'" x-cloak x-transition:enter="transition ease-out duration-500 delay-100"
+        x-transition:enter-start="opacity-0 transform translate-y-8"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+
+        <!-- Services Header -->
+        <div class="text-center mb-16">
+            <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">Available For
+                Hire</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Professional <span
+                    class="text-gradient-cyan-pink">Services</span></h1>
+            <p class="text-textMuted max-w-2xl mx-auto mb-10">I deliver premium frontend development, UI/UX design, and
+                complex data analytics solutions. Hire me directly or through your preferred freelance platform.</p>
+        </div>
+
+        <!-- Platform Rankings Section -->
+        <div class="mb-24">
+            <div class="flex items-center gap-4 mb-8">
+                <h2 class="text-2xl font-bold text-white">Freelance Platforms</h2>
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-cardBorder to-transparent"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Upwork -->
+                <a href="https://www.upwork.com/freelancers/~01095d37046356f7d5?mp_source=share" target="_blank"
+                    class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-[#14A800]/50 transition-colors group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#14A800]/10 rounded-full blur-[40px] group-hover:bg-[#14A800]/20 transition-all">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#14A800]/20 flex items-center justify-center">
+                            <i class="fas fa-briefcase text-[#14A800] text-xl"></i>
+                        </div>
+                        <span
+                            class="text-xs font-bold px-3 py-1 bg-[#14A800]/20 text-[#14A800] rounded-full border border-[#14A800]/30">Top
+                            Rated</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#14A800] transition-colors">Upwork
+                    </h3>
+                    <p class="text-textMuted text-sm mb-6">My primary platform for enterprise-grade frontend and data
+                        projects.</p>
+                    <div
+                        class="flex items-center text-sm font-bold text-white gap-2 group-hover:translate-x-2 transition-transform">
+                        Hire on Upwork <i class="fas fa-arrow-right text-[#14A800]"></i>
+                    </div>
+                </a>
+
+                <!-- 2. Freelancer.com -->
+                <a href="https://www.freelancer.com/u/hazemawed53?frm=hazemawed53&sb=t" target="_blank"
+                    class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-[#29B2FE]/50 transition-colors group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#29B2FE]/10 rounded-full blur-[40px] group-hover:bg-[#29B2FE]/20 transition-all">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#29B2FE]/20 flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-[#29B2FE] text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#29B2FE] transition-colors">
+                        Freelancer.com</h3>
+                    <p class="text-textMuted text-sm mb-6">Ideal for fast-paced web development and rapid prototyping
+                        milestones.</p>
+                    <div
+                        class="flex items-center text-sm font-bold text-white gap-2 group-hover:translate-x-2 transition-transform">
+                        Hire on Freelancer <i class="fas fa-arrow-right text-[#29B2FE]"></i>
+                    </div>
+                </a>
+
+                <!-- 3. PeoplePerHour -->
+                <a href="https://pph.me/hazemelerefy" target="_blank"
+                    class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-[#FF7300]/50 transition-colors group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#FF7300]/10 rounded-full blur-[40px] group-hover:bg-[#FF7300]/20 transition-all">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#FF7300]/20 flex items-center justify-center">
+                            <i class="fas fa-hourglass-half text-[#FF7300] text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#FF7300] transition-colors">
+                        PeoplePerHour</h3>
+                    <p class="text-textMuted text-sm mb-6">Custom data automation scripts and UI/UX design hourly
+                        offers.</p>
+                    <div
+                        class="flex items-center text-sm font-bold text-white gap-2 group-hover:translate-x-2 transition-transform">
+                        Hire on PPH <i class="fas fa-arrow-right text-[#FF7300]"></i>
+                    </div>
+                </a>
+
+                <!-- 4. Mostaql -->
+                <a href="https://mostaql.com/u/zoo_ma" target="_blank"
+                    class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-[#2386c8]/50 transition-colors group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#2386c8]/10 rounded-full blur-[40px] group-hover:bg-[#2386c8]/20 transition-all">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#2386c8]/20 flex items-center justify-center">
+                            <i class="fas fa-star text-[#2386c8] text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#2386c8] transition-colors">Mostaql
+                    </h3>
+                    <p class="text-textMuted text-sm mb-6">Dedicated for high-quality projects serving clients across
+                        the MENA region.</p>
+                    <div
+                        class="flex items-center text-sm font-bold text-white gap-2 group-hover:translate-x-2 transition-transform">
+                        Hire on Mostaql <i class="fas fa-arrow-right text-[#2386c8]"></i>
+                    </div>
+                </a>
+
+                <!-- 5. Khamsat -->
+                <a href="https://khamsat.com/user/hazemkhaled53" target="_blank"
+                    class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-[#20af5a]/50 transition-colors group relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#20af5a]/10 rounded-full blur-[40px] group-hover:bg-[#20af5a]/20 transition-all">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#20af5a]/20 flex items-center justify-center">
+                            <i class="fas fa-shopping-cart text-[#20af5a] text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#20af5a] transition-colors">Khamsat
+                    </h3>
+                    <p class="text-textMuted text-sm mb-6">Mini-services, bug fixing, and quick tech consultations.</p>
+                    <div
+                        class="flex items-center text-sm font-bold text-white gap-2 group-hover:translate-x-2 transition-transform">
+                        Hire on Khamsat <i class="fas fa-arrow-right text-[#20af5a]"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Services Request Section -->
+        <div class="mb-24" x-data="{ activeServiceTab: 'analytics' }">
+            <div class="text-center mb-12 relative z-10">
+                <span class="uppercase tracking-[0.2em] text-pink-500 text-xs font-bold mb-2 block">Specialized
+                    Offerings</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">What exactly do I <span
+                        class="text-gradient-cyan-pink">deliver?</span></h2>
+
+                <!-- Services Tab Switcher -->
+                <div
+                    class="inline-flex items-center bg-cardBase p-1 rounded-full border border-cardBorder shadow-lg relative z-10 w-full max-w-md mx-auto">
+                    <button @click="activeServiceTab = 'analytics'"
+                        :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-md': activeServiceTab === 'analytics', 'text-textMuted hover:text-white': activeServiceTab !== 'analytics'}"
+                        class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                        <i class="fas fa-chart-line mr-2"></i> Analytics Services
+                    </button>
+                    <button @click="activeServiceTab = 'frontend'"
+                        :class="{'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-md': activeServiceTab === 'frontend', 'text-textMuted hover:text-white': activeServiceTab !== 'frontend'}"
+                        class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                        <i class="fas fa-paint-brush mr-2"></i> Frontend Services
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analytics Services Cards -->
+            <div x-show="activeServiceTab === 'analytics'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                x-transition:enter="transition ease-in-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                <!-- Data Warehousing & SQL -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                        <i
+                            class="fas fa-database text-cyan-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Data Warehousing & SQL</h3>
+                    <p class="text-textMuted text-sm">Structuring enormous datasets, architecting clean pipelines, and
+                        optimizing complex database queries for speed and efficiency.</p>
+                </div>
+
+                <!-- Interactive Dashboards -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                        <i
+                            class="fas fa-chart-pie text-cyan-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Interactive Data Dashboards</h3>
+                    <p class="text-textMuted text-sm">Crafting executive-level, real-time dashboards using tools like
+                        Power BI to visually narrate business intelligence.</p>
+                </div>
+
+                <!-- Predictive Models -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                        <i class="fas fa-brain text-cyan-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Predictive Machine Learning Models</h3>
+                    <p class="text-textMuted text-sm">Developing sophisticated AI algorithms and models for forecasting,
+                        prediction, and deep-level analytical insights.</p>
+                </div>
+
+                <!-- Advanced Statistical Analysis -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                        <i
+                            class="fas fa-laptop-medical text-cyan-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Advanced Statistical Analysis</h3>
+                    <p class="text-textMuted text-sm">Deploying rigorous math and logic to uncover hidden trends,
+                        performing strict data cleaning, validation, and insight reporting.</p>
+                </div>
+            </div>
+
+            <!-- Frontend Services Cards -->
+            <div x-show="activeServiceTab === 'frontend'" x-cloak
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                x-transition:enter="transition ease-in-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                <!-- UI/UX Design Mockups -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-6 border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+                        <i class="fab fa-figma text-pink-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">UI/UX Design Mockups</h3>
+                    <p class="text-textMuted text-sm">Designing beautiful, modern graphical interfaces using Figma
+                        focused strictly on seamless user journeys and conversions.</p>
+                </div>
+
+                <!-- Portfolio Development -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-6 border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+                        <i class="fas fa-id-card text-pink-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Website Portfolio Development</h3>
+                    <p class="text-textMuted text-sm">Transforming designers, agencies, and businesses with highly
+                        fluid, animated, high-performance personal and corporate portfolios.</p>
+                </div>
+
+                <!-- Custom Website Architecture -->
+                <div
+                    class="group relative bg-cardBase border border-cardBorder p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-500 shadow-lg overflow-hidden flex flex-col items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-6 border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+                        <i
+                            class="fas fa-layer-group text-pink-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">Custom Website Architecture</h3>
+                    <p class="text-textMuted text-sm">Engineering robust web apps from scratch utilizing React, Next.js,
+                        and Tailwind with dynamic functionality right into production.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="request-service"
+            class="bg-cardBase border border-cardBorder rounded-3xl p-8 md:p-12 relative overflow-hidden mb-8">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px]"></div>
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-pink-500/10 rounded-full blur-[100px]"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <span class="uppercase tracking-[0.2em] text-pink-400 text-xs font-bold mb-2 block">Direct
+                        Request</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Let's Build Something Great</h2>
+                    <p class="text-textMuted mb-8">Ready to bring your business to the next level? Fill out the form, or
+                        reach out directly to my email. I typically reply within 2 hours.</p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-textMuted hover:text-white transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center">
+                                <i class="fas fa-envelope text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Email Me</div>
+                                <div>hazemkhaled53@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 text-textMuted hover:text-white transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-green-400 uppercase tracking-wider">WhatsApp</div>
+                                <div>Available upon request</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <form class="space-y-4"
+                        @submit.prevent="alert('Thank you! Your message has been sent successfully. Hazem will get back to you soon.')">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Name</label>
+                                <input type="text" required
+                                    class="w-full bg-transparent border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 hover:border-white/20 transition-all placeholder-white/30"
+                                    placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Email</label>
+                                <input type="email" required
+                                    class="w-full bg-transparent border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 hover:border-white/20 transition-all placeholder-white/30"
+                                    placeholder="john@company.com">
+                            </div>
+                        </div>
+
+                        <!-- Custom Service Dropdown Mega Menu using Alpine -->
+                        <div x-data="{ open: false, selected: '' }" class="relative z-50">
+                            <label class="block text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Service
+                                Needed</label>
+
+                            <!-- Custom Select Button -->
+                            <div @click="open = !open" @click.away="open = false"
+                                class="w-full bg-transparent border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 hover:border-white/20 transition-all cursor-pointer flex justify-between items-center group">
+                                <span x-text="selected || 'e.g., Website Portfolio Development'"
+                                    :class="selected ? 'text-white' : 'text-white/30'"></span>
+                                <i class="fas fa-chevron-down text-textMuted text-sm transition-transform duration-300 group-hover:text-white"
+                                    :class="open ? 'rotate-180' : ''"></i>
+                            </div>
+
+                            <!-- Mega Menu 2-Column Flyout -->
+                            <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-in duration-150"
+                                x-transition:leave-start="opacity-100 translate-y-0"
+                                x-transition:leave-end="opacity-0 translate-y-2" x-cloak
+                                class="absolute top-full left-0 w-full mt-2 bg-[#0B0B0F]/95 backdrop-blur-xl border border-cardBorder rounded-2xl shadow-2xl p-6 lg:w-[120%] lg:-left-[10%] ring-1 ring-white/5">
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <!-- Column 1: Frontend -->
+                                    <div>
+                                        <h4
+                                            class="text-pink-400 font-bold mb-4 uppercase text-[10px] tracking-[0.2em] border-b border-cardBorder pb-2">
+                                            Frontend Services</h4>
+                                        <div class="space-y-3">
+                                            <div @click="selected = 'UI/UX Design Mockups'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 transition-opacity">
+                                                </div>UI/UX Design Mockups
+                                            </div>
+                                            <div @click="selected = 'Website Portfolio Development'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 transition-opacity">
+                                                </div>Website Portfolio Development
+                                            </div>
+                                            <div @click="selected = 'Custom Website Architecture'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-pink-500 opacity-0 transition-opacity">
+                                                </div>Custom Website Architecture
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Column 2: Analytics -->
+                                    <div>
+                                        <h4
+                                            class="text-cyan-400 font-bold mb-4 uppercase text-[10px] tracking-[0.2em] border-b border-cardBorder pb-2">
+                                            Analytics Services</h4>
+                                        <div class="space-y-3">
+                                            <div @click="selected = 'Data Warehousing & SQL'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-cyan-500 opacity-0 transition-opacity">
+                                                </div>Data Warehousing & SQL
+                                            </div>
+                                            <div @click="selected = 'Interactive Data Dashboards'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-cyan-500 opacity-0 transition-opacity">
+                                                </div>Interactive Data Dashboards
+                                            </div>
+                                            <div @click="selected = 'Predictive Machine Learning Models'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-cyan-500 opacity-0 transition-opacity">
+                                                </div>Predictive Machine Learning Models
+                                            </div>
+                                            <div @click="selected = 'Advanced Statistical Analysis'; open = false"
+                                                class="text-sm font-medium text-textMuted hover:text-white cursor-pointer transition-all hover:translate-x-1 flex items-center gap-2">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-cyan-500 opacity-0 transition-opacity">
+                                                </div>Advanced Statistical Analysis
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Footer: Other -->
+                                <div class="mt-6 pt-4 border-t border-cardBorder text-center">
+                                    <div @click="selected = 'Other Inquiry'; open = false"
+                                        class="text-sm font-bold text-textMuted hover:text-white cursor-pointer transition-colors italic">
+                                        Got another idea? Click here to describe it below.</div>
+                                </div>
+                            </div>
+
+                            <!-- Hidden Native Input for form submission -->
+                            <input type="hidden" name="service" :value="selected" required>
+                        </div>
+
+                        <style>
+                            /* Make the dot visible on hover of the text */
+                            h4+.space-y-3>div:hover>div {
+                                opacity: 1;
+                            }
+                        </style>
+
+                        <div class="relative z-0">
+                            <label class="block text-xs font-bold text-textMuted uppercase tracking-wider mb-2">Project
+                                Details</label>
+                            <textarea required rows="4"
+                                class="w-full bg-transparent border border-cardBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 hover:border-white/20 transition-all placeholder-white/30 resize-none"
+                                placeholder="Tell me about your project scope, timeline, and goals..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full btn-pill !bg-gradient-to-r from-cyan-500 to-pink-500 !text-white border-none mt-2 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] transition-all flex justify-center py-4 text-lg">
+                            Send Request <i class="fas fa-paper-plane ml-2 mt-1"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- END SERVICES VIEW -->
+
+    <!-- Interactive Auth Modal (Alpine.js    <!-- Immersive Zoom Modal -->
+    <div x-show="zoomModalOpen" style="display: none;"
+        class="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-8"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+        @click.self="zoomModalOpen = false; if(!dashboardModalOpen) document.body.style.overflow = ''">
+
+        <button @click="zoomModalOpen = false; if(!dashboardModalOpen) document.body.style.overflow = ''"
+            class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-all backdrop-blur-md z-50">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <img :src="zoomedImageSrc" alt="Zoomed View"
+            class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl ring-1 ring-white/10">
+    </div>
+
+
+
+    <!-- Dashboard Modal Container -->
+    <div x-show="dashboardModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8"
+        style="display: none;">
+        <!-- Backdrop -->
+        <div x-show="dashboardModalOpen" x-transition.opacity.duration.500ms
+            class="absolute inset-0 bg-black/80 backdrop-blur-md"
+            @click="dashboardModalOpen = false; document.body.style.overflow = ''"></div>
+
+        <!-- Modal Content (The 3D App Shell) -->
+        <div x-show="dashboardModalOpen" x-transition:enter="transition ease-out duration-700"
+            x-transition:enter-start="opacity-0 translate-y-16 scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-400"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-16 scale-95"
+            class="relative w-full max-w-[1600px] h-[85vh] lg:h-[90vh] bg-[#0A0A0F] rounded-3xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col overflow-hidden ring-1 ring-white/5">
+
+            <!-- Modal Header (Mac OS Style) -->
+            <div
+                class="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-darkBase/80 backdrop-blur-xl cursor-default relative z-20">
+                <div class="flex items-center gap-2 group">
+                    <button @click="dashboardModalOpen = false; document.body.style.overflow = ''"
+                        class="w-3.5 h-3.5 rounded-full bg-red-500/80 hover:bg-red-400 transition-colors shadow-inner flex items-center justify-center">
+                        <i class="fas fa-times text-[8px] text-red-900 opacity-0 group-hover:opacity-100"></i>
+                    </button>
+                    <div class="w-3.5 h-3.5 rounded-full bg-yellow-500/80 shadow-inner"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-green-500/80 shadow-inner"></div>
+                </div>
+
+                <span class="absolute left-1/2 -translate-x-1/2 text-textMuted font-medium tracking-wide text-sm"
+                    x-text="activeDashboard === 'healthcare' ? 'Healthcare Analytics | Dashboard Details' : (activeDashboard === 'global_sales' ? 'Global Sales | Dashboard Details' : 'E-Commerce Dashboard | App Details')"></span>
+
+                <div class="w-16"></div> <!-- Spacer for center alignment -->
+            </div>
+
+            <!-- Native Dashboard Container -->
+            <div
+                class="flex-1 w-full bg-[#050508] p-6 lg:p-10 overflow-y-auto custom-scrollbar relative z-10 transition-opacity duration-1000">
+
+                <!-- HEALTHCARE DASHBOARD LAYOUT -->
+                <div x-show="activeDashboard === 'healthcare'" class="max-w-7xl mx-auto h-full space-y-8">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white mb-2">Healthcare Analytics</h2>
+                            <p class="text-textMuted text-sm">Detailed Wait List & Patient Volume Analysis</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div
+                                class="px-4 py-2 rounded-lg bg-pink-500/10 text-pink-400 border border-cyan-500/20 text-sm font-medium flex items-center gap-2">
+                                <i class="fas fa-calendar-alt opacity-70"></i> Jan 2026
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
+                                @mouseleave="resetHover('healthcare')">
+                                <span x-text="ratings.healthcare.average"></span>
+                                <template x-for="star in 5">
+                                    <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
+                                        :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                        @mouseenter="hoverStar('healthcare', star)"
+                                        @click="setRating('healthcare', star)"></i>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Picture & Info Layout -->
+                    <div class="flex flex-col xl:flex-row gap-8 mt-6">
+
+                        <!-- High Resolution Image Container -->
+                        <div @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                            class="xl:w-2/3 cursor-zoom-in bg-cardBase border border-cardBorder rounded-2xl p-4 shadow-xl flex flex-col items-center justify-center relative group">
+                            <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard Full View"
+                                class="w-full h-auto rounded-lg shadow-md transition-transform duration-500 group-hover:scale-[1.02]">
+                            <!-- Zoom instructions overlay -->
+                            <div
+                                class="absolute bottom-6 right-6 bg-darkBase/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-textMuted text-sm shadow-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
+                                <i class="fas fa-search-plus text-pink-400"></i> Click image to zoom
+                            </div>
+                        </div>
+
+                        <!-- Healthcare Project Info Panel -->
+                        <div class="w-full lg:w-1/3 bg-darkBase/40 rounded-2xl border border-cardBorder p-6 flex flex-col gap-6"
+                            x-show="activeDashboard === 'healthcare'">
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info text-pink-500"></i> About This Project
+                                </h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    This project focused on operational efficiency and patient flow management, moving
+                                    from raw data to actionable medical insights. It spans the entire data prep
+                                    lifecycle—cleaning messy clinical data, handling null values, and standardizing
+                                    'Case Types'.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-screwdriver-wrench text-pink-500"></i> The Toolkit & Roadmap
+                                </h3>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-pink-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-simple text-pink-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power BI</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Used for core visualization and
+                                                dashboard structure.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-pink-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-code text-pink-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power Query (M)</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Automated the ETL Pipeline
+                                                (cleaning data, standardizing formats).</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-pink-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-project-diagram text-pink-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Star Schema</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Dimensional Modeling linking 'Fact'
+                                                tables with 'Dimension' tables (Date, Dept, Demographics).</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-pink-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-calculator text-pink-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">DAX</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Complex measures for Time-Band vs.
+                                                Age Profiling and dynamic waitlist trends.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-pink-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-object-group text-pink-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">PowerPoint (UI/UX)</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Designed the custom dashboard
+                                                background and split-view layout.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- GLOBAL SALES DASHBOARD LAYOUT -->
+                <div x-show="activeDashboard === 'global_sales'" class="max-w-7xl mx-auto h-full space-y-8">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white mb-2 uppercase">Global Sales Performance
+                                Dashboard
+                            </h2>
+                            <p class="text-textMuted text-sm">Interactive sales analytics according to your Power BI
+                                data</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div
+                                class="px-4 py-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 text-sm font-medium flex items-center gap-2">
+                                <i class="fas fa-calendar-alt opacity-70"></i> Jan 2026
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
+                                @mouseleave="resetHover('global_sales')">
+                                <span x-text="ratings.global_sales.average"></span>
+                                <template x-for="star in 5">
+                                    <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
+                                        :class="(ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                        @mouseenter="hoverStar('global_sales', star)"
+                                        @click="setRating('global_sales', star)"></i>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Picture & Info Layout -->
+                    <div class="flex flex-col xl:flex-row gap-8 mt-6">
+
+                        <!-- High Resolution Image Container -->
+                        <div @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                            class="xl:w-2/3 cursor-zoom-in bg-cardBase border border-cardBorder rounded-2xl p-4 shadow-xl flex flex-col items-center justify-center relative group">
+                            <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard Full View"
+                                class="w-full h-auto rounded-lg shadow-md transition-transform duration-500 group-hover:scale-[1.02]">
+                            <!-- Zoom instructions overlay -->
+                            <div
+                                class="absolute bottom-6 right-6 bg-darkBase/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-textMuted text-sm shadow-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
+                                <i class="fas fa-search-plus text-purple-400"></i> Click image to zoom
+                            </div>
+                        </div>
+
+                        <!-- Global Sales Project Info Panel -->
+                        <div class="w-full lg:w-1/3 bg-darkBase/40 rounded-2xl border border-cardBorder p-6 flex flex-col gap-6"
+                            x-show="activeDashboard === 'global_sales'">
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info text-purple-500"></i> Executive Overview
+                                </h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    This dashboard was designed for executive-level oversight, focusing on international
+                                    market performance and financial health. It successfully consolidates sales data
+                                    from multiple regions into a single, unified data model.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-gem text-purple-500"></i> The Toolkit & Roadmap
+                                </h3>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-pie text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power BI</span>
+                                            <p class="text-textMuted text-xs mt-0.5">For data hosting, interactive
+                                                logic, and final visualization.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-broom text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power Query</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Handled currency formatting,
+                                                regional data cleaning, and integration.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-line text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Financial Mapping</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Defined core metrics like Revenue,
+                                                Profit Margins, & Total Order Volume.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-earth-americas text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Geographic Normalization</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Ensured highly accurate spatial
+                                                drill-downs (Continent specific down to City code) without lag.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- Initialize AOS Animation -->
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        AOS.init({
+                            once: true,
+                            offset: 50,
+                            duration: 900,         /* Matching deep smooth entrances */
+                            easing: 'ease-out-cubic'
+                        });
+                    });
+                </script>
+</body>
+
+</html>
