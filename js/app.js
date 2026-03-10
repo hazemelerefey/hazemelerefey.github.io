@@ -15,6 +15,12 @@ function appData() {
 
         // Interactive Rating State
         ratings: {
+            portfolio: {
+                score: 0,
+                hoverScore: 0,
+                totalVotes: 35,
+                average: 5.0
+            },
             healthcare: {
                 score: 0,
                 hoverScore: 0,
@@ -95,17 +101,34 @@ function appData() {
 
 
 
+        navTo(view) {
+            this.activeView = view;
+            this.mobileMenuOpen = false;
+
+            // Force instant scroll by temporarily disabling smooth scroll behavior
+            const html = document.documentElement;
+            const originalScrollBehavior = html.style.scrollBehavior;
+            html.style.scrollBehavior = 'auto';
+
+            window.scrollTo(0, 0);
+
+            // Re-apply original scroll behavior after a tiny delay
+            setTimeout(() => {
+                html.style.scrollBehavior = originalScrollBehavior;
+            }, 10);
+
+            // Refresh AOS
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }, 100);
+        },
+
+
         init() {
 
 
-            // Refresh AOS animations when switching views
-            this.$watch('activeView', () => {
-                setTimeout(() => {
-                    if (typeof AOS !== 'undefined') {
-                        AOS.refresh();
-                    }
-                }, 550); // Wait for the 500ms x-transition to finish
-            });
         },
 
 

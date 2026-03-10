@@ -109,6 +109,9 @@
 
     <!-- Custom CSS (Glows, Gradients, Cards) -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preload Hero Poster for instant perceived load -->
+    <link rel="preload" href="images/hero_banner.png" as="image" fetchpriority="high">
 </head>
 
 <body class="bg-darkBase text-textMuted font-sans antialiased selection:bg-purple-500/30 selection:text-white"
@@ -143,7 +146,7 @@
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
 
             <!-- Logo -->
-            <a href="#" @click.prevent="activeView = 'home'; window.scrollTo(0,0)"
+            <a href="#" @click.prevent="navTo('home')"
                 class="text-white font-bold text-xl tracking-wide flex items-center gap-3 group">
                 <!-- Interactive HEY SVG Logo -->
                 <svg width="48" height="24" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -165,25 +168,25 @@
 
             <!-- Desktop Links (Dynamic Tabs) -->
             <div class="hidden md:flex items-center gap-8 text-base">
-                <button @click.prevent="activeView = 'home'"
+                <button @click.prevent="navTo('home')"
                     class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
                     :class="activeView === 'home' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
                     Home
                 </button>
 
-                <button @click.prevent="activeView = 'portfolio'"
+                <button @click.prevent="navTo('portfolio')"
                     class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
                     :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
                     Portfolio
                 </button>
 
-                <button @click.prevent="activeView = 'workspace'"
+                <button @click.prevent="navTo('workspace')"
                     class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
                     :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
                     My Workspace
                 </button>
 
-                <button @click.prevent="activeView = 'services'"
+                <button @click.prevent="navTo('services')"
                     class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
                     :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
                     Services
@@ -201,25 +204,25 @@
         <!-- Mobile Menu -->
         <div x-show="mobileMenuOpen" x-transition
             class="md:hidden absolute top-full left-0 w-full bg-cardBase border-b border-cardBorder py-6 px-6 flex flex-col gap-6 shadow-2xl z-50">
-            <button @click="activeView = 'home'; mobileMenuOpen = false"
+            <button @click="navTo('home')"
                 class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
                 :class="activeView === 'home' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
                 Home
             </button>
 
-            <button @click="activeView = 'portfolio'; mobileMenuOpen = false"
+            <button @click="navTo('portfolio')"
                 class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
                 :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
                 Portfolio
             </button>
 
-            <button @click="activeView = 'workspace'; mobileMenuOpen = false"
+            <button @click="navTo('workspace')"
                 class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
                 :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
                 My Workspace
             </button>
 
-            <button @click="activeView = 'services'; mobileMenuOpen = false"
+            <button @click="navTo('services')"
                 class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
                 :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
                 Services
@@ -240,7 +243,8 @@
                 class="relative min-h-[90vh] pt-40 pb-20 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
                 <!-- The Live Video Collaboration Banner -->
                 <div class="absolute inset-0 z-0 overflow-hidden">
-                    <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
+                    <video autoplay loop muted playsinline preload="auto" poster="images/hero_banner.png"
+                        class="w-full h-full object-cover opacity-60">
                         <source src="images/banner.mp4" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-gradient-to-b from-darkBase/70 via-darkBase/60 to-darkBase"></div>
@@ -268,7 +272,7 @@
 
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
                         class="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
-                        <a href="#" @click.prevent="activeView = 'portfolio'; window.scrollTo(0,0)"
+                        <a href="#" @click.prevent="navTo('portfolio')"
                             class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300">
                             <span class="relative z-10 flex items-center font-bold tracking-wide">
                                 Explore My Portfolio <i class="fas fa-arrow-right ml-3 text-lg"></i>
@@ -277,7 +281,7 @@
                                 class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
                             </div>
                         </a>
-                        <a href="#" @click.prevent="activeView = 'services'; window.scrollTo(0,0)"
+                        <a href="#" @click.prevent="navTo('services')"
                             class="btn-pill relative group !bg-transparent !text-white !border-white/30 hover:!border-cyan-400 hover:!bg-cyan-500/10 transition-all duration-300">
                             <span class="relative z-10 flex items-center font-bold tracking-wide">
                                 <i class="fas fa-briefcase mr-2"></i> View My Services
@@ -484,13 +488,13 @@
                     <!-- Project 1: Healthcare -->
                     <div data-aos="fade-right" data-aos-duration="800"
                         class="group relative rounded-3xl overflow-hidden bg-cardBase border border-cardBorder hover:border-pink-500/40 transition-all duration-500 cursor-pointer"
-                        @click="activeView = 'portfolio'; window.scrollTo(0,0)">
+                        @click="navTo('portfolio')">
                         <div
                             class="absolute top-0 right-0 w-40 h-40 bg-pink-500/10 rounded-full blur-[60px] group-hover:bg-pink-500/20 transition-all">
                         </div>
                         <div class="p-6 relative z-10">
                             <div class="rounded-2xl overflow-hidden mb-6 border border-cardBorder shadow-xl">
-                                <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard"
+                                <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard" loading="lazy"
                                     class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
                             </div>
                             <div class="flex items-center gap-2 mb-3">
@@ -514,13 +518,13 @@
                     <!-- Project 2: Global Sales -->
                     <div data-aos="fade-left" data-aos-duration="800"
                         class="group relative rounded-3xl overflow-hidden bg-cardBase border border-cardBorder hover:border-purple-500/40 transition-all duration-500 cursor-pointer"
-                        @click="activeView = 'portfolio'; window.scrollTo(0,0)">
+                        @click="navTo('portfolio')">
                         <div
                             class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-[60px] group-hover:bg-purple-500/20 transition-all">
                         </div>
                         <div class="p-6 relative z-10">
                             <div class="rounded-2xl overflow-hidden mb-6 border border-cardBorder shadow-xl">
-                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard"
+                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard" loading="lazy"
                                     class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
                             </div>
                             <div class="flex items-center gap-2 mb-3">
@@ -750,11 +754,11 @@
                         <p class="text-textMuted text-lg mb-8 max-w-xl mx-auto">Let's collaborate on something
                             extraordinary. Whether it's a stunning website or a powerful data dashboard.</p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="#" @click.prevent="activeView = 'services'; window.scrollTo(0,0)"
+                            <a href="#" @click.prevent="navTo('services')"
                                 class="btn-pill !bg-gradient-to-r from-cyan-500 to-pink-500 !text-white border-none shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(236,72,153,0.5)] transition-all !px-8 !py-4">
                                 <i class="fas fa-rocket mr-2"></i> Hire Me
                             </a>
-                            <a href="#" @click.prevent="activeView = 'portfolio'; window.scrollTo(0,0)"
+                            <a href="#" @click.prevent="navTo('portfolio')"
                                 class="btn-pill !bg-transparent !text-white !border-white/30 hover:!border-white hover:!bg-white/5 transition-all !px-8 !py-4">
                                 <i class="fas fa-eye mr-2"></i> See My Work
                             </a>
@@ -805,17 +809,25 @@
                             Hazem <span class="text-gradient-cyan-pink">Khaled Ezat</span>
                         </h1>
 
-                        <!-- Subheadline -->
-                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
-                            class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10">
-                            Bridging the gap between stunning visual interfaces and complex data architecture. I
-                            specialize
-                            in
-                            building highly interactive, beautifully designed websites powered by deep data insights
-                            and
-                            machine
-                            learning models.
-                        </p>
+                        <!-- Subheadline (Professional Summary) -->
+                        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                            class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10 text-left space-y-4">
+                            <p>
+                                I'm a <strong class="text-white">Data Analyst</strong> with a front-end development
+                                edge, combining deep analytics with strong UI skills to communicate insights clearly.
+                            </p>
+                            <p>
+                                On the data side, I've built expertise in predictive modeling and advanced statistics,
+                                and automated SQL/Python pipelines to save <strong class="text-pink-400">15+
+                                    hours</strong> of manual work weekly.
+                            </p>
+                            <p>
+                                On the front-end side, I create responsive, user-centric web apps using modern tools
+                                like JavaScript and React. I deliver integrated projects where data meets the
+                                web—interactive dashboards and custom visualization components with a focus on strong
+                                UI/UX.
+                            </p>
+                        </div>
 
                         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
                             class="flex flex-col sm:flex-row gap-4 mt-4">
@@ -863,6 +875,109 @@
                 </div>
             </header>
 
+            <!-- ═══════════════════ PORTFOLIO SKILLS (CV INTEGRATION) ═══════════════════ -->
+            <section class="py-16 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-40">
+                <div class="mb-12 text-center" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">Core
+                        Competencies</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Technical <span
+                            class="text-gradient-cyan-pink">Skills</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Data Analytics Skills Card -->
+                    <div data-aos="fade-right" data-aos-duration="800"
+                        class="bg-cardBase/60 backdrop-blur-md border border-cardBorder rounded-3xl p-8 shadow-xl hover:border-purple-500/50 transition-colors relative overflow-hidden group">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px] group-hover:bg-purple-500/20 transition-all">
+                        </div>
+                        <div class="relative z-10 flex items-center gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-400 text-xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Data Analytics & ML</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">SQL
+                                (PostgreSQL, MySQL)</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Python
+                                (Pandas, NumPy, Scikit-learn)</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Power
+                                BI & Tableau</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Predictive
+                                ML Models</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Data
+                                Warehousing</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Star
+                                Schema Modeling</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Advanced
+                                DAX</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">ETL
+                                Processes</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Statistical
+                                Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Frontend Skills Card -->
+                    <div data-aos="fade-left" data-aos-duration="800"
+                        class="bg-cardBase/60 backdrop-blur-md border border-cardBorder rounded-3xl p-8 shadow-xl hover:border-pink-500/50 transition-colors relative overflow-hidden group">
+                        <div
+                            class="absolute top-0 left-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[50px] group-hover:bg-pink-500/20 transition-all">
+                        </div>
+                        <div class="relative z-10 flex items-center gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 text-pink-400 text-xl">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Front-End & Web Dev</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 relative z-10">
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">HTML5
+                                & CSS3</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">SASS
+                                & Tailwind CSS</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">JavaScript
+                                (ES6+)</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">React.js
+                                & Next.js</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">UI/UX
+                                Design (Figma)</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Design
+                                Systems</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Rapid
+                                Prototyping</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">Responsive
+                                Design</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">State
+                                Management</span>
+                            <span
+                                class="px-4 py-2 bg-darkBase/80 border border-cardBorder text-sm text-textMuted rounded-full">API
+                                Integrations</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Work/Projects Pipeline Section -->
             <section id="work"
                 class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-40 overflow-visible">
@@ -876,24 +991,25 @@
                 </div>
 
                 <div class="relative z-50 overflow-visible w-full">
-                    
-                    
+
+
                     <!-- Portfolio Filter Options -->
                     <div class="flex justify-center mb-12" data-aos="fade-up">
-                        <div class="inline-flex bg-darkBase/80 backdrop-blur-sm border border-cardBorder p-1.5 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] flex-wrap justify-center gap-2">
-                            <button @click="portfolioFilter = 'all'" 
-                                    :class="portfolioFilter === 'all' ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'text-textMuted hover:text-white border-transparent'"
-                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                        <div
+                            class="inline-flex bg-darkBase/80 backdrop-blur-sm border border-cardBorder p-1.5 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] flex-wrap justify-center gap-2">
+                            <button @click="portfolioFilter = 'all'"
+                                :class="portfolioFilter === 'all' ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
                                 <i class="fas fa-layer-group"></i> All Projects
                             </button>
-                            <button @click="portfolioFilter = 'frontend'" 
-                                    :class="portfolioFilter === 'frontend' ? 'bg-pink-500/20 text-pink-400 border-pink-500/30' : 'text-textMuted hover:text-white border-transparent'"
-                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                            <button @click="portfolioFilter = 'frontend'"
+                                :class="portfolioFilter === 'frontend' ? 'bg-pink-500/20 text-pink-400 border-pink-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
                                 <i class="fas fa-code"></i> Frontend
                             </button>
-                            <button @click="portfolioFilter = 'analytics'" 
-                                    :class="portfolioFilter === 'analytics' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' : 'text-textMuted hover:text-white border-transparent'"
-                                    class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
+                            <button @click="portfolioFilter = 'analytics'"
+                                :class="portfolioFilter === 'analytics' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' : 'text-textMuted hover:text-white border-transparent'"
+                                class="px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 border flex items-center gap-2">
                                 <i class="fas fa-chart-line"></i> Analytics
                             </button>
                         </div>
@@ -903,255 +1019,398 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 relative z-20">
 
                         <!-- Project 1: E-Commerce Platform (Frontend) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(236,72,153,0.15)] hover:border-pink-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(236,72,153,0.15)] hover:border-pink-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <!-- Image Container with Zoom -->
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/ecommerce-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/ecommerce-dashboard.png" alt="E-Commerce Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/ecommerce-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/ecommerce-dashboard.png" alt="E-Commerce Platform"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-pink-500/20 text-pink-400 border border-pink-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">UI/UX</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
+                                    <span
+                                        class="bg-pink-500/20 text-pink-400 border border-pink-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">UI/UX</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <!-- Card Content -->
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Enterprise E-Commerce</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A high-performance modern storefront built with React, Next.js, and TailwindCSS. Features complex cart state, responsive product grids, and sleek glassmorphism UI components.</p>
-                                
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">
+                                    Enterprise E-Commerce</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A high-performance modern
+                                    storefront built with React, Next.js, and TailwindCSS. Features complex cart state,
+                                    responsive product grids, and sleek glassmorphism UI components.</p>
+
                                 <!-- Rating footer -->
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.ecommerce.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.ecommerce.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.ecommerce.hoverScore >= star || (!ratings.ecommerce.hoverScore && ratings.ecommerce.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('ecommerce', star)" @mouseleave="resetHover('ecommerce')" @click="setRating('ecommerce', star)"></i>
+                                                @mouseenter="hoverStar('ecommerce', star)"
+                                                @mouseleave="resetHover('ecommerce')"
+                                                @click="setRating('ecommerce', star)"></i>
                                         </template>
                                     </div>
-                                    <button class="text-pink-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button
+                                        class="text-pink-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 2: SaaS Task Management (Frontend) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/saas-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/saas-dashboard.png" alt="SaaS Task Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/saas-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/saas-dashboard.png" alt="SaaS Task Management"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SaaS</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React</span>
+                                    <span
+                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SaaS</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">SaaS Task Management</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A premium productivity dashboard featuring deep state management for complex Kanban boards, progress analytics, and team collaboration views with glowing neon accents.</p>
-                                
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                                    SaaS Task Management</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A premium productivity
+                                    dashboard featuring deep state management for complex Kanban boards, progress
+                                    analytics, and team collaboration views with glowing neon accents.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.saas.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.saas.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.saas.hoverScore >= star || (!ratings.saas.hoverScore && ratings.saas.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('saas', star)" @mouseleave="resetHover('saas')" @click="setRating('saas', star)"></i>
+                                                @mouseenter="hoverStar('saas', star)" @mouseleave="resetHover('saas')"
+                                                @click="setRating('saas', star)"></i>
                                         </template>
                                     </div>
-                                    <button class="text-cyan-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button
+                                        class="text-cyan-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 3: Real Estate Booking (Frontend) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/real-estate.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/real-estate.png" alt="Real Estate Booking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/real-estate.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/real-estate.png" alt="Real Estate Booking"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Web App</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Vue.js</span>
+                                    <span
+                                        class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Web
+                                        App</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Vue.js</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Real Estate Booking</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A highly interactive property booking system showcasing complex API integrations for dynamic search filters, map-based layouts, and real-time pricing calculations.</p>
-                                
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                                    Real Estate Booking</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A highly interactive property
+                                    booking system showcasing complex API integrations for dynamic search filters,
+                                    map-based layouts, and real-time pricing calculations.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.real_estate.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.real_estate.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.real_estate.hoverScore >= star || (!ratings.real_estate.hoverScore && ratings.real_estate.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('real_estate', star)" @mouseleave="resetHover('real_estate')" @click="setRating('real_estate', star)"></i>
+                                                @mouseenter="hoverStar('real_estate', star)"
+                                                @mouseleave="resetHover('real_estate')"
+                                                @click="setRating('real_estate', star)"></i>
                                         </template>
                                     </div>
-                                    <button class="text-purple-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button
+                                        class="text-purple-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 4: Healthcare Analytics (Analytics) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/healthcare-dashboard.png" alt="Healthcare Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/healthcare-dashboard.png" alt="Healthcare Analytics"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">BI Dashboard</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
+                                    <span
+                                        class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">BI
+                                        Dashboard</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power
+                                        BI</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Healthcare Analytics</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A comprehensive dashboard tracking patient flow, operational efficiency, and waitlist trends. Covers full data lifecycle: extraction, Star Schema modeling, and advanced DAX.</p>
-                                
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                                    Healthcare Analytics</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A comprehensive dashboard
+                                    tracking patient flow, operational efficiency, and waitlist trends. Covers full data
+                                    lifecycle: extraction, Star Schema modeling, and advanced DAX.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.healthcare.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.healthcare.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('healthcare', star)" @mouseleave="resetHover('healthcare')" @click="setRating('healthcare', star)"></i>
+                                                @mouseenter="hoverStar('healthcare', star)"
+                                                @mouseleave="resetHover('healthcare')"
+                                                @click="setRating('healthcare', star)"></i>
                                         </template>
                                     </div>
-                                    <button @click="openDashboard('healthcare')" class="text-emerald-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Open App <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button @click="openDashboard('healthcare')"
+                                        class="text-emerald-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Open App <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 5: Global Sales Performance (Analytics) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Executive</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SQL & DAX</span>
+                                    <span
+                                        class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Executive</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">SQL
+                                        & DAX</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Global Sales Oversight</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">An executive-level tool overseeing global market performance. Built through rigorous data integration and geographic normalization to enable instant spatial drill-downs without lag.</p>
-                                
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                                    Global Sales Oversight</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">An executive-level tool
+                                    overseeing global market performance. Built through rigorous data integration and
+                                    geographic normalization to enable instant spatial drill-downs without lag.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.global_sales.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.global_sales.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('global_sales', star)" @mouseleave="resetHover('global_sales')" @click="setRating('global_sales', star)"></i>
+                                                @mouseenter="hoverStar('global_sales', star)"
+                                                @mouseleave="resetHover('global_sales')"
+                                                @click="setRating('global_sales', star)"></i>
                                         </template>
                                     </div>
-                                    <button @click="openDashboard('global_sales')" class="text-amber-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Open App <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button @click="openDashboard('global_sales')"
+                                        class="text-amber-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Open App <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Project 6: Predictive Customer Churn (Analytics) -->
-                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'" 
-                             x-transition:enter="transition-all duration-500"
-                             x-transition:enter-start="opacity-0 translate-y-8"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full">
-                            
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full">
+
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                 @click="zoomedImageSrc = 'images/customer-churn.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/customer-churn.png" alt="Predictive ML Model" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                @click="zoomedImageSrc = 'images/customer-churn.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/customer-churn.png" alt="Predictive ML Model"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-                                
+
                                 <div class="absolute top-4 left-4 flex gap-2">
-                                    <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine Learning</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
+                                    <span
+                                        class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine
+                                        Learning</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+
+                                <div
+                                    class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
-                            
+
                             <div class="p-6 flex-1 flex flex-col">
-                                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">Predictive Churn Model</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A sci-kit learn predictive classification model that identifies at-risk telecom customers. Visualized via interactive SHAP value charts identifying key predictive factors.</p>
-                                
-                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
+                                    Predictive Churn Model</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A sci-kit learn predictive
+                                    classification model that identifies at-risk telecom customers. Visualized via
+                                    interactive SHAP value charts identifying key predictive factors.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-1">
-                                        <span x-text="ratings.churn.average" class="text-white font-bold text-sm mr-2"></span>
+                                        <span x-text="ratings.churn.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
                                             <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
                                                 :class="(ratings.churn.hoverScore >= star || (!ratings.churn.hoverScore && ratings.churn.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('churn', star)" @mouseleave="resetHover('churn')" @click="setRating('churn', star)"></i>
+                                                @mouseenter="hoverStar('churn', star)" @mouseleave="resetHover('churn')"
+                                                @click="setRating('churn', star)"></i>
                                         </template>
                                     </div>
-                                    <button class="text-red-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
-                                        Details <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    <button
+                                        class="text-red-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 7: Personal Portfolio (Frontend) -->
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                            x-transition:enter="transition-all duration-500"
+                            x-transition:enter-start="opacity-0 translate-y-8"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+
+                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                                @click="zoomedImageSrc = 'images/hero_banner.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
+                                <img src="images/hero_banner.png" alt="Personal Portfolio & Professional Services"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
+
+                                <div class="absolute top-4 left-4 flex gap-2">
+                                    <span
+                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">UI/UX</span>
+                                    <span
+                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Alpine.js</span>
+                                </div>
+
+                                <div
+                                    class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
+                                </div>
+                            </div>
+
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h3
+                                    class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                                    Premium Portfolio Platform</h3>
+                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">Designed and developed a
+                                    premium, high-performance portfolio website to showcase data analytics and front-end
+                                    capabilities with responsive animations, dynamic UI/UX, and SEO architecture.</p>
+
+                                <div
+                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.portfolio.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
+                                        <template x-for="star in 5">
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.portfolio.hoverScore >= star || (!ratings.portfolio.hoverScore && ratings.portfolio.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                @mouseenter="hoverStar('portfolio', star)"
+                                                @mouseleave="resetHover('portfolio')"
+                                                @click="setRating('portfolio', star)"></i>
+                                        </template>
+                                    </div>
+                                    <button
+                                        class="text-cyan-400 hover:text-white text-sm font-bold flex items-center gap-1 transition-colors group/btn">
+                                        Details <i
+                                            class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
                                     </button>
                                 </div>
                             </div>
@@ -1159,109 +1418,266 @@
 
                     </div> <!-- END PORTFOLIO GRID -->
 
-                    
-                <!-- Work Process Section (Moved to end of Portfolio) -->
-                <section id="process" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder">
-                    <div class="text-center mb-16" data-aos="fade-up">
-                        <span
-                            class="uppercase tracking-[0.2em] text-purple-400 text-xs font-bold mb-2 block">Methodology</span>
-                        <h2 class="text-4xl md:text-5xl font-bold text-white">How I Work</h2>
-                    </div>
-
-                    <div class="relative">
-                        <!-- Vertical Line -->
-                        <div
-                            class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 opacity-30">
+                    <!-- Experience & Education Section -->
+                    <section id="experience-education"
+                        class="py-24 max-w-7xl mx-auto border-t border-cardBorder relative z-10 w-full overflow-hidden">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">My
+                                Journey</span>
+                            <h2 class="text-4xl md:text-5xl font-bold text-white">Experience & <span
+                                    class="text-gradient-cyan-pink">Education</span></h2>
                         </div>
 
-                        <div class="space-y-12">
-                            <!-- Step 1 -->
-                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up">
-                                <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <!-- Experience Column -->
+                            <div data-aos="fade-right" data-aos-duration="800">
+                                <div class="flex items-center gap-4 mb-8">
                                     <div
-                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                        class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
+                                        <i class="fas fa-briefcase text-pink-400 text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-white">Work Experience</h3>
+                                </div>
+
+                                <div
+                                    class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-1/2 before:w-0.5 before:bg-gradient-to-b before:from-pink-500/50 before:to-transparent">
+                                    <!-- Role 1 -->
+                                    <div class="relative pl-12 group/item">
                                         <div
-                                            class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                            class="absolute left-6 -translate-x-1/2 w-4 h-4 rounded-full bg-darkBase border-2 border-pink-500 z-10 group-hover/item:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(236,72,153,0.5)]">
                                         </div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">1. Discovery & Strategy</h3>
-                                        <p class="text-textMuted text-sm">Understanding your goals, target audience, and
-                                            parsing
-                                            the data requirements before writing a single line of code.</p>
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-6 rounded-2xl hover:border-pink-500/30 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 right-0 w-24 h-24 bg-pink-500/5 rounded-full blur-[30px] group-hover/item:bg-pink-500/15 transition-colors duration-500">
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-pink-400 tracking-wider mb-1 block">12/2025
+                                                - Present</span>
+                                            <h4 class="text-lg font-bold text-white mb-1">Data Analyst</h4>
+                                            <div class="text-sm text-textMuted mb-4">Digilians | MCIT</div>
+                                            <ul class="space-y-2 text-sm text-textMuted">
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500 mt-1"></i> Built KPI
+                                                    dashboards for performance tracking.</li>
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500 mt-1"></i> Developed SQL
+                                                    queries for reporting & analysis.</li>
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500 mt-1"></i> Applied Prompt
+                                                    Engineering for AI outputs.</li>
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500 mt-1"></i> Produced dynamic
+                                                    data visualizations.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Role 2 -->
+                                    <div class="relative pl-12 group/item">
+                                        <div
+                                            class="absolute left-6 -translate-x-1/2 w-4 h-4 rounded-full bg-darkBase border-2 border-pink-500/50 z-10 group-hover/item:border-pink-500 group-hover/item:scale-125 transition-all duration-300">
+                                        </div>
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-6 rounded-2xl hover:border-pink-500/30 transition-colors shadow-lg relative overflow-hidden">
+                                            <span
+                                                class="text-xs font-bold text-pink-400/80 tracking-wider mb-1 block">08/2022
+                                                - 06/2023</span>
+                                            <h4 class="text-lg font-bold text-white mb-1">Front-End Web Developer</h4>
+                                            <div class="text-sm text-textMuted mb-4">Udacity</div>
+                                            <ul class="space-y-2 text-sm text-textMuted">
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500/70 mt-1"></i> Mastered HTML5,
+                                                    CSS3, & JS to build web apps.</li>
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500/70 mt-1"></i> API Integration
+                                                    for asynchronous data.</li>
+                                                <li class="flex items-start gap-2"><i
+                                                        class="fas fa-check text-pink-500/70 mt-1"></i> Responsive
+                                                    Design for mobile/desktop.</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                                <div
-                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-cyan-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-                                    1</div>
-                                <div class="md:w-1/2"></div>
                             </div>
 
-                            <!-- Step 2 -->
-                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
-                                data-aos-delay="100">
-                                <div class="md:w-1/2"></div>
-                                <div
-                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-purple-500 rounded-full items-center justify-center z-10 text-purple-400 font-bold shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                                    2</div>
-                                <div class="md:w-1/2 text-center md:text-left">
+                            <!-- Education Column -->
+                            <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                                <div class="flex items-center gap-4 mb-8">
                                     <div
-                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-purple-500/50 transition-colors shadow-lg relative overflow-hidden">
-                                        <div
-                                            class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px]">
-                                        </div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">2. UI/UX Design & Prototyping
-                                        </h3>
-                                        <p class="text-textMuted text-sm">Creating high-fidelity Figma designs, focusing
-                                            on
-                                            modern aesthetics, glassmorphism, and intuitive user journeys.</p>
+                                        class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                                        <i class="fas fa-graduation-cap text-cyan-400 text-xl"></i>
                                     </div>
+                                    <h3 class="text-2xl font-bold text-white">Education</h3>
                                 </div>
-                            </div>
 
-                            <!-- Step 3 -->
-                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
-                                data-aos-delay="200">
-                                <div class="md:w-1/2 flex justify-end text-center md:text-right">
-                                    <div
-                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                <div
+                                    class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-1/2 before:w-0.5 before:bg-gradient-to-b before:from-cyan-500/50 before:to-transparent">
+                                    <!-- Edu 1 -->
+                                    <div class="relative pl-12 group/item">
                                         <div
-                                            class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                            class="absolute left-6 -translate-x-1/2 w-4 h-4 rounded-full bg-darkBase border-2 border-cyan-500 z-10 group-hover/item:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(6,182,212,0.5)]">
                                         </div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">3. Development & Data Integration
-                                        </h3>
-                                        <p class="text-textMuted text-sm">Building the frontend with React/Tailwind and
-                                            connecting it to scalable databases or machine learning pipelines.</p>
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-6 rounded-2xl hover:border-cyan-500/30 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-full blur-[30px] group-hover/item:bg-cyan-500/15 transition-colors duration-500">
+                                            </div>
+                                            <span class="text-xs font-bold text-cyan-400 tracking-wider mb-1 block">2025
+                                                - 2026</span>
+                                            <h4 class="text-lg font-bold text-white mb-1">Diploma, Applied AI &
+                                                Analytics</h4>
+                                            <div class="text-sm text-textMuted mb-4">Digilians | MCIT</div>
+                                            <p class="text-sm text-textMuted">Intensive training in Data Analysis,
+                                                Python, SQL, and advance AI modules covering Machine Learning and AI
+                                                Agentic workflows.</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div
-                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-pink-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(236,72,153,0.5)]">
-                                    3</div>
-                                <div class="md:w-1/2"></div>
-                            </div>
-
-                            <!-- Step 4 -->
-                            <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
-                                data-aos-delay="300">
-                                <div class="md:w-1/2"></div>
-                                <div
-                                    class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-white rounded-full items-center justify-center z-10 text-white font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]">
-                                    4</div>
-                                <div class="md:w-1/2 text-center md:text-left">
-                                    <div
-                                        class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-white/50 transition-colors shadow-lg relative overflow-hidden">
+                                    <!-- Edu 2 -->
+                                    <div class="relative pl-12 group/item">
                                         <div
-                                            class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-[40px]">
+                                            class="absolute left-6 -translate-x-1/2 w-4 h-4 rounded-full bg-darkBase border-2 border-cyan-500/70 z-10 group-hover/item:border-cyan-500 group-hover/item:scale-125 transition-all duration-300">
                                         </div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">4. Testing & Deployment</h3>
-                                        <p class="text-textMuted text-sm">Ensuring optimal performance, responsive
-                                            design across
-                                            all devices, and deploying with CI/CD for seamless updates.</p>
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-6 rounded-2xl hover:border-cyan-500/30 transition-colors shadow-lg relative overflow-hidden">
+                                            <span
+                                                class="text-xs font-bold text-cyan-400/80 tracking-wider mb-1 block">09/2022
+                                                - 06/2023</span>
+                                            <h4 class="text-lg font-bold text-white mb-1">Nano Degree in Front-End Dev
+                                            </h4>
+                                            <div class="text-sm text-textMuted mb-4">Udacity (GPA: 4)</div>
+                                            <p class="text-sm text-textMuted">Intensive program focused on responsive
+                                                design, UI frameworks, and dynamic layouts.</p>
+                                        </div>
+                                    </div>
+                                    <!-- Edu 3 -->
+                                    <div class="relative pl-12 group/item">
+                                        <div
+                                            class="absolute left-6 -translate-x-1/2 w-4 h-4 rounded-full bg-darkBase border-2 border-cyan-500/40 z-10 group-hover/item:border-cyan-500/80 group-hover/item:scale-125 transition-all duration-300">
+                                        </div>
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-6 rounded-2xl hover:border-cyan-500/30 transition-colors shadow-lg relative overflow-hidden">
+                                            <span
+                                                class="text-xs font-bold text-cyan-400/60 tracking-wider mb-1 block">2020
+                                                - 2024</span>
+                                            <h4 class="text-lg font-bold text-white mb-1">Bachelor of Laws</h4>
+                                            <div class="text-sm text-textMuted mb-4">Port Said University</div>
+                                            <p class="text-sm text-textMuted">Specialized in Commercial and Corporate
+                                                Law. Gained deep understanding of business regulations to support
+                                                business logic applications.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
+                    </section>
+
+                    <!-- Work Process Section (Moved to end of Portfolio) -->
+                    <section id="process" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder">
+                        <div class="text-center mb-16" data-aos="fade-up">
+                            <span
+                                class="uppercase tracking-[0.2em] text-purple-400 text-xs font-bold mb-2 block">Methodology</span>
+                            <h2 class="text-4xl md:text-5xl font-bold text-white">How I Work</h2>
+                        </div>
+
+                        <div class="relative">
+                            <!-- Vertical Line -->
+                            <div
+                                class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 opacity-30">
+                            </div>
+
+                            <div class="space-y-12">
+                                <!-- Step 1 -->
+                                <div class="relative flex flex-col md:flex-row items-center gap-8 group"
+                                    data-aos="fade-up">
+                                    <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                            </div>
+                                            <h3 class="text-2xl font-bold text-white mb-2">1. Discovery & Strategy</h3>
+                                            <p class="text-textMuted text-sm">Understanding your goals, target audience,
+                                                and
+                                                parsing
+                                                the data requirements before writing a single line of code.</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-cyan-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                                        1</div>
+                                    <div class="md:w-1/2"></div>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="relative flex flex-col md:flex-row items-center gap-8 group"
+                                    data-aos="fade-up" data-aos-delay="100">
+                                    <div class="md:w-1/2"></div>
+                                    <div
+                                        class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-purple-500 rounded-full items-center justify-center z-10 text-purple-400 font-bold shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                                        2</div>
+                                    <div class="md:w-1/2 text-center md:text-left">
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-purple-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px]">
+                                            </div>
+                                            <h3 class="text-2xl font-bold text-white mb-2">2. UI/UX Design & Prototyping
+                                            </h3>
+                                            <p class="text-textMuted text-sm">Creating high-fidelity Figma designs,
+                                                focusing
+                                                on
+                                                modern aesthetics, glassmorphism, and intuitive user journeys.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="relative flex flex-col md:flex-row items-center gap-8 group"
+                                    data-aos="fade-up" data-aos-delay="200">
+                                    <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                            </div>
+                                            <h3 class="text-2xl font-bold text-white mb-2">3. Development & Data
+                                                Integration
+                                            </h3>
+                                            <p class="text-textMuted text-sm">Building the frontend with React/Tailwind
+                                                and
+                                                connecting it to scalable databases or machine learning pipelines.</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-pink-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+                                        3</div>
+                                    <div class="md:w-1/2"></div>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="relative flex flex-col md:flex-row items-center gap-8 group"
+                                    data-aos="fade-up" data-aos-delay="300">
+                                    <div class="md:w-1/2"></div>
+                                    <div
+                                        class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-white rounded-full items-center justify-center z-10 text-white font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                                        4</div>
+                                    <div class="md:w-1/2 text-center md:text-left">
+                                        <div
+                                            class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-white/50 transition-colors shadow-lg relative overflow-hidden">
+                                            <div
+                                                class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-[40px]">
+                                            </div>
+                                            <h3 class="text-2xl font-bold text-white mb-2">4. Testing & Deployment</h3>
+                                            <p class="text-textMuted text-sm">Ensuring optimal performance, responsive
+                                                design across
+                                                all devices, and deploying with CI/CD for seamless updates.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
         </div> <!-- END PORTFOLIO VIEW -->
     </div> <!-- END HOME/PORTFOLIO CONTAINER -->
 
