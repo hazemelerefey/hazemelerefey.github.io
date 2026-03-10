@@ -13,4 +13,4 @@ A collection of dark-mode UI components including animated navbars, glass UI car
 - **Glassmorphism**: Premium deep gradient and backdrop blur combinations.
 - **Accessibility Component First**: Keyboard navigable components.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

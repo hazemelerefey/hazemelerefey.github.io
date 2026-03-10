@@ -2,13 +2,13 @@
 <h3 align="center">A passionate Frontend Developer & Data Analyst bridging stunning visual interfaces with complex data architecture.</h3>
 
 <p align="center">
-  <a href="https://hazemelerefey.github.io/my-website/" target="_blank">
+  <a href="https://hazemelerefey.github.io" target="_blank">
     <img src="https://readme-typing-svg.demolab.com?font=Plus+Jakarta+Sans&weight=800&size=28&duration=4000&pause=1000&color=06B6D4&center=true&vCenter=true&width=600&lines=Frontend+Engineering;Data+Data+Science+%26+ML;UI%2FUX+Design;Let's+build+something+amazing!" alt="Typing SVG" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://hazemelerefey.github.io/my-website/">
+  <a href="https://hazemelerefey.github.io">
     <img src="https://img.shields.io/badge/Portfolio-✨_View_My_Website-0B0B0F?style=for-the-badge&logoColor=white&color=06B6D4" alt="Portfolio" />
   </a>
   <a href="https://linkedin.com/in/hazemelerefy">
@@ -26,7 +26,7 @@
 - 🔭 I’m currently working on building **premium, scalable frontend applications** and **interactive data dashboards**.
 - 🌱 I’m currently diving deeper into **Advanced Machine Learning forecasting models**.
 - 💬 Ask me about **React, Next.js, TailwindCSS, Python, SQL, and Power BI**.
-- 📫 How to reach me: View my [Portfolio Website](https://hazemelerefey.github.io/my-website/) and connect with me!
+- 📫 How to reach me: View my [Portfolio Website](https://hazemelerefey.github.io) and connect with me!
 
 ---
 

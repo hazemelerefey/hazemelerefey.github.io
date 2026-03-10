@@ -13,4 +13,4 @@ Focused on index optimization, reducing query response times significantly for h
 - **Index Optimization**: Transforming slow sequential scans into rapid seeks.
 - **Tableau Integration**: Delivering raw speed to dashboard stakeholders.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

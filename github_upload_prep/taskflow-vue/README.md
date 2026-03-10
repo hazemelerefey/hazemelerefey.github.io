@@ -13,4 +13,4 @@ TaskFlow helps individuals and teams organize their goals intuitively.
 - **Vue 3 Composition API**: Scalable state logic.
 - **Drag & Drop**: Native seamless drag API integrations.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

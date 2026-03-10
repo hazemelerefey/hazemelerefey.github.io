@@ -13,4 +13,4 @@ Created specifically to provide deep insights into E-Commerce metrics, sales vel
 - **Server Side Rendering (SSR)**: Utilizing Next.js for blazing fast performance.
 - **Dynamic Visuals**: Recharts powers the beautiful bar and line visual components.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

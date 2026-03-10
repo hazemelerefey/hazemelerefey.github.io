@@ -13,4 +13,4 @@ By identifying high-risk segments, stakeholders can proactively intervene.
 - **Ensemble Methods**: Utilizing Random Forest for high robust accuracy.
 - **Feature Engineering**: Deriving behavior metrics from telecom raw logs.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

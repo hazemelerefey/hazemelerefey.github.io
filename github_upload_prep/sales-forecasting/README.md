@@ -12,4 +12,4 @@ Time-series analysis employing ARIMA and Prophet to predict quarterly revenue ac
 - **Seasonality Tracking**: Accurately mapping out Q4 consumer booms.
 - **Dashboard Ready Data**: Exporting clean structured arrays ready for visualization tools like Power BI.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

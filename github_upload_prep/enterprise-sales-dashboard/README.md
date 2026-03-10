@@ -17,4 +17,4 @@ A React-based comprehensive admin interface connecting to real-time sales APIs. 
 ## Purpose
 This project showcases my ability to architect complex frontend applications connecting deeply with real-time data infrastructures.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)

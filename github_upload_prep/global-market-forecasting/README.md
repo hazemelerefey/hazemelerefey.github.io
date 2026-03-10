@@ -14,4 +14,4 @@ This data science project predicts global market demands, enabling high-stakes d
 - **Python Data Stack**: Leveraging Pandas, NumPy, and Scikit-Learn.
 - **Data Cleanups**: Dealing with billions of rows safely and reliably.
 
-[**View My Full Portfolio**](https://hazemelerefey.github.io/my-website/)
+[**View My Full Portfolio**](https://hazemelerefey.github.io)
