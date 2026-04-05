@@ -81,25 +81,29 @@ function appData() {
         },
 
         setRating(project, stars) {
-            if (this.ratings[project].score === 0) {
-                this.ratings[project].score = stars;
-                this.ratings[project].totalVotes++;
-                let newTotal = (this.ratings[project].average * (this.ratings[project].totalVotes - 1)) + stars;
-                this.ratings[project].average = (newTotal / this.ratings[project].totalVotes).toFixed(1);
+            const rating = this.ratings[project];
+            const currentAverage = parseFloat(rating.average);
+
+            if (rating.score === 0) {
+                rating.score = stars;
+                rating.totalVotes++;
+                const newTotal = (currentAverage * (rating.totalVotes - 1)) + stars;
+                rating.average = (newTotal / rating.totalVotes).toFixed(1);
             } else {
-                // User is changing their existing rating
-                let oldScore = this.ratings[project].score;
-                this.ratings[project].score = stars;
-                let oldTotal = this.ratings[project].average * this.ratings[project].totalVotes;
-                let newTotal = oldTotal - oldScore + stars;
-                this.ratings[project].average = (newTotal / this.ratings[project].totalVotes).toFixed(1);
+                const oldScore = rating.score;
+                rating.score = stars;
+                const oldTotal = currentAverage * rating.totalVotes;
+                const newTotal = oldTotal - oldScore + stars;
+                rating.average = (newTotal / rating.totalVotes).toFixed(1);
             }
+
+            rating.hoverScore = stars;
         },
         hoverStar(project, stars) {
             this.ratings[project].hoverScore = stars;
         },
         resetHover(project) {
-            this.ratings[project].hoverScore = 0;
+            this.ratings[project].hoverScore = this.ratings[project].score || 0;
         },
 
         openDashboard(type) {

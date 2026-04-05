@@ -1097,16 +1097,18 @@
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-1">
-                                        <span x-text="ratings.jobpulse.average"
-                                            class="text-white font-bold text-sm mr-2"></span>
-                                        <template x-for="star in 5">
-                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                @mouseenter="hoverStar('jobpulse', star)"
-                                                @mouseleave="resetHover('jobpulse')"
-                                                @click="setRating('jobpulse', star)"></i>
-                                        </template>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-white font-bold text-sm" x-text="ratings.jobpulse.average"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.jobpulse.totalVotes})`"></span>
+                                        <div class="flex items-center gap-1 ml-1">
+                                            <template x-for="star in 5">
+                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                    :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
+                                                    @mouseenter="hoverStar('jobpulse', star)"
+                                                    @mouseleave="resetHover('jobpulse')"
+                                                    @click="setRating('jobpulse', star)"></i>
+                                            </template>
+                                        </div>
                                     </div>
 
                                     <a href="https://github.com/hazemelerefey/jobpulse" target="_blank" rel="noopener noreferrer"
