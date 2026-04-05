@@ -1,20 +1,22 @@
 <svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1200" height="720" rx="28" fill="#08111b"/>
-<rect x="24" y="24" width="1152" height="672" rx="24" fill="#0f172a" stroke="#223145"/>
-<rect x="24" y="24" width="1152" height="56" rx="24" fill="#101826"/>
-<circle cx="58" cy="52" r="7" fill="#ef4444"/><circle cx="82" cy="52" r="7" fill="#f59e0b"/><circle cx="106" cy="52" r="7" fill="#22c55e"/>
-<rect x="136" y="40" width="240" height="24" rx="12" fill="#1f2937"/>
-<rect x="56" y="108" width="340" height="72" rx="22" fill="#111827" stroke="#334155"/>
-<rect x="70" y="126" width="120" height="34" rx="16" fill="#172554"/><rect x="202" y="126" width="76" height="34" rx="16" fill="#1f2937"/><rect x="290" y="126" width="86" height="34" rx="16" fill="#1f2937"/>
-<rect x="56" y="204" width="430" height="466" rx="24" fill="#111827" stroke="#334155"/>
-<rect x="510" y="108" width="610" height="562" rx="24" fill="#0b1b2d" stroke="#14b8a6" stroke-opacity="0.3"/>
-<rect x="82" y="230" width="378" height="152" rx="20" fill="#172554"/>
-<rect x="82" y="398" width="378" height="116" rx="20" fill="#162230"/>
-<rect x="82" y="530" width="378" height="116" rx="20" fill="#162230"/>
-<text x="104" y="270" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="700">Modern apartment</text>
-<text x="104" y="304" fill="#cbd5e1" font-family="Arial" font-size="18">3 beds • 2 baths • New Cairo</text>
-<text x="104" y="338" fill="#99f6e4" font-family="Arial" font-size="20" font-weight="700">EGP 5,200,000</text>
-<path d="M552 160H1078V624H552V160Z" fill="#0e2235"/>
-<path d="M612 220L686 264L736 238L814 308L908 284L982 360L1050 332" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="736" cy="238" r="14" fill="#a78bfa"/><circle cx="908" cy="284" r="14" fill="#14b8a6"/><circle cx="1050" cy="332" r="14" fill="#f8fafc"/>
+<rect width="1200" height="720" rx="24" fill="#09131f"/>
+<rect x="20" y="20" width="1160" height="680" rx="22" fill="#101826" stroke="#243142"/>
+<rect x="20" y="20" width="1160" height="52" rx="22" fill="#0f172a"/>
+<circle cx="50" cy="46" r="6" fill="#ef4444"/><circle cx="72" cy="46" r="6" fill="#f59e0b"/><circle cx="94" cy="46" r="6" fill="#22c55e"/>
+<rect x="120" y="34" width="220" height="24" rx="12" fill="#1f2937"/>
+<rect x="40" y="92" width="1120" height="84" rx="20" fill="#0f172a"/>
+<rect x="64" y="116" width="180" height="36" rx="16" fill="#172554"/><rect x="256" y="116" width="100" height="36" rx="16" fill="#1f2937"/><rect x="368" y="116" width="100" height="36" rx="16" fill="#1f2937"/><rect x="480" y="116" width="120" height="36" rx="16" fill="#1f2937"/>
+<rect x="40" y="196" width="434" height="484" rx="22" fill="#111827" stroke="#334155"/>
+<rect x="492" y="196" width="668" height="484" rx="22" fill="#0d2234" stroke="#14b8a6" stroke-opacity="0.28"/>
+<rect x="64" y="222" width="386" height="150" rx="18" fill="#162235"/>
+<rect x="64" y="388" width="386" height="124" rx="18" fill="#172233"/>
+<rect x="64" y="528" width="386" height="124" rx="18" fill="#172233"/>
+<text x="88" y="266" fill="#F8FAFC" font-family="Arial" font-size="28" font-weight="700">Luxury apartment</text>
+<text x="88" y="300" fill="#CBD5E1" font-family="Arial" font-size="18">2 beds • 145m² • Fifth Settlement</text>
+<text x="88" y="336" fill="#99F6E4" font-family="Arial" font-size="22" font-weight="700">EGP 4,850,000</text>
+<path d="M528 230H1124V646H528V230Z" fill="#10293f"/>
+<path d="M582 268L646 310L702 286L772 356L846 332L930 404L1038 370" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="702" cy="286" r="12" fill="#a855f7"/><circle cx="846" cy="332" r="12" fill="#14b8a6"/><circle cx="1038" cy="370" r="12" fill="#F8FAFC"/>
+<rect x="556" y="590" width="184" height="14" rx="7" fill="#334155"/>
+<rect x="750" y="590" width="156" height="14" rx="7" fill="#334155"/>
 </svg>
