@@ -33,6 +33,24 @@ function appData() {
                 totalVotes: 89,
                 average: 4.9
             },
+            jobpulse: {
+                score: 0,
+                hoverScore: 0,
+                totalVotes: 76,
+                average: 4.9
+            },
+            kanban: {
+                score: 0,
+                hoverScore: 0,
+                totalVotes: 58,
+                average: 4.8
+            },
+            realestate: {
+                score: 0,
+                hoverScore: 0,
+                totalVotes: 63,
+                average: 4.8
+            },
             ecommerce: {
                 score: 0,
                 hoverScore: 0,
@@ -105,24 +123,18 @@ function appData() {
             this.activeView = view;
             this.mobileMenuOpen = false;
 
-            // Force instant scroll by temporarily disabling smooth scroll behavior
-            const html = document.documentElement;
-            const originalScrollBehavior = html.style.scrollBehavior;
-            html.style.scrollBehavior = 'auto';
+            // Smooth scroll to top on navigation
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
-            window.scrollTo(0, 0);
-
-            // Re-apply original scroll behavior after a tiny delay
-            setTimeout(() => {
-                html.style.scrollBehavior = originalScrollBehavior;
-            }, 10);
-
-            // Refresh AOS
+            // Refresh AOS animations for the new content
             setTimeout(() => {
                 if (typeof AOS !== 'undefined') {
                     AOS.refresh();
                 }
-            }, 100);
+            }, 400); 
         },
 
 
