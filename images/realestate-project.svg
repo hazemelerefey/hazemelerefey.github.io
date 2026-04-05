@@ -1,27 +1,20 @@
 <svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1200" height="720" rx="36" fill="#08111B"/>
-<rect width="1200" height="720" rx="36" fill="url(#g)"/>
-<defs>
-  <linearGradient id="g" x1="120" y1="60" x2="1090" y2="650" gradientUnits="userSpaceOnUse">
-    <stop stop-color="#0F172A"/>
-    <stop offset="1" stop-color="#12324A"/>
-  </linearGradient>
-</defs>
-<text x="64" y="96" fill="#A78BFA" font-family="Arial" font-size="22" font-weight="700">PROPERTY SEARCH EXPERIENCE</text>
-<text x="64" y="154" fill="#F8FAFC" font-family="Arial" font-size="52" font-weight="700">Frontend Real Estate Finder</text>
-<text x="64" y="198" fill="#94A3B8" font-family="Arial" font-size="24">Listing discovery, filters, map context, and detail browsing</text>
-<rect x="60" y="248" width="460" height="390" rx="28" fill="#0F172A" stroke="#334155"/>
-<rect x="548" y="248" width="592" height="390" rx="28" fill="#10263C" stroke="#14B8A6" stroke-opacity="0.35"/>
-<rect x="92" y="284" width="170" height="42" rx="18" fill="#1E293B"/>
-<rect x="276" y="284" width="120" height="42" rx="18" fill="#1E293B"/>
-<rect x="92" y="352" width="396" height="112" rx="24" fill="#172554"/>
-<rect x="92" y="484" width="396" height="112" rx="24" fill="#1E293B"/>
-<text x="114" y="392" fill="#F8FAFC" font-family="Arial" font-size="24" font-weight="700">Modern apartment</text>
-<text x="114" y="422" fill="#CBD5E1" font-family="Arial" font-size="18">3 beds • 2 baths • New Cairo</text>
-<path d="M580 314H1110V608H580V314Z" fill="#0B1B2D"/>
-<path d="M640 350C690 380 720 430 772 454C832 482 882 466 934 508C968 534 1012 550 1080 520" stroke="#14B8A6" stroke-width="10" stroke-linecap="round"/>
-<circle cx="772" cy="454" r="16" fill="#A78BFA"/>
-<circle cx="934" cy="508" r="16" fill="#22D3EE"/>
-<circle cx="1080" cy="520" r="16" fill="#F8FAFC"/>
-<text x="610" y="584" fill="#E2E8F0" font-family="Arial" font-size="20">Map-driven discovery flow</text>
+<rect width="1200" height="720" rx="28" fill="#08111b"/>
+<rect x="24" y="24" width="1152" height="672" rx="24" fill="#0f172a" stroke="#223145"/>
+<rect x="24" y="24" width="1152" height="56" rx="24" fill="#101826"/>
+<circle cx="58" cy="52" r="7" fill="#ef4444"/><circle cx="82" cy="52" r="7" fill="#f59e0b"/><circle cx="106" cy="52" r="7" fill="#22c55e"/>
+<rect x="136" y="40" width="240" height="24" rx="12" fill="#1f2937"/>
+<rect x="56" y="108" width="340" height="72" rx="22" fill="#111827" stroke="#334155"/>
+<rect x="70" y="126" width="120" height="34" rx="16" fill="#172554"/><rect x="202" y="126" width="76" height="34" rx="16" fill="#1f2937"/><rect x="290" y="126" width="86" height="34" rx="16" fill="#1f2937"/>
+<rect x="56" y="204" width="430" height="466" rx="24" fill="#111827" stroke="#334155"/>
+<rect x="510" y="108" width="610" height="562" rx="24" fill="#0b1b2d" stroke="#14b8a6" stroke-opacity="0.3"/>
+<rect x="82" y="230" width="378" height="152" rx="20" fill="#172554"/>
+<rect x="82" y="398" width="378" height="116" rx="20" fill="#162230"/>
+<rect x="82" y="530" width="378" height="116" rx="20" fill="#162230"/>
+<text x="104" y="270" fill="#f8fafc" font-family="Arial" font-size="28" font-weight="700">Modern apartment</text>
+<text x="104" y="304" fill="#cbd5e1" font-family="Arial" font-size="18">3 beds • 2 baths • New Cairo</text>
+<text x="104" y="338" fill="#99f6e4" font-family="Arial" font-size="20" font-weight="700">EGP 5,200,000</text>
+<path d="M552 160H1078V624H552V160Z" fill="#0e2235"/>
+<path d="M612 220L686 264L736 238L814 308L908 284L982 360L1050 332" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="736" cy="238" r="14" fill="#a78bfa"/><circle cx="908" cy="284" r="14" fill="#14b8a6"/><circle cx="1050" cy="332" r="14" fill="#f8fafc"/>
 </svg>
