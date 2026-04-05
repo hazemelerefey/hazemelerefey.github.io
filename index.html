@@ -1106,9 +1106,15 @@
                                                 :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
                                                 @mouseenter="hoverStar('jobpulse', star)"
                                                 @mouseleave="resetHover('jobpulse')"
-                                                @click="setRating('jobpulse', star)"></i>
+                                                @click.stop="setRating('jobpulse', star)"></i>
                                         </template>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/jobpulse" target="_blank" rel="noopener noreferrer"
+                                        @click.stop
+                                        class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300">
+                                        <i class="fab fa-github text-sm"></i>
+                                    </a>
                                 </div>
                             </div>
                         </a>
