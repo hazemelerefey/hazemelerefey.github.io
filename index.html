@@ -286,13 +286,13 @@
                             <div
                                 class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
                             </div>
-                        </a>
+                        </div>
                         <a href="#" @click.prevent="navTo('services')"
                             class="btn-pill relative group !bg-transparent !text-white !border-white/30 hover:!border-cyan-400 hover:!bg-cyan-500/10 transition-all duration-300">
                             <span class="relative z-10 flex items-center font-bold tracking-wide">
                                 <i class="fas fa-briefcase mr-2"></i> View My Services
                             </span>
-                        </a>
+                        </div>
                     </div>
 
 
@@ -1121,11 +1121,10 @@
                         </div>
 
                         <!-- Project 2: Frontend Kanban Board (Frontend) -->
-                        <a x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
 
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1157,7 +1156,7 @@
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-2">
                                         <span class="text-white font-bold text-sm" x-text="ratings.kanban.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.kanban.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.kanban.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1168,16 +1167,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 3: Frontend Real Estate Finder (Frontend) -->
-                        <a x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
+                        <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full">
 
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1209,7 +1213,7 @@
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
                                     <div class="flex items-center gap-2">
                                         <span class="text-white font-bold text-sm" x-text="ratings.realestate.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.realestate.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.realestate.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1220,9 +1224,15 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-purple-500/25 text-purple-400 hover:text-white hover:bg-purple-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 4: Healthcare Operations Waitlist Dashboard (Analytics) -->
                         <a x-show="portfolioFilter === 'all' || portfolioFilter === 'analytics'"
