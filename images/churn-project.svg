@@ -1,0 +1,61 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#170b1f"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 160) rotate(32) scale(260 240)">
+      <stop stop-color="#ef4444" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ef4444" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 540) rotate(18) scale(280 220)">
+      <stop stop-color="#ec4899" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ec4899" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="url(#bg)"/>
+  <rect width="1200" height="720" rx="36" fill="url(#glowA)"/>
+  <rect width="1200" height="720" rx="36" fill="url(#glowB)"/>
+
+  <text x="72" y="120" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="3">PROJECT SHOWCASE</text>
+  <text x="72" y="208" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">Customer Churn Prediction</text>
+  <text x="72" y="260" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="26">Retention analytics • ML signals • Risk scoring</text>
+
+  <rect x="72" y="316" width="170" height="40" rx="20" fill="#ef4444" fill-opacity="0.14" stroke="#ef4444" stroke-opacity="0.4"/>
+  <text x="101" y="342" fill="#E5E7EB" font-family="Arial, Helvetica, sans-serif" font-size="18">Predictive Analytics</text>
+  <rect x="258" y="316" width="140" height="40" rx="20" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="300" y="342" fill="#E5E7EB" font-family="Arial, Helvetica, sans-serif" font-size="18">Python</text>
+  <rect x="414" y="316" width="180" height="40" rx="20" fill="#ec4899" fill-opacity="0.12" stroke="#ec4899" stroke-opacity="0.32"/>
+  <text x="450" y="342" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="18">Scikit-learn</text>
+
+  <rect x="650" y="92" width="472" height="536" rx="30" fill="#020617" fill-opacity="0.56" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="684" y="126" width="180" height="96" rx="22" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.10"/>
+  <rect x="882" y="126" width="206" height="96" rx="22" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.10"/>
+  <text x="710" y="156" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="16">Risk monitor</text>
+  <text x="710" y="198" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">18.4% churn</text>
+  <text x="908" y="156" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="16">Signal</text>
+  <text x="908" y="198" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">AUC 0.87</text>
+
+  <rect x="684" y="246" width="404" height="154" rx="24" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="710" y="282" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="16">Interface preview</text>
+  <path d="M716 360C752 356 776 308 820 314C862 320 896 270 938 278C980 286 1008 236 1056 242" stroke="#ef4444" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="716" cy="360" r="6" fill="#ef4444"/>
+  <circle cx="820" cy="314" r="6" fill="#ef4444"/>
+  <circle cx="938" cy="278" r="6" fill="#ef4444"/>
+  <circle cx="1056" cy="242" r="6" fill="#ef4444"/>
+  <rect x="716" y="314" width="116" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.14"/>
+  <rect x="716" y="334" width="154" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.10"/>
+  <rect x="716" y="382" width="182" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.08"/>
+
+  <rect x="684" y="426" width="404" height="166" rx="24" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="710" y="462" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="16">Key surfaces</text>
+  <rect x="716" y="486" width="340" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.05"/>
+  <rect x="716" y="526" width="296" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.05"/>
+  <rect x="716" y="566" width="248" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.05"/>
+  <text x="738" y="505" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="16">High risk</text>
+  <text x="738" y="545" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="16">Feature impact</text>
+  <text x="738" y="585" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="16">Retention focus</text>
+
+  <text x="72" y="420" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="24">Clean project-specific visual based on repo identity</text>
+  <text x="72" y="468" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="20">Designed for portfolio presentation without fake placeholder screenshots</text>
+</svg>
