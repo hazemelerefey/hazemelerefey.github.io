@@ -1098,13 +1098,14 @@
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
-                                        @mouseleave="resetHover('jobpulse')">
-                                        <span x-text="ratings.jobpulse.average"></span>
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.jobpulse.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
-                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
-                                                :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
                                                 @mouseenter="hoverStar('jobpulse', star)"
+                                                @mouseleave="resetHover('jobpulse')"
                                                 @click="setRating('jobpulse', star)"></i>
                                         </template>
                                     </div>
@@ -1147,13 +1148,14 @@
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
-                                        @mouseleave="resetHover('kanban')">
-                                        <span x-text="ratings.kanban.average"></span>
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.kanban.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
-                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
-                                                :class="(ratings.kanban.hoverScore >= star || (!ratings.kanban.hoverScore && ratings.kanban.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.kanban.hoverScore >= star || (!ratings.kanban.hoverScore && ratings.kanban.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
                                                 @mouseenter="hoverStar('kanban', star)"
+                                                @mouseleave="resetHover('kanban')"
                                                 @click="setRating('kanban', star)"></i>
                                         </template>
                                     </div>
@@ -1196,13 +1198,14 @@
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
-                                        @mouseleave="resetHover('realestate')">
-                                        <span x-text="ratings.realestate.average"></span>
+                                    <div class="flex items-center gap-1">
+                                        <span x-text="ratings.realestate.average"
+                                            class="text-white font-bold text-sm mr-2"></span>
                                         <template x-for="star in 5">
-                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
-                                                :class="(ratings.realestate.hoverScore >= star || (!ratings.realestate.hoverScore && ratings.realestate.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                            <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
+                                                :class="(ratings.realestate.hoverScore >= star || (!ratings.realestate.hoverScore && ratings.realestate.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
                                                 @mouseenter="hoverStar('realestate', star)"
+                                                @mouseleave="resetHover('realestate')"
                                                 @click="setRating('realestate', star)"></i>
                                         </template>
                                     </div>
