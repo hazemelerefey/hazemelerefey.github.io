@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey & Heya - AI Video Assets</title>
+    <!-- Standard Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+    <!-- Google Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <!-- JSZip for Zipping -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <style>
+        body { background-color: #0B0B0F; color: #FFFFFF; font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(21, 21, 29, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        model-viewer {
+            width: 100%;
+            height: 800px;
+            background-color: transparent;
+            --poster-color: transparent;
+        }
+    </style>
+</head>
+<body x-data="{ 
+    currentAngle: '0deg 85deg 4.5m',
+    currentAnim: 'idle',
+    setCamera(orbit) {
+        this.currentAngle = orbit;
+    }
+}" class="min-h-screen p-8 text-center bg-gradient-to-br from-[#0B0B0F] to-[#1a1a2e]">
+
+    <header class="mb-10 animate-fade-in relative z-10 text-center">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan-500/20 blur-[100px] -z-10 rounded-full"></div>
+        <div class="absolute top-10 left-1/2 translate-x-10 w-64 h-64 bg-pink-500/20 blur-[100px] -z-10 rounded-full"></div>
+        
+        <h1 class="text-5xl font-black mb-4 tracking-tight drop-shadow-lg">Hey & Heya - Asset Generator</h1>
+        <p class="text-[#8E8D9B] max-w-2xl mx-auto text-lg mb-6">Rotate the cameras below, or click the massive export button to instantly download a ZIP file holding transparent high-resolution images of both bots from all 5 angles to feed directly into Gemini or Premiere for your video headers!</p>
+        
+        <button id="export-btn" onclick="generateAssetPack()" class="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg shadow-[0_0_30px_rgba(168,85,247,0.5)] hover:scale-105 hover:shadow-[0_0_50px_rgba(236,72,153,0.7)] transition-all">
+            <i class="fas fa-layer-group mr-2"></i> Export All 20 Training Images as ZIP
+        </button>
+    </header>
+
+    <!-- Camera Controls -->
+    <div class="flex flex-wrap justify-center gap-4 mb-10 relative z-20">
+        <button @click="setCamera('0deg 85deg 4.5m')" class="px-6 py-2 rounded-full border border-gray-600 hover:border-cyan-400 bg-[#15151D] hover:bg-cyan-500/10 transition-all font-semibold">Front</button>
+        <button @click="setCamera('180deg 85deg 4.5m')" class="px-6 py-2 rounded-full border border-gray-600 hover:border-pink-400 bg-[#15151D] hover:bg-pink-500/10 transition-all font-semibold">Back</button>
+        <button @click="setCamera('-90deg 85deg 4.5m')" class="px-6 py-2 rounded-full border border-gray-600 hover:border-white bg-[#15151D] hover:bg-white/10 transition-all font-semibold">Left Side</button>
+        <button @click="setCamera('90deg 85deg 4.5m')" class="px-6 py-2 rounded-full border border-gray-600 hover:border-white bg-[#15151D] hover:bg-white/10 transition-all font-semibold">Right Side</button>
+        <button @click="setCamera('0deg 0deg 4.5m')" class="px-6 py-2 rounded-full border border-cyan-400 bg-[#15151D] hover:bg-cyan-500/10 transition-all font-semibold">Top Down</button>
+        
+        <div class="w-full text-center mt-4">
+            <span class="mr-4 text-gray-400">Preview Animation State:</span>
+            <button @click="currentAnim = 'idle'" :class="currentAnim === 'idle' ? 'bg-cyan-500 text-black border-cyan-400' : 'border-gray-600 bg-[#15151D]'" class="px-5 py-1.5 rounded-l-full border transition-all font-semibold">Standing Idle</button>
+            <button @click="currentAnim = 'sitting'" :class="currentAnim === 'sitting' ? 'bg-pink-500 text-black border-pink-400' : 'border-gray-600 bg-[#15151D]'" class="px-5 py-1.5 rounded-r-full border-t border-b border-r transition-all font-semibold">Sitting & Dozing</button>
+        </div>
+    </div>
+
+    <!-- Models Container -->
+    <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
+        <!-- HEY (Cyan) -->
+        <div class="glass-panel w-full md:w-1/2 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+            <div class="absolute top-0 right-0 w-full h-full bg-cyan-500/5 blur-[80px] pointer-events-none"></div>
+            <h2 class="text-3xl font-bold text-center text-cyan-400 mb-2 drop-shadow-md">"Hey" Bot</h2>
+            
+            <div class="relative w-full rounded-2xl bg-black/40 overflow-hidden border border-white/5">
+                <model-viewer id="hey_idle"
+                    x-show="currentAnim === 'idle'"
+                    src="models/hey_idle.glb" 
+                    :camera-orbit="currentAngle"
+                    camera-controls auto-rotate autoplay shadow-intensity="1">
+                </model-viewer>
+                
+                <model-viewer id="hey_sitting"
+                    x-show="currentAnim === 'sitting'"
+                    src="models/hey_sitting.glb" 
+                    :camera-orbit="currentAngle"
+                    camera-controls auto-rotate autoplay shadow-intensity="1">
+                </model-viewer>
+            </div>
+        </div>
+
+        <!-- HEYA (Pink) -->
+        <div class="glass-panel w-full md:w-1/2 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-full h-full bg-pink-500/5 blur-[80px] pointer-events-none"></div>
+            <h2 class="text-3xl font-bold text-center text-pink-400 mb-2 drop-shadow-md">"Heya" Bot</h2>
+            
+            <div class="relative w-full rounded-2xl bg-black/40 overflow-hidden border border-white/5">
+                <model-viewer id="heya_idle"
+                    x-show="currentAnim === 'idle'"
+                    src="models/heya_idle.glb" 
+                    :camera-orbit="currentAngle"
+                    camera-controls auto-rotate autoplay shadow-intensity="1">
+                </model-viewer>
+                
+                <model-viewer id="heya_sitting"
+                    x-show="currentAnim === 'sitting'"
+                    src="models/heya_sitting.glb" 
+                    :camera-orbit="currentAngle"
+                    camera-controls auto-rotate autoplay shadow-intensity="1">
+                </model-viewer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extraction Script -->
+    <script>
+        async function generateAssetPack() {
+            const btn = document.getElementById('export-btn');
+            const originalText = btn.innerHTML;
+            btn.innerText = "Extracting 20 Images from WebGL. Please wait...";
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.7';
+            
+            const zip = new JSZip();
+            
+            const angles = {
+                'front': '0deg 85deg 4.5m',
+                'back': '180deg 85deg 4.5m',
+                'left': '-90deg 85deg 4.5m',
+                'right': '90deg 85deg 4.5m',
+                'top': '0deg 0deg 4.5m'
+            };
+            
+            const models = ['hey_idle', 'hey_sitting', 'heya_idle', 'heya_sitting'];
+            
+            try {
+                for (const modelId of models) {
+                    const mv = document.getElementById(modelId);
+                    if(!mv) continue;
+                    
+                    // Temporarily force display so the `<model-viewer>` can natively render its bounds
+                    const oldDisplay = mv.style.display;
+                    mv.style.display = 'block';
+                    
+                    for (const [angleName, orbit] of Object.entries(angles)) {
+                        mv.cameraOrbit = orbit;
+                        // Jump completely skips interaction animations so we get exact frame
+                        mv.jumpCameraToGoal();
+                        
+                        // Small buffer for the GPU pipeline to refresh the shadow-intensity and render logic
+                        await new Promise(r => setTimeout(r, 200)); 
+                        
+                        const blob = await mv.toBlob({idealAspect: true});
+                        if (blob) {
+                            zip.file(`${modelId}_${angleName}.png`, blob);
+                        }
+                    }
+                    mv.style.display = oldDisplay;
+                }
+                
+                btn.innerText = "Zipping massive file. Finishing up...";
+                const content = await zip.generateAsync({type:"blob"});
+                saveAs(content, "Hey_Bot_AI_Assets.zip");
+                
+                btn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Successfully Exported!';
+                setTimeout(() => { btn.innerHTML = originalText; btn.style.pointerEvents = 'auto'; btn.style.opacity = '1'; }, 3000);
+            } catch (err) {
+                console.error(err);
+                btn.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Error occurred';
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+            }
+        }
+    </script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+</body>
+</html>

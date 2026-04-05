@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazem Elerefy | Frontend & Data Solutions</title>
+    <meta name="description" content="Portfolio of Hazem Elerefy, a professional Frontend Developer and Data Analyst.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Custom Config for this Specific Design -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBase: '#0B0B0F',
+                        cardBase: '#15151D',
+                        cardBorder: '#232332',
+                        textMuted: '#8E8D9B',
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+    <!-- Custom Logic -->
+    <script src="js/app.js"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom CSS (Glows, Gradients, Cards) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darkBase text-textMuted font-sans antialiased selection:bg-purple-500/30 selection:text-white"
+    x-data="appData()" @scroll.window="scrolled = (window.pageYOffset > 20)"
+    @keydown.escape.window="closeDashboard(); zoomModalOpen = false" x-init="
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    activeSection = entry.target.id;
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    ">
+
+    <!-- Lively Background Ambient Orbs -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-[10%] left-[5%] w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob">
+        </div>
+        <div
+            class="absolute top-[40%] right-[10%] w-[30rem] h-[30rem] bg-pink-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-[10%] left-[20%] w-[25rem] h-[25rem] bg-purple-500/10 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-4000">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav :class="{ 'bg-darkBase/90 backdrop-blur-md border-b border-cardBorder py-4': scrolled, 'bg-transparent py-6': !scrolled }"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+
+            <!-- Logo -->
+            <a href="#" @click.prevent="activeView = 'home'; window.scrollTo(0,0)"
+                class="text-white font-bold text-xl tracking-wide flex items-center gap-3 group">
+                <!-- Interactive HEY SVG Logo -->
+                <svg width="48" height="24" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="transform transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+                    <text x="0" y="24" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900"
+                        font-size="28" fill="url(#hey-gradient)" letter-spacing="-1">HEY</text>
+                    <defs>
+                        <linearGradient id="hey-gradient" x1="0" y1="0" x2="60" y2="30" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#06B6D4" />
+                            <stop offset="0.5" stop-color="#A855F7" />
+                            <stop offset="1" stop-color="#EC4899" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="flex items-center gap-1">
+                    Hazem<span class="text-textMuted font-normal hidden md:inline">Elerefy</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links (Dynamic Tabs) -->
+            <div class="hidden md:flex items-center gap-8 text-base">
+                <button @click.prevent="activeView = 'portfolio'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    Portfolio
+                </button>
+
+                <button @click.prevent="activeView = 'workspace'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    My Workspace
+                </button>
+
+                <button @click.prevent="activeView = 'services'"
+                    class="text-sm font-bold tracking-widest uppercase transition-all duration-300 relative px-2 py-1"
+                    :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 scale-105' : 'text-white hover:text-cyan-400 hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'">
+                    Services
+                </button>
+            </div>
+
+
+
+            <!-- Mobile Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas" :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition
+            class="md:hidden absolute top-full left-0 w-full bg-cardBase border-b border-cardBorder py-6 px-6 flex flex-col gap-6 shadow-2xl z-50">
+            <button @click="activeView = 'portfolio'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'portfolio' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                Portfolio
+            </button>
+
+            <button @click="activeView = 'workspace'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'workspace' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                My Workspace
+            </button>
+
+            <button @click="activeView = 'services'; mobileMenuOpen = false"
+                class="text-left text-2xl font-bold uppercase tracking-widest transition-colors duration-300"
+                :class="activeView === 'services' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500' : 'text-white hover:text-cyan-400'">
+                Services
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- HOME/PORTFOLIO CONTAINER -->
+    <div x-show="activeView === 'portfolio' || activeView === 'services'"
+        x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-95"
+        x-transition:enter-end="opacity-100 transform scale-100" style="display: none;">
+
+        <!-- PORTFOLIO VIEW CONTENT -->
+        <div x-show="activeView === 'portfolio'">
+            <!-- Hero Section -->
+            <header id="home"
+                class="relative min-h-[90vh] pt-40 pb-20 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+
+                <!-- The Live Video Collaboration Banner -->
+                <div class="absolute inset-0 z-0 overflow-hidden">
+                    <!-- Authentic Video Banner -->
+                    <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
+                        <source src="images/banner.mp4" type="video/mp4">
+                    </video>
+                    <!-- Gradient Overlay for readability -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-darkBase/70 via-darkBase/60 to-darkBase">
+                    </div>
+                </div>
+
+                <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <!-- Profile Picture Column (Rectangle format) -->
+                    <div data-aos="zoom-in" data-aos-duration="1000"
+                        class="md:w-1/3 flex justify-center order-2 md:order-1">
+                        <div
+                            class="relative w-64 h-80 md:w-80 md:h-96 rounded-2xl p-2 bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 shadow-[0_0_50px_rgba(6,182,212,0.3)] hover:shadow-[0_0_80px_rgba(236,72,153,0.4)] transition-shadow duration-500 animate-float">
+                            <img src="images/profile.jpg" alt="Hazem Khaled Ezat Profile"
+                                class="w-full h-full object-cover rounded-xl" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Text Column -->
+                    <div
+                        class="md:w-2/3 text-center md:text-left order-1 md:order-2 flex flex-col items-center md:items-start">
+
+                        <!-- Intro Label -->
+                        <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
+                            <span
+                                class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Front
+                                End & Data Analyst</span>
+                        </div>
+
+                        <!-- Main Headline -->
+                        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+                            class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
+                            Hazem <span class="text-gradient-cyan-pink">Khaled Ezat</span>
+                        </h1>
+
+                        <!-- Subheadline -->
+                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                            class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10">
+                            Bridging the gap between stunning visual interfaces and complex data architecture. I
+                            specialize
+                            in
+                            building highly interactive, beautifully designed websites powered by deep data insights
+                            and
+                            machine
+                            learning models.
+                        </p>
+
+                        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
+                            class="flex flex-col sm:flex-row gap-4 mt-4">
+                            <!-- High-Visibility CV Download Background Trigger -->
+                            <a href="assets/Hazemelerefy CV.pdf" download="Hazemelerefy_CV.pdf" @click.prevent="
+                            fetch($el.href)
+                                .then(res => res.blob())
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.style.display = 'none';
+                                    a.href = url;
+                                    a.download = $el.getAttribute('download');
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    window.URL.revokeObjectURL(url);
+                                })
+                                .catch(() => window.open($el.href, '_blank'));
+                        " class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-cyan-500 to-pink-500 !text-white border-none transition-all duration-300">
+                                <span class="relative z-10 flex items-center font-bold tracking-wide">
+                                    <i class="fas fa-file-download mr-2 text-lg"></i> Download My CV
+                                </span>
+                                <div
+                                    class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
+                                </div>
+                            </a>
+                            <!-- Let's Connect CTA & Socials -->
+                            <div class="flex items-center gap-3">
+                                <a href="#contact"
+                                    class="btn-pill !bg-darkBase/50 backdrop-blur-md !text-white !border-cardBorder hover:!border-white hover:!bg-white/10 transition-colors duration-300">
+                                    Let's Connect
+                                </a>
+                                <a href="https://github.com/hazemelerefey" target="_blank" rel="noopener noreferrer"
+                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/hazemelerefy" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(10,102,194,0.3)]">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Expertise Section (The Core of the Reference Image) -->
+            <section id="expertise" class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">My
+                        Skills</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">What I Can Do</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Frontend Development -->
+                    <div data-aos="fade-up" data-aos-duration="800" class="expertise-card">
+                        <div class="glow-corner glow-cyan"></div>
+                        <div class="icon-box cyan">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Premium Websites</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Full-scale corporate websites and web applications with robust architecture and stunning
+                            visual
+                            storytelling.
+                        </p>
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> Custom React/Next.js Dev</li>
+                            <li><i class="fas fa-check-circle"></i> Modern Tailwind Interfaces</li>
+                            <li><i class="fas fa-check-circle"></i> SEO Ready Structure</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: UI/UX & Formatting (Ref image exact match) -->
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100" class="expertise-card">
+                        <div class="glow-corner glow-magenta"></div>
+                        <div class="icon-box magenta">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">UI/UX Design</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Interface design that is intuitive, accessible, and delighting. We map user journeys
+                            that make
+                            sense.
+                        </p>
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> Design Systems</li>
+                            <li><i class="fas fa-check-circle"></i> Rapid Prototyping</li>
+                            <li><i class="fas fa-check-circle"></i> Responsive Animation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Data Analytics & ML -->
+                    <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200"
+                        class="expertise-card lg:col-span-1 md:col-span-2">
+                        <div class="glow-corner glow-purple"></div>
+                        <div class="icon-box purple">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Data Analytics & ML</h3>
+                        <p class="text-textMuted text-sm mb-8 relative z-10 leading-relaxed min-h-[80px]">
+                            Transforming complex raw datasets into interactive business intelligence dashboards and
+                            predictive
+                            models.
+                        </p>
+                        <ul class="check-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-4">
+                            <li><i class="fas fa-check-circle"></i> Interactive Power BI Dashboards</li>
+                            <li><i class="fas fa-check-circle"></i> Python Automation & SQL</li>
+                            <li><i class="fas fa-check-circle"></i> Predictive ML Models</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Work/Projects Pipeline Section -->
+            <section id="work"
+                class="pt-8 pb-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-40 overflow-visible">
+                <div class="mb-32 relative z-10" data-aos="fade-right">
+                    <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-2 block">Portfolio</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">My <span
+                            class="text-gradient-cyan-pink">Projects</span></h2>
+                    <p class="text-textMuted text-lg max-w-2xl">A selection of recent projects showcasing dynamic
+                        frontend
+                        engineering and deep data analysis pipelines.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-50 overflow-visible">
+                    <!-- Project 1: Healthcare Dashboard (Full Width Interactive Image) -->
+                    <div x-data="robotInteraction('healthcare')" @mousemove.window="trackMouse($event)"
+                        @mouseleave="resetGaze()" class="relative z-[100] mb-8 pt-24 md:col-span-2 lg:col-span-3"
+                        x-ref="card">
+
+                        <!-- ROBOT BODY (Sitting precisely on the 3D top ledge) -->
+                        <div x-ref="robotContainer"
+                            class="absolute top-[-50px] sm:top-[-110px] left-[15%] sm:left-[25%] lg:left-[10%] z-50 w-[180px] h-[260px] pointer-events-none transition-all duration-300 ease-out flex items-end">
+                            <!-- Premium 3D HEY Robot Model Viewer (Interactive Sitting/Standing) -->
+                            <model-viewer x-ref="robotViewer"
+                                class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]" :src="animSrc" autoplay
+                                loop shadow-intensity="1" environment-image="neutral" exposure="1.2"
+                                :camera-orbit="`calc(0deg + ${mouseYaw}deg) calc(${mousePitch}deg) 160%`"
+                                camera-target="0m 0.6m 0m">
+                            </model-viewer>
+                        </div>
+
+                        <!-- MAIN CARD -->
+                        <div data-aos="fade-up" @mouseenter="hoverCard()" @mouseleave="unhoverCard()"
+                            class="group/card relative rounded-3xl overflow-hidden bg-[#0A0A0F] border border-cardBorder transition-colors duration-500 flex flex-col lg:flex-row shadow-[0_0_30px_rgba(6,182,212,0.1)] hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] z-10 w-full h-full">
+                            <!-- Details Section -->
+                            <div
+                                class="p-8 lg:p-12 lg:w-1/3 flex flex-col justify-center relative z-10 border-b lg:border-b-0 lg:border-r border-cardBorder bg-[#0A0A0F]">
+                                <div
+                                    class="header-rating-group flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-cardBorder pb-4 relative gap-4 sm:gap-0">
+                                    <!-- Date Badge -->
+                                    <div
+                                        class="text-cyan-400 text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-cyan-900/30 border border-cyan-500/30 px-3 py-1.5 rounded-full inline-flex items-center">
+                                        <i class="far fa-calendar-alt mr-2 mb-[1px]"></i> Jan 2026
+                                    </div>
+
+                                    <!-- Rating Component -->
+                                    <div
+                                        class="rating-box flex items-center gap-3 bg-darkBase/80 border border-cardBorder px-4 py-2 rounded-full shadow-inner relative z-20 group">
+                                        <!-- Robot trigger zone (Robot SVG will be absolute positioned behind this container) -->
+                                        <div class="flex items-center gap-1">
+                                            <template x-for="star in 5">
+                                                <button @click="setRating('healthcare', star)"
+                                                    @mouseenter="hoverStar('healthcare', star)"
+                                                    @mouseleave="resetHover('healthcare')"
+                                                    class="focus:outline-none transition-all duration-300 hover:scale-125"
+                                                    :class="[
+                                                        (ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) 
+                                                        ? 'text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]' 
+                                                        : 'text-gray-600 hover:text-yellow-200'
+                                                    ]">
+                                                    <i class="fa-solid fa-star text-sm"></i>
+                                                </button>
+                                            </template>
+                                        </div>
+                                        <div class="h-4 w-px bg-cardBorder mx-1"></div>
+                                        <div class="flex items-center gap-1.5 min-w-[60px] justify-center">
+                                            <span class="text-white font-bold text-sm"
+                                                x-text="ratings.healthcare.average"></span>
+                                            <span
+                                                class="text-textMuted text-[10px] font-medium uppercase tracking-wide w-[20px] text-left">(<span
+                                                    x-text="ratings.healthcare.totalVotes"></span>)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Healthcare Analytics</h3>
+                                <p class="text-textMuted mb-6 leading-relaxed line-clamp-3">
+                                    A comprehensive dashboard built with Power BI tracking patient flow, operational
+                                    efficiency,
+                                    and waitlist trends. This project covers the full data lifecycle—from raw data
+                                    extraction,
+                                    cleaning in Power Query, and Dimensional Modeling (Star Schema), all the way to
+                                    advanced DAX
+                                    calculations for Time-Band vs. Age profiling. Featuring a custom UI designed in
+                                    PowerPoint.
+                                </p>
+                                <div class="flex gap-4">
+                                    <button @click="openDashboard('healthcare')"
+                                        class="flex-1 bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500 hover:text-white px-4 py-2 rounded-xl transition-all font-medium flex items-center justify-center gap-2 group">
+                                        Open Dashboard <i
+                                            class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
+                                    <button
+                                        @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-cardBorder text-textMuted hover:text-white hover:bg-white/10 transition-colors">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dashboard Image Section -->
+                            <div
+                                class="w-full lg:w-2/3 min-h-[500px] lg:min-h-[600px] bg-[#050508] relative z-10 p-4 flex items-center justify-center group/img">
+                                <button
+                                    @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                                    type="button"
+                                    class="relative w-full h-full rounded-2xl overflow-hidden border border-cardBorder shadow-[0_0_30px_rgba(6,182,212,0.1)] block text-left">
+                                    <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard"
+                                        class="w-full h-full object-cover sm:object-contain transform transition-transform duration-700 group-hover/img:scale-105">
+
+                                    <!-- Interactive overlay indicator -->
+                                    <div
+                                        class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center">
+                                        <div
+                                            class="bg-darkBase/80 backdrop-blur-sm px-6 py-3 rounded-full border border-cyan-500/30 text-cyan-300 font-medium tracking-wide transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-500 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                                            <i class="fas fa-search-plus mr-2"></i> Zoom In
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- END Healthcare Project Wrapper -->
+
+                    <!-- Project 2: Global Sales Dashboard (Full Width) -->
+                    <div x-data="robotInteraction('global_sales')" @mousemove.window="trackMouse($event)"
+                        @mouseleave="resetGaze()" class="relative z-40 pt-24 md:col-span-2 lg:col-span-3" x-ref="card">
+
+                        <!-- ROBOT BODY (Sitting precisely on the 3D top ledge) -->
+                        <div x-ref="robotContainer"
+                            class="absolute top-[-50px] sm:top-[-110px] left-[15%] sm:left-[25%] lg:left-[10%] z-50 w-[180px] h-[260px] pointer-events-none transition-all duration-300 ease-out flex items-end">
+                            <!-- Premium 3D HEY Robot Model Viewer (Static Sitting) -->
+                            <model-viewer x-ref="robotViewer"
+                                class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]" :src="animSrc" autoplay
+                                loop shadow-intensity="1" environment-image="neutral" exposure="1.2"
+                                :camera-orbit="`calc(0deg + ${mouseYaw}deg) calc(${mousePitch}deg) 160%`"
+                                camera-target="0m 0.6m 0m">
+                            </model-viewer>
+                        </div>
+
+                        <!-- MAIN CARD -->
+                        <div data-aos="fade-up" data-aos-delay="200" @mouseenter="hoverCard()"
+                            @mouseleave="unhoverCard()"
+                            class="group/card relative rounded-3xl overflow-hidden bg-[#0A0A0F] border border-cardBorder transition-colors duration-500 flex flex-col lg:flex-row shadow-[0_0_30px_rgba(168,85,247,0.1)] hover:shadow-[0_0_50px_rgba(168,85,247,0.2)] z-10 w-full h-full">
+                            <!-- Details Section -->
+                            <div
+                                class="p-8 lg:p-12 lg:w-1/3 flex flex-col justify-center relative z-10 border-b lg:border-b-0 lg:border-r border-cardBorder bg-[#0A0A0F]">
+                                <div
+                                    class="header-rating-group flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-cardBorder pb-4 relative gap-4 sm:gap-0">
+                                    <!-- Date Badge -->
+                                    <div
+                                        class="text-purple-400 text-[10px] sm:text-xs font-bold tracking-wider uppercase bg-purple-900/30 border border-purple-500/30 px-3 py-1.5 rounded-full inline-flex items-center">
+                                        <i class="far fa-calendar-alt mr-2 mb-[1px]"></i> Jan 2026
+                                    </div>
+
+                                    <!-- Rating Component -->
+                                    <div
+                                        class="rating-box flex items-center gap-3 bg-darkBase/80 border border-cardBorder px-4 py-2 rounded-full shadow-inner relative z-20 group">
+                                        <div class="flex items-center gap-1">
+                                            <template x-for="star in 5">
+                                                <button @click="setRating('global_sales', star)"
+                                                    @mouseenter="hoverStar('global_sales', star)"
+                                                    @mouseleave="resetHover('global_sales')"
+                                                    class="focus:outline-none transition-all duration-300 hover:scale-125"
+                                                    :class="[
+                                                        (ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) 
+                                                        ? 'text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]' 
+                                                        : 'text-gray-600 hover:text-yellow-200'
+                                                    ]">
+                                                    <i class="fa-solid fa-star text-sm"></i>
+                                                </button>
+                                            </template>
+                                        </div>
+                                        <div class="h-4 w-px bg-cardBorder mx-1"></div>
+                                        <div class="flex items-center gap-1.5 min-w-[60px] justify-center">
+                                            <span class="text-white font-bold text-sm"
+                                                x-text="ratings.global_sales.average"></span>
+                                            <span
+                                                class="text-textMuted text-[10px] font-medium uppercase tracking-wide w-[20px] text-left">(<span
+                                                    x-text="ratings.global_sales.totalVotes"></span>)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Global Sales Performance</h3>
+                                <p class="text-textMuted mb-6 leading-relaxed line-clamp-2">
+                                    An executive-level Power BI dashboard overseeing global market performance and
+                                    financial
+                                    health. Built through rigorous data integration and geographic normalization to
+                                    enable
+                                    instant spatial drill-downs without lag. Covers everything from data cleaning in
+                                    Power Query
+                                    to financial mapping of Revenue and Profit Margins.
+                                </p>
+                                <div class="flex gap-4">
+                                    <button @click="openDashboard('global_sales')"
+                                        class="flex-1 bg-purple-500/20 text-purple-400 hover:bg-purple-500 hover:text-white px-4 py-2 rounded-xl transition-all font-medium flex items-center justify-center gap-2 group">
+                                        Open Dashboard <i
+                                            class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
+                                    <button
+                                        @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                                        class="w-12 h-12 flex items-center justify-center rounded-xl bg-cardBorder text-textMuted hover:text-white hover:bg-white/10 transition-colors">
+                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dashboard Frame Section -->
+                            <div
+                                class="w-full lg:w-2/3 min-h-[500px] lg:min-h-[600px] bg-[#050508] relative z-10 p-4 flex items-center justify-center group/img">
+                                <button
+                                    @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                                    type="button"
+                                    class="relative w-full h-full rounded-2xl overflow-hidden border border-cardBorder shadow-[0_0_30px_rgba(168,85,247,0.1)] block text-left">
+                                    <img src="images/global-sales-dashboard.png" alt="Global Sales Performance"
+                                        class="w-full h-full object-cover sm:object-contain transform transition-transform duration-700 group-hover/img:scale-105">
+
+                                    <!-- Interactive overlay indicator -->
+                                    <div
+                                        class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 pointer-events-none flex items-center justify-center">
+                                        <div
+                                            class="bg-darkBase/80 backdrop-blur-sm px-6 py-3 rounded-full border border-purple-500/30 text-purple-300 font-medium tracking-wide transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-500 shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+                                            <i class="fas fa-search-plus mr-2"></i> Zoom In
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- END Global Sales Project Wrapper -->
+                </div>
+            </section>
+        </div>
+    </div> <!-- END PORTFOLIO VIEW -->
+
+    <!-- SERVICES VIEW CONTENT -->
+    <div x-show="activeView === 'services'">
+        <!-- Work Process Section -->
+        <section id="process" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="uppercase tracking-[0.2em] text-purple-400 text-xs font-bold mb-2 block">Methodology</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">How I Work</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div
+                    class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-pink-500 opacity-30">
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Step 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up">
+                        <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                            <div
+                                class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-cyan-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px]">
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">1. Discovery & Strategy</h3>
+                                <p class="text-textMuted text-sm">Understanding your goals, target audience, and
+                                    parsing
+                                    the data requirements before writing a single line of code.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-cyan-500 rounded-full items-center justify-center z-10 text-cyan-400 font-bold shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                            1</div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <div class="md:w-1/2"></div>
+                        <div
+                            class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-purple-500 rounded-full items-center justify-center z-10 text-purple-400 font-bold shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                            2</div>
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <div
+                                class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-purple-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px]">
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">2. UI/UX Design & Prototyping
+                                </h3>
+                                <p class="text-textMuted text-sm">Creating high-fidelity Figma designs, focusing
+                                    on
+                                    modern aesthetics, glassmorphism, and intuitive user journeys.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="md:w-1/2 flex justify-end text-center md:text-right">
+                            <div
+                                class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-pink-500/50 transition-colors shadow-lg relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px]">
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">3. Development & Data Integration
+                                </h3>
+                                <p class="text-textMuted text-sm">Building the frontend with React/Tailwind and
+                                    connecting it to scalable databases or machine learning pipelines.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-pink-500 rounded-full items-center justify-center z-10 text-pink-400 font-bold shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+                            3</div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up"
+                        data-aos-delay="300">
+                        <div class="md:w-1/2"></div>
+                        <div
+                            class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-darkBase border-2 border-white rounded-full items-center justify-center z-10 text-white font-bold shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                            4</div>
+                        <div class="md:w-1/2 text-center md:text-left">
+                            <div
+                                class="bg-cardBase border border-cardBorder p-8 rounded-3xl group-hover:border-white/50 transition-colors shadow-lg relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-[40px]">
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">4. Testing & Deployment</h3>
+                                <p class="text-textMuted text-sm">Ensuring optimal performance, responsive
+                                    design across
+                                    all devices, and deploying with CI/CD for seamless updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    </div> <!-- END SERVICES VIEW -->
+    </div> <!-- END HOME/PORTFOLIO CONTAINER -->
+
+    <!-- Global Footer / CTA -->
+    <div x-show="activeView !== 'workspace'" x-transition>
+        <footer id="contact"
+            class="bg-cardBase border-t border-cardBorder pt-24 pb-12 px-6 mt-12 relative overflow-hidden">
+            <!-- Background Glow -->
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none">
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="zoom-in">
+                <span class="uppercase tracking-[0.2em] text-cyan-400 text-xs font-bold mb-4 block">Let's Connect</span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Ready to collaborate?</h2>
+                <p class="text-textMuted text-lg mb-10 max-w-2xl mx-auto">
+                    Whether you need a cutting-edge web application built from scratch or a massive dataset analyzed for
+                    business
+                    intelligence, let's talk.
+                </p>
+                <a href="mailto:hazem@example.com"
+                    class="btn-pill !text-lg !px-8 !py-4 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] transition-all">
+                    Send an Email
+                </a>
+
+                <div
+                    class="mt-20 pt-8 border-t border-cardBorder flex flex-col md:flex-row justify-between items-center gap-6">
+                    <!-- Interactive HEY SVG Logo -->
+                    <svg width="48" height="24" viewBox="0 0 60 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="transform transition-transform duration-300 hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] cursor-pointer">
+                        <text x="0" y="24" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900"
+                            font-size="28" fill="url(#hey-gradient-footer-2)" letter-spacing="-1">HEY</text>
+                        <defs>
+                            <linearGradient id="hey-gradient-footer-2" x1="0" y1="0" x2="60" y2="30" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#06B6D4" />
+                                <stop offset="0.5" stop-color="#A855F7" />
+                                <stop offset="1" stop-color="#EC4899" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <p class="text-textMuted text-sm">&copy; 2026 Hazem Khaled Ezat. All Rights Reserved.</p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/hazemelerefey" target="_blank"
+                            class="w-10 h-10 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center text-textMuted hover:text-white hover:border-white transition-all"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/hazemelerefy" target="_blank"
+                            class="w-10 h-10 rounded-full bg-darkBase border border-cardBorder flex items-center justify-center text-textMuted hover:text-white hover:border-white transition-all"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MY WORKSPACE VIEW CONTENT -->
+    <div x-show="activeView === 'workspace'" x-cloak x-transition:enter="transition ease-out duration-500 delay-100"
+        x-transition:enter-start="opacity-0 transform translate-y-8"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+
+        <!-- Workspace Header -->
+        <div class="text-center mb-16">
+            <span class="uppercase tracking-[0.2em] text-pink-500 text-xs font-bold mb-2 block">GitHub Portfolio</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">My Workspace</h1>
+            <p class="text-textMuted max-w-2xl mx-auto mb-10">Explore my open-source projects, components, and data
+                visualizations directly from GitHub, categorized by discipline.</p>
+
+            <!-- Tab Switcher -->
+            <div
+                class="inline-flex items-center bg-cardBase p-1 rounded-full border border-cardBorder shadow-lg relative z-10 w-full max-w-md mx-auto">
+                <button @click="workspaceTab = 'frontend'"
+                    :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-md': workspaceTab === 'frontend', 'text-textMuted hover:text-white': workspaceTab !== 'frontend'}"
+                    class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                    <i class="fas fa-laptop-code mr-2"></i> Frontend
+                </button>
+                <button @click="workspaceTab = 'analytics'"
+                    :class="{'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md': workspaceTab === 'analytics', 'text-textMuted hover:text-white': workspaceTab !== 'analytics'}"
+                    class="flex-1 py-3 px-6 rounded-full font-medium transition-all duration-300">
+                    <i class="fas fa-chart-pie mr-2"></i> Analytics
+                </button>
+            </div>
+        </div>
+
+        <!-- Frontend Workspace Content -->
+        <div x-show="workspaceTab === 'frontend'" x-transition:enter="transition ease-in-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Github Repo Card 1 -->
+            <a href="https://github.com/hazemelerefey/ecommerce-dashboard" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">React</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">E-Commerce
+                    Dashboard</h3>
+                <p class="text-textMuted text-sm mb-6">A high-performance modern dashboard built with Next.js,
+                    TailwindCSS, and interactive Recharts.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 124</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 12</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 2 -->
+            <a href="https://github.com/hazemelerefey/premium-ui-kit" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">Alpine.js</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Premium UI Kit
+                </h3>
+                <p class="text-textMuted text-sm mb-6">A collection of dark-mode UI components including animated
+                    navbars and glass UI cards.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 89</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 4</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 3 -->
+            <a href="https://github.com/hazemelerefey/taskflow-vue" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-cyan-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-[40px] group-hover:bg-cyan-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">Vue</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">TaskFlow App
+                </h3>
+                <p class="text-textMuted text-sm mb-6">A beautiful, drag-and-drop Kanban board application focused on
+                    smooth micro-interactions.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 210</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 34</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Analytics Workspace Content -->
+        <div x-show="workspaceTab === 'analytics'" x-cloak x-transition:enter="transition ease-in-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Github Repo Card 4 -->
+            <a href="https://github.com/hazemelerefey/churn-prediction" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">Python</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Customer Churn
+                    Prediction</h3>
+                <p class="text-textMuted text-sm mb-6">Machine learning pipeline using Random Forest to predict telecom
+                    customer retention rate.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 45</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 8</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 5 -->
+            <a href="https://github.com/hazemelerefey/sales-forecasting" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span
+                        class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">Jupyter</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Sales
+                    Forecasting Model</h3>
+                <p class="text-textMuted text-sm mb-6">Time-series analysis employing ARIMA models to predict quarterly
+                    revenue across regions.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 112</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 21</span>
+                </div>
+            </a>
+            <!-- Github Repo Card 6 -->
+            <a href="https://github.com/hazemelerefey/data-warehouse-logs" target="_blank"
+                class="block bg-cardBase rounded-2xl p-6 border border-cardBorder hover:border-pink-500/50 transition-colors group relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] group-hover:bg-pink-500/20 transition-all">
+                </div>
+                <div class="flex justify-between items-start mb-4">
+                    <i class="fab fa-github text-3xl text-white"></i>
+                    <span class="text-xs font-semibold px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full">SQL</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Data
+                    Warehousing Logs</h3>
+                <p class="text-textMuted text-sm mb-6">Optimized complex SQL query structure mapping large datasets into
+                    interactive Tableau dashboards.</p>
+                <div class="flex items-center gap-4 text-xs text-textMuted font-medium">
+                    <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 88</span>
+                    <span class="flex items-center gap-1"><i class="fas fa-code-branch"></i> 15</span>
+                </div>
+            </a>
+        </div>
+
+    </div> <!-- END WORKSPACE VIEW -->
+
+    <!-- Interactive Auth Modal (Alpine.js    <!-- Immersive Zoom Modal -->
+    <div x-show="zoomModalOpen" style="display: none;"
+        class="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-8"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+        @click.self="zoomModalOpen = false; if(!dashboardModalOpen) document.body.style.overflow = ''">
+
+        <button @click="zoomModalOpen = false; if(!dashboardModalOpen) document.body.style.overflow = ''"
+            class="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-all backdrop-blur-md z-50">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <img :src="zoomedImageSrc" alt="Zoomed View"
+            class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl ring-1 ring-white/10">
+    </div>
+
+
+
+    <!-- Dashboard Modal Container -->
+    <div x-show="dashboardModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-8"
+        style="display: none;">
+        <!-- Backdrop -->
+        <div x-show="dashboardModalOpen" x-transition.opacity.duration.500ms
+            class="absolute inset-0 bg-black/80 backdrop-blur-md"
+            @click="dashboardModalOpen = false; document.body.style.overflow = ''"></div>
+
+        <!-- Modal Content (The 3D App Shell) -->
+        <div x-show="dashboardModalOpen" x-transition:enter="transition ease-out duration-700"
+            x-transition:enter-start="opacity-0 translate-y-16 scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-400"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-16 scale-95"
+            class="relative w-full max-w-[1600px] h-[85vh] lg:h-[90vh] bg-[#0A0A0F] rounded-3xl border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.1)] flex flex-col overflow-hidden ring-1 ring-white/5">
+
+            <!-- Modal Header (Mac OS Style) -->
+            <div
+                class="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-darkBase/80 backdrop-blur-xl cursor-default relative z-20">
+                <div class="flex items-center gap-2 group">
+                    <button @click="dashboardModalOpen = false; document.body.style.overflow = ''"
+                        class="w-3.5 h-3.5 rounded-full bg-red-500/80 hover:bg-red-400 transition-colors shadow-inner flex items-center justify-center">
+                        <i class="fas fa-times text-[8px] text-red-900 opacity-0 group-hover:opacity-100"></i>
+                    </button>
+                    <div class="w-3.5 h-3.5 rounded-full bg-yellow-500/80 shadow-inner"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-green-500/80 shadow-inner"></div>
+                </div>
+
+                <span class="absolute left-1/2 -translate-x-1/2 text-textMuted font-medium tracking-wide text-sm"
+                    x-text="activeDashboard === 'healthcare' ? 'Healthcare Analytics | Dashboard Details' : 'Global Sales | Dashboard Details'"></span>
+
+                <div class="w-16"></div> <!-- Spacer for center alignment -->
+            </div>
+
+            <!-- Native Dashboard Container -->
+            <div
+                class="flex-1 w-full bg-[#050508] p-6 lg:p-10 overflow-y-auto custom-scrollbar relative z-10 transition-opacity duration-1000">
+
+                <!-- HEALTHCARE DASHBOARD LAYOUT -->
+                <div x-show="activeDashboard === 'healthcare'" class="max-w-7xl mx-auto h-full space-y-8">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white mb-2">Healthcare Analytics</h2>
+                            <p class="text-textMuted text-sm">Detailed Wait List & Patient Volume Analysis</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div
+                                class="px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-medium flex items-center gap-2">
+                                <i class="fas fa-calendar-alt opacity-70"></i> Jan 2026
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
+                                @mouseleave="resetHover('healthcare')">
+                                <span x-text="ratings.healthcare.average"></span>
+                                <template x-for="star in 5">
+                                    <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
+                                        :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                        @mouseenter="hoverStar('healthcare', star)"
+                                        @click="setRating('healthcare', star)"></i>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Picture & Info Layout -->
+                    <div class="flex flex-col xl:flex-row gap-8 mt-6">
+
+                        <!-- High Resolution Image Container -->
+                        <div @click="zoomedImageSrc = 'images/healthcare-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                            class="xl:w-2/3 cursor-zoom-in bg-cardBase border border-cardBorder rounded-2xl p-4 shadow-xl flex flex-col items-center justify-center relative group">
+                            <img src="images/healthcare-dashboard.png" alt="Healthcare Dashboard Full View"
+                                class="w-full h-auto rounded-lg shadow-md transition-transform duration-500 group-hover:scale-[1.02]">
+                            <!-- Zoom instructions overlay -->
+                            <div
+                                class="absolute bottom-6 right-6 bg-darkBase/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-textMuted text-sm shadow-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
+                                <i class="fas fa-search-plus text-cyan-400"></i> Click image to zoom
+                            </div>
+                        </div>
+
+                        <!-- Healthcare Project Info Panel -->
+                        <div class="w-full lg:w-1/3 bg-darkBase/40 rounded-2xl border border-cardBorder p-6 flex flex-col gap-6"
+                            x-show="activeDashboard === 'healthcare'">
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info text-cyan-500"></i> About This Project
+                                </h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    This project focused on operational efficiency and patient flow management, moving
+                                    from raw data to actionable medical insights. It spans the entire data prep
+                                    lifecycle—cleaning messy clinical data, handling null values, and standardizing
+                                    'Case Types'.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-screwdriver-wrench text-cyan-500"></i> The Toolkit & Roadmap
+                                </h3>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-simple text-cyan-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power BI</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Used for core visualization and
+                                                dashboard structure.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-code text-cyan-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power Query (M)</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Automated the ETL Pipeline
+                                                (cleaning data, standardizing formats).</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-project-diagram text-cyan-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Star Schema</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Dimensional Modeling linking 'Fact'
+                                                tables with 'Dimension' tables (Date, Dept, Demographics).</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-calculator text-cyan-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">DAX</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Complex measures for Time-Band vs.
+                                                Age Profiling and dynamic waitlist trends.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-object-group text-cyan-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">PowerPoint (UI/UX)</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Designed the custom dashboard
+                                                background and split-view layout.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- GLOBAL SALES DASHBOARD LAYOUT -->
+                <div x-show="activeDashboard === 'global_sales'" class="max-w-7xl mx-auto h-full space-y-8">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-white mb-2 uppercase">Global Sales Performance
+                                Dashboard
+                            </h2>
+                            <p class="text-textMuted text-sm">Interactive sales analytics according to your Power BI
+                                data</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div
+                                class="px-4 py-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 text-sm font-medium flex items-center gap-2">
+                                <i class="fas fa-calendar-alt opacity-70"></i> Jan 2026
+                            </div>
+                            <div class="px-4 py-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 text-sm font-bold flex items-center gap-1 cursor-pointer"
+                                @mouseleave="resetHover('global_sales')">
+                                <span x-text="ratings.global_sales.average"></span>
+                                <template x-for="star in 5">
+                                    <i class="fas fa-star text-xs transition-transform hover:scale-125 focus:outline-none"
+                                        :class="(ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) ? 'text-amber-400' : 'text-amber-400/30'"
+                                        @mouseenter="hoverStar('global_sales', star)"
+                                        @click="setRating('global_sales', star)"></i>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Picture & Info Layout -->
+                    <div class="flex flex-col xl:flex-row gap-8 mt-6">
+
+                        <!-- High Resolution Image Container -->
+                        <div @click="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';"
+                            class="xl:w-2/3 cursor-zoom-in bg-cardBase border border-cardBorder rounded-2xl p-4 shadow-xl flex flex-col items-center justify-center relative group">
+                            <img src="images/global-sales-dashboard.png" alt="Global Sales Dashboard Full View"
+                                class="w-full h-auto rounded-lg shadow-md transition-transform duration-500 group-hover:scale-[1.02]">
+                            <!-- Zoom instructions overlay -->
+                            <div
+                                class="absolute bottom-6 right-6 bg-darkBase/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-textMuted text-sm shadow-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 pointer-events-none">
+                                <i class="fas fa-search-plus text-purple-400"></i> Click image to zoom
+                            </div>
+                        </div>
+
+                        <!-- Global Sales Project Info Panel -->
+                        <div class="w-full lg:w-1/3 bg-darkBase/40 rounded-2xl border border-cardBorder p-6 flex flex-col gap-6"
+                            x-show="activeDashboard === 'global_sales'">
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info text-purple-500"></i> Executive Overview
+                                </h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    This dashboard was designed for executive-level oversight, focusing on international
+                                    market performance and financial health. It successfully consolidates sales data
+                                    from multiple regions into a single, unified data model.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-gem text-purple-500"></i> The Toolkit & Roadmap
+                                </h3>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-pie text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power BI</span>
+                                            <p class="text-textMuted text-xs mt-0.5">For data hosting, interactive
+                                                logic, and final visualization.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-broom text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Power Query</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Handled currency formatting,
+                                                regional data cleaning, and integration.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-chart-line text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Financial Mapping</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Defined core metrics like Revenue,
+                                                Profit Margins, & Total Order Volume.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <div
+                                            class="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                                            <i class="fa-solid fa-earth-americas text-purple-500 text-xs"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-white font-medium">Geographic Normalization</span>
+                                            <p class="text-textMuted text-xs mt-0.5">Ensured highly accurate spatial
+                                                drill-downs (Continent specific down to City code) without lag.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- Initialize AOS Animation -->
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        AOS.init({
+                            once: true,
+                            offset: 50,
+                            duration: 900,         /* Matching deep smooth entrances */
+                            easing: 'ease-out-cubic',
+                        });
+                    });
+                </script>
+</body>
+
+</html>

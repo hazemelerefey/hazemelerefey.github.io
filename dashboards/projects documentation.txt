@@ -1,0 +1,49 @@
+Project 1: Healthcare Operations & Waitlist Dashboard
+This project focused on operational efficiency and patient flow management, moving from raw data to actionable medical insights.
+The Roadmap (Steps Taken)
+1. Data Requirement Analysis: Identifying key healthcare metrics like patient wait times, department capacity, and age-based demographics.
+2. ETL Pipeline (Power Query): Cleaning messy clinical data, handling null values in patient records, and standardizing "Case Types."
+3. Dimensional Modeling: Building a Star Schema to link patient "Fact" tables with "Dimension" tables (Date, Department, and Patient Demographics).
+4. Analytical Layer (DAX): Developing complex measures for Time-Band vs. Age Profiling to see which age groups waited the longest.
+5. UI/UX Design: Creating a split-view dashboard that separates high-level KPIs from granular case-type details.
+The Toolkit
+* Power BI: For the core visualization and dashboard structure.
+* DAX: To calculate dynamic waitlist trends and patient aging logic.
+* Power Query (M): For the automated ETL processes.
+* Star Schema: The underlying data architecture
+* Power point : design the dashboard background
+
+
+
+
+
+
+
+
+Project 2: Global E-Commerce Sales Tracker
+This dashboard was designed for executive-level oversight, focusing on international market performance and financial health.
+
+The Roadmap (Steps Taken)
+Financial Mapping: Defining the core business metrics—Revenue, Profit Margins, and Total Order Volume.
+
+Geographic Normalization: Ensuring all regional data (countries/cities) mapped correctly for map-based visualizations.
+
+Data Integration: Consolidating sales data from multiple regions into a single, unified data model.
+
+Interactive Logic: Implementing Geographic Drill-downs, allowing users to click a continent and see performance down to the specific city or product category.
+
+Performance Optimization: Refining the model to ensure that large volumes of global sales data filtered instantly without lag.
+
+The Toolkit
+Power BI : For data hosting and visualization.
+
+Power Query: To handle currency formatting and regional data cleaning.
+
+Geographic Mapping Tools: Integrated within Power BI for the spatial drill-downs.
+
+Summary of Your Skills Demonstrated
+Data Architecture: Moving beyond simple spreadsheets to structured Star Schemas.
+
+Business Intelligence: Converting raw numbers into "Profit Margins" and "Operational Efficiency."
+
+

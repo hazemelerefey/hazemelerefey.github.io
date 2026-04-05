@@ -1,0 +1,365 @@
+/* Minimal local overrides - most styling is handled by Tailwind */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-dark: #030305;
+    /* Ultra Deepest background */
+    --card-bg: #0A0A0F;
+    /* Slightly elevated card */
+    --card-border: #1A1A24;
+    --text-primary: #FFFFFF;
+    --text-muted: #8E8D9B;
+
+    /* Glow Colors */
+    --glow-cyan: rgba(6, 182, 212, 0.15);
+    --glow-magenta: rgba(236, 72, 153, 0.15);
+    --glow-purple: rgba(168, 85, 247, 0.15);
+    --glow-blue: rgba(59, 130, 246, 0.15);
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Custom Gradient Text */
+.text-gradient-cyan-pink {
+    background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 40%, #EC4899 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Base Card Styles mimicking the screenshot */
+.expertise-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1.5rem;
+    /* 24px */
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.expertise-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* The Radial Glow Corners */
+.glow-corner {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 0.8;
+}
+
+.expertise-card:hover .glow-corner {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.glow-cyan {
+    background-color: var(--glow-cyan);
+}
+
+.glow-magenta {
+    background-color: var(--glow-magenta);
+}
+
+.glow-purple {
+    background-color: var(--glow-purple);
+}
+
+.glow-blue {
+    background-color: var(--glow-blue);
+}
+
+/* Squircle Icons */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.icon-box.cyan {
+    background-color: rgba(6, 182, 212, 0.1);
+    color: #06B6D4;
+}
+
+.icon-box.magenta {
+    background-color: rgba(236, 72, 153, 0.1);
+    color: #EC4899;
+}
+
+.icon-box.purple {
+    background-color: rgba(168, 85, 247, 0.1);
+    color: #A855F7;
+}
+
+.icon-box.blue {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+}
+
+/* Checklist Items */
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.check-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.check-list i {
+    color: #10B981;
+    /* Precise Green Check */
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* Pill Button */
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    color: #0B0B0F;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-pill:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+/* Accessibility Focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #06B6D4;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.btn-pill:focus-visible {
+    border-radius: 9999px;
+}
+
+/* Navigation */
+.nav-link {
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #FFFFFF;
+}
+
+/* Hide Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Custom Animations for Liveliness */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 8s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+@keyframes cinematic-pan {
+    0% {
+        transform: scale(1.1) translate(0%, 0%);
+    }
+
+    20% {
+        transform: scale(1.3) translate(-3%, 2%);
+    }
+
+    45% {
+        transform: scale(1.4) translate(3%, -2%);
+    }
+
+    70% {
+        transform: scale(1.2) translate(1%, 1%);
+    }
+
+    100% {
+        transform: scale(1.1) translate(0%, 0%);
+    }
+}
+
+.animate-cinematic-pan {
+    animation: cinematic-pan 35s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Robot Emotional Animations */
+@keyframes tear-drop {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(5px) scale(1);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(30px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.animate-tear {
+    animation: tear-drop 1.5s infinite ease-in;
+}
+
+@keyframes joy-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-joy-bounce {
+    animation: joy-bounce 0.5s infinite ease-in-out !important;
+}
+
+/* Marquee Animations for Tech Stack */
+@keyframes marquee-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes marquee-right {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-marquee-left {
+    animation: marquee-left 30s linear infinite;
+}
+
+.animate-marquee-right {
+    animation: marquee-right 30s linear infinite;
+}
+
+/* Reverse gradient text */
+.text-gradient-pink-cyan {
+    background: linear-gradient(135deg, #EC4899 0%, #3B82F6 40%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
