@@ -366,7 +366,7 @@ textarea:focus-visible {
 
 
 /* Portfolio hero - custom premium background */
-.portfolio-hero-bg {
+.portfolio-hero-bg {`r`n    outline: 2px solid rgba(255,0,0,0.55);
     background:
         radial-gradient(circle at 18% 22%, rgba(6, 182, 212, 0.16), transparent 22%),
         radial-gradient(circle at 82% 74%, rgba(236, 72, 153, 0.14), transparent 24%),
@@ -553,3 +553,4 @@ textarea:focus-visible {
         right: -2%;
     }
 }
+
