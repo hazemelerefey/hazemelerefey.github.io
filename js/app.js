@@ -13,6 +13,9 @@ function appData() {
         dashboardModalOpen: false,
         activeDashboard: '', // 'healthcare' or 'global_sales'
 
+        projectStoryModalOpen: false,
+        activeProjectStory: '',
+
         serviceRequest: {
             selected: ''
         },
@@ -123,6 +126,22 @@ function appData() {
             setTimeout(() => {
                 this.activeDashboard = '';
             }, 500); // Wait for transition to finish before clearing
+        },
+
+        openProjectStory(project) {
+            this.activeProjectStory = project;
+            this.projectStoryModalOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closeProjectStory() {
+            this.projectStoryModalOpen = false;
+            if (!this.dashboardModalOpen && !this.zoomModalOpen) {
+                document.body.style.overflow = '';
+            }
+            setTimeout(() => {
+                this.activeProjectStory = '';
+            }, 300);
         },
 
 
