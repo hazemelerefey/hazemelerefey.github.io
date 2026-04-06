@@ -1221,7 +1221,7 @@
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? "text-amber-400" : "text-gray-600""
+                                                    :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
                                                     @mouseenter="hoverStar('healthcare', star)"
                                                     @mouseleave="resetHover('healthcare')"
                                                     @click="setRating('healthcare', star)"></i>
