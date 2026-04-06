@@ -13,13 +13,6 @@ function appData() {
         dashboardModalOpen: false,
         activeDashboard: '', // 'healthcare' or 'global_sales'
 
-        projectStoryModalOpen: false,
-        activeProjectStory: '',
-
-        serviceRequest: {
-            selected: ''
-        },
-
         // Interactive Rating State
         ratings: {
             portfolio: {
@@ -128,22 +121,6 @@ function appData() {
             }, 500); // Wait for transition to finish before clearing
         },
 
-        openProjectStory(project) {
-            this.activeProjectStory = project;
-            this.projectStoryModalOpen = true;
-            document.body.style.overflow = 'hidden';
-        },
-
-        closeProjectStory() {
-            this.projectStoryModalOpen = false;
-            if (!this.dashboardModalOpen && !this.zoomModalOpen) {
-                document.body.style.overflow = '';
-            }
-            setTimeout(() => {
-                this.activeProjectStory = '';
-            }, 300);
-        },
-
 
 
         navTo(view) {
@@ -162,47 +139,6 @@ function appData() {
                     AOS.refresh();
                 }
             }, 400); 
-        },
-
-        openServiceRequest(service = '') {
-            this.activeView = 'services';
-            this.mobileMenuOpen = false;
-            this.serviceRequest.selected = service;
-
-            setTimeout(() => {
-                const section = document.getElementById('request-service');
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
-            }, 120);
-        },
-
-        submitProjectRequest(event) {
-            const form = event.target;
-            const data = new FormData(form);
-            const name = (data.get('name') || '').toString().trim();
-            const email = (data.get('email') || '').toString().trim();
-            const budget = (data.get('budget') || '').toString().trim() || 'Not specified';
-            const timeline = (data.get('timeline') || '').toString().trim() || 'Not specified';
-            const service = (data.get('service') || this.serviceRequest.selected || 'General project inquiry').toString().trim();
-            const details = (data.get('details') || '').toString().trim();
-
-            const subject = encodeURIComponent(`Project Inquiry - ${service}`);
-            const body = encodeURIComponent(
-`Name: ${name}
-Email: ${email}
-Service Needed: ${service}
-Budget Range: ${budget}
-Timeline: ${timeline}
-
-Project Details:
-${details}`
-            );
-
-            window.location.href = `mailto:hazemkhaled53@gmail.com?subject=${subject}&body=${body}`;
         },
 
 
