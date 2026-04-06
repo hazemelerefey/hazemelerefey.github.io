@@ -363,3 +363,193 @@ textarea:focus-visible {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+
+/* Portfolio hero - custom premium background */
+.portfolio-hero-bg {
+    background:
+        radial-gradient(circle at 18% 22%, rgba(6, 182, 212, 0.16), transparent 22%),
+        radial-gradient(circle at 82% 74%, rgba(236, 72, 153, 0.14), transparent 24%),
+        radial-gradient(circle at 62% 30%, rgba(168, 85, 247, 0.10), transparent 18%),
+        linear-gradient(115deg, #04060B 0%, #0A0C14 42%, #090A11 100%);
+}
+
+.portfolio-hero-grid,
+.portfolio-hero-vignette,
+.portfolio-hero-curve,
+.portfolio-hero-orb,
+.portfolio-hero-bars,
+.portfolio-hero-panel {
+    position: absolute;
+    inset: 0;
+}
+
+.portfolio-hero-grid {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 82px 82px;
+    mask-image: linear-gradient(to bottom, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
+    opacity: 0.22;
+}
+
+.portfolio-hero-grid-fine {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.12;
+    mask-image: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.8) 34%, rgba(255,255,255,0.25) 100%);
+}
+
+.portfolio-hero-bars {
+    inset: auto;
+    right: 10%;
+    bottom: 12%;
+    width: 320px;
+    height: 180px;
+    background:
+        linear-gradient(to top, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+    overflow: hidden;
+}
+
+.portfolio-hero-bars::before {
+    content: "";
+    position: absolute;
+    inset: 18px 18px 18px 18px;
+    background:
+        linear-gradient(to top, rgba(6,182,212,0.22) 0 62%, transparent 62% 100%),
+        linear-gradient(to top, rgba(236,72,153,0.22) 0 48%, transparent 48% 100%),
+        linear-gradient(to top, rgba(168,85,247,0.22) 0 76%, transparent 76% 100%),
+        linear-gradient(to top, rgba(59,130,246,0.18) 0 58%, transparent 58% 100%);
+    background-size: 18% 100%, 18% 100%, 18% 100%, 18% 100%;
+    background-repeat: no-repeat;
+    background-position: 4% 100%, 34% 100%, 64% 100%, 94% 100%;
+    border-radius: 14px;
+    opacity: 0.9;
+}
+
+.portfolio-hero-panel {
+    inset: auto;
+    right: 18%;
+    top: 16%;
+    width: 240px;
+    height: 120px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-hero-panel::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 96px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(to right, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+}
+
+.portfolio-hero-panel::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(6,182,212,0.10), rgba(236,72,153,0.06));
+}
+
+.portfolio-hero-curve {
+    inset: auto;
+    border-radius: 999px;
+    filter: blur(0.2px);
+    opacity: 0.65;
+}
+
+.portfolio-hero-curve-cyan {
+    width: 56%;
+    height: 360px;
+    right: -8%;
+    top: 12%;
+    border: 1px solid rgba(6, 182, 212, 0.16);
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.06);
+    transform: rotate(-10deg);
+}
+
+.portfolio-hero-curve-pink {
+    width: 44%;
+    height: 280px;
+    right: 4%;
+    bottom: 10%;
+    border: 1px solid rgba(236, 72, 153, 0.14);
+    box-shadow: 0 0 40px rgba(236, 72, 153, 0.06);
+    transform: rotate(14deg);
+}
+
+.portfolio-hero-curve-purple {
+    width: 34%;
+    height: 210px;
+    right: 20%;
+    top: 24%;
+    border: 1px solid rgba(168, 85, 247, 0.12);
+    box-shadow: 0 0 34px rgba(168, 85, 247, 0.05);
+    transform: rotate(6deg);
+}
+
+.portfolio-hero-orb {
+    inset: auto;
+    border-radius: 999px;
+    filter: blur(70px);
+    opacity: 0.85;
+}
+
+.portfolio-hero-orb-cyan {
+    width: 260px;
+    height: 260px;
+    left: -40px;
+    top: 120px;
+    background: rgba(6, 182, 212, 0.16);
+}
+
+.portfolio-hero-orb-pink {
+    width: 240px;
+    height: 240px;
+    right: 40px;
+    bottom: 70px;
+    background: rgba(236, 72, 153, 0.14);
+}
+
+.portfolio-hero-vignette {
+    background:
+        linear-gradient(to right, rgba(3, 3, 5, 0.94) 0%, rgba(3, 3, 5, 0.72) 30%, rgba(3, 3, 5, 0.46) 57%, rgba(3, 3, 5, 0.80) 100%),
+        linear-gradient(to bottom, rgba(3, 3, 5, 0.08), rgba(3, 3, 5, 0.32));
+}
+
+@media (max-width: 768px) {
+    .portfolio-hero-grid {
+        background-size: 56px 56px;
+        opacity: 0.18;
+    }
+
+    .portfolio-hero-curve-cyan,
+    .portfolio-hero-curve-pink,
+    .portfolio-hero-curve-purple {
+        width: 80%;
+        right: -20%;
+    }
+
+    .portfolio-hero-bars,
+    .portfolio-hero-panel {
+        transform: scale(0.9);
+        right: -2%;
+    }
+}
