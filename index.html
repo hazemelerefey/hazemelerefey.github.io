@@ -1039,13 +1039,26 @@
             <!-- Work/Projects Pipeline Section -->
             <section id="work"
                 class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-cardBorder relative z-40 overflow-visible">
-                <div class="mb-32 lg:mb-40 relative z-10" data-aos="fade-right">
+                <div class="mb-24 lg:mb-28 relative z-10" data-aos="fade-right">
                     <span class="uppercase tracking-[0.2em] text-pink-400 text-xs font-bold mb-2 block">Portfolio</span>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">My <span
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Selected <span
                             class="text-gradient-pink-cyan">Projects</span></h2>
-                    <p class="text-textMuted text-lg max-w-2xl">A selection of recent projects showcasing dynamic
-                        frontend
-                        engineering and deep data analysis pipelines.</p>
+                    <p class="text-textMuted text-lg max-w-3xl mb-8">A focused selection of frontend and analytics work built around real use cases, believable interfaces, and stronger project presentation — with JobPulse as the flagship benchmark for polish and direction.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl">
+                        <div class="rounded-2xl border border-cardBorder bg-cardBase/70 backdrop-blur-sm p-5">
+                            <div class="text-xs uppercase tracking-[0.2em] text-cyan-400 font-bold mb-2">Focus</div>
+                            <div class="text-white font-semibold">Real portfolio-ready work</div>
+                        </div>
+                        <div class="rounded-2xl border border-cardBorder bg-cardBase/70 backdrop-blur-sm p-5">
+                            <div class="text-xs uppercase tracking-[0.2em] text-pink-400 font-bold mb-2">Style</div>
+                            <div class="text-white font-semibold">Clean, product-like, believable visuals</div>
+                        </div>
+                        <div class="rounded-2xl border border-cardBorder bg-cardBase/70 backdrop-blur-sm p-5">
+                            <div class="text-xs uppercase tracking-[0.2em] text-purple-400 font-bold mb-2">Goal</div>
+                            <div class="text-white font-semibold">Show depth in frontend + analytics</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="relative z-50 overflow-visible w-full">
@@ -1081,7 +1094,11 @@
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(34,211,238,0.18)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_34px_rgba(34,211,238,0.18)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full relative">
+
+                            <div class="absolute top-4 right-4 z-20">
+                                <span class="bg-white/10 text-white border border-white/15 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">Flagship</span>
+                            </div>
 
                             <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer bg-[#020617]"
                                 @click.prevent="zoomedImageSrc = 'images/jobpulse-hero.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
@@ -1106,7 +1123,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     JobPulse</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Flagship project</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Real repo-backed build</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1164,7 +1186,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     Frontend Kanban Board</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Workflow UI</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Product-style layout</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1216,7 +1243,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                                     Frontend Real Estate Finder</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[11px] font-semibold">Search experience</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Filtering-focused UI</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1270,7 +1302,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                                     Healthcare Operations Waitlist Dashboard</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-semibold">Operational analytics</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Decision-support dashboard</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1322,7 +1359,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
                                     Global E-Commerce Sales Tracker</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] font-semibold">Commercial BI</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Multi-region tracking</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1374,7 +1416,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
                                     Customer Churn Prediction</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-[11px] font-semibold">ML use case</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Retention analysis</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
@@ -1426,7 +1473,12 @@
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     Frontend E-Commerce Dashboard</h3>
-                                <p class="text-textMuted text-sm mb-6 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
+                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
+
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Admin dashboard</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Responsive frontend</span>
+                                </div>
 
                                 <div
                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
