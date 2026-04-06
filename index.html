@@ -2522,12 +2522,12 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 scale-95"
-            class="relative w-full max-w-2xl rounded-[28px] border border-white/10 bg-[#090A10] shadow-[0_30px_100px_rgba(0,0,0,0.8)] ring-1 ring-white/5 overflow-hidden">
+            class="relative w-full max-w-xl rounded-[26px] border border-white/10 bg-[#090A10] shadow-[0_30px_100px_rgba(0,0,0,0.8)] ring-1 ring-white/5 overflow-hidden">
 
-            <div class="px-6 py-5 border-b border-white/5 bg-darkBase/80 backdrop-blur-xl flex items-center justify-between">
+            <div class="px-5 py-4 border-b border-white/5 bg-darkBase/80 backdrop-blur-xl flex items-center justify-between">
                 <div>
                     <div class="text-xs uppercase tracking-[0.2em] text-cyan-300 font-bold mb-1">Project Story</div>
-                    <h2 class="text-xl font-bold text-white"
+                    <h2 class="text-lg font-bold text-white"
                         x-text="activeProjectStory === 'jobpulse' ? 'JobPulse' : 'Project Story'"></h2>
                 </div>
                 <button @click="closeProjectStory()"
@@ -2536,37 +2536,37 @@
                 </button>
             </div>
 
-            <div class="p-6 md:p-7">
-                <div x-show="activeProjectStory === 'jobpulse'" class="space-y-5">
+            <div class="p-5 md:p-5">
+                <div x-show="activeProjectStory === 'jobpulse'" class="space-y-4">
                     <div class="rounded-3xl overflow-hidden border border-white/10 bg-cardBase/70 backdrop-blur-md">
                         <img src="images/jobpulse-hero.svg" alt="JobPulse preview"
-                            class="w-full h-56 object-cover">
+                            class="w-full h-40 object-cover">
                     </div>
 
-                    <div class="grid grid-cols-3 gap-3">
-                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-4 py-3 text-center">
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-3 py-2.5 text-center">
                             <div class="text-cyan-300 text-[11px] uppercase tracking-[0.2em] font-bold mb-1">Role</div>
-                            <div class="text-white text-sm font-semibold">Frontend + Product UI</div>
+                            <div class="text-white text-xs sm:text-sm font-semibold">Frontend + Product UI</div>
                         </div>
-                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-4 py-3 text-center">
+                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-3 py-2.5 text-center">
                             <div class="text-pink-300 text-[11px] uppercase tracking-[0.2em] font-bold mb-1">Focus</div>
-                            <div class="text-white text-sm font-semibold">Signal clarity</div>
+                            <div class="text-white text-xs sm:text-sm font-semibold">Signal clarity</div>
                         </div>
-                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-4 py-3 text-center">
+                        <div class="rounded-2xl border border-cardBorder bg-darkBase/60 px-3 py-2.5 text-center">
                             <div class="text-purple-300 text-[11px] uppercase tracking-[0.2em] font-bold mb-1">Feel</div>
-                            <div class="text-white text-sm font-semibold">Premium product</div>
+                            <div class="text-white text-xs sm:text-sm font-semibold">Premium product</div>
                         </div>
                     </div>
 
-                    <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-5 space-y-4">
+                    <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-4 space-y-3">
                         <div>
                             <div class="text-xs uppercase tracking-[0.2em] text-cyan-300 font-bold mb-2">The story</div>
-                            <p class="text-textMuted text-sm leading-relaxed">JobPulse was built to feel like a real digital product, not just another portfolio card. The goal was to present job-market intelligence through a cleaner interface, stronger structure, and more believable product storytelling.</p>
+                            <p class="text-textMuted text-sm leading-relaxed">JobPulse was built to feel like a real digital product, using cleaner structure, sharper hierarchy, and more believable job-market storytelling.</p>
                         </div>
 
                         <div>
                             <div class="text-xs uppercase tracking-[0.2em] text-pink-300 font-bold mb-2">Why it matters</div>
-                            <p class="text-textMuted text-sm leading-relaxed">It became the flagship because it sets the strongest visual and product-quality benchmark across the portfolio.</p>
+                            <p class="text-textMuted text-sm leading-relaxed">It became the flagship because it sets the clearest premium benchmark across the portfolio.</p>
                         </div>
 
                         <div>
@@ -2579,13 +2579,13 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
                         <button @click="closeProjectStory()"
-                            class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/10 text-white hover:bg-white/5 transition-all font-semibold">
+                            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/10 text-white hover:bg-white/5 transition-all font-semibold text-sm">
                             Close
                         </button>
                         <a href="https://github.com/hazemelerefey/jobpulse" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-cyan-500/15 border border-cyan-500/25 text-cyan-300 hover:text-white hover:bg-cyan-500/20 transition-all font-semibold">
+                            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-cyan-500/15 border border-cyan-500/25 text-cyan-300 hover:text-white hover:bg-cyan-500/20 transition-all font-semibold text-sm">
                             View GitHub <i class="fab fa-github"></i>
                         </a>
                     </div>
