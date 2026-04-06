@@ -1087,20 +1087,20 @@
                     </div>
 
                     <!-- 6 Unified Project Cards Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 relative z-20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-24 relative z-20">
 
                         <!-- Project 1: JobPulse (Frontend) -->
                         <div x-show="portfolioFilter === 'all' || portfolioFilter === 'frontend'"
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_34px_rgba(34,211,238,0.18)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full relative">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_34px_rgba(34,211,238,0.18)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full relative min-h-[430px]">
 
                             <div class="absolute top-4 right-4 z-20">
                                 <span class="bg-white/10 text-white border border-white/15 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">Flagship</span>
                             </div>
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer bg-[#020617]"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer bg-[#020617]"
                                 @click.prevent="zoomedImageSrc = 'images/jobpulse-hero.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/jobpulse-hero.svg" alt="JobPulse interface preview"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1119,20 +1119,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     JobPulse</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Flagship project</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Real repo-backed build</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold whitespace-nowrap">Flagship project</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Real repo-backed build</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.jobpulse.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${ratings.jobpulse.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1161,9 +1161,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/kanban-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/kanban-project.svg" alt="Frontend Kanban Board"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1182,20 +1182,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     Frontend Kanban Board</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Workflow UI</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Product-style layout</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold whitespace-nowrap">Workflow UI</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Product-style layout</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.kanban.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.kanban.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1218,9 +1218,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/realestate-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/realestate-project.svg" alt="Frontend Real Estate Finder"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1239,20 +1239,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                                     Frontend Real Estate Finder</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[11px] font-semibold">Search experience</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Filtering-focused UI</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[11px] font-semibold whitespace-nowrap">Search experience</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Filtering-focused UI</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.realestate.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.realestate.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1275,9 +1275,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/healthcare-operations-waitlist-dashboard" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/healthcare-operations-overview.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/healthcare-operations-overview.png" alt="Healthcare Operations Waitlist Dashboard"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1298,20 +1298,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                                     Healthcare Operations Waitlist Dashboard</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-semibold">Operational analytics</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Decision-support dashboard</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-semibold whitespace-nowrap">Operational analytics</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Decision-support dashboard</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.healthcare.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.healthcare.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1334,9 +1334,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/global-ecommerce-sales-tracker" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/global-sales-dashboard.png" alt="Global E-Commerce Sales Tracker"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1355,20 +1355,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
                                     Global E-Commerce Sales Tracker</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] font-semibold">Commercial BI</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Multi-region tracking</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] font-semibold whitespace-nowrap">Commercial BI</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Multi-region tracking</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.global_sales.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.global_sales.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1391,9 +1391,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/churn-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/churn-project.svg" alt="Customer Churn Prediction"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1412,20 +1412,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
                                     Customer Churn Prediction</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-[11px] font-semibold">ML use case</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Retention analysis</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-[11px] font-semibold whitespace-nowrap">ML use case</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Retention analysis</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.churn.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.churn.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
@@ -1448,9 +1448,9 @@
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank" rel="noopener noreferrer"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full">
+                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
-                            <div class="h-56 overflow-hidden relative border-b border-cardBorder cursor-pointer"
+                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
                                 @click.prevent="zoomedImageSrc = 'images/ecommerce-admin-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
                                 <img src="images/ecommerce-admin-project.svg" alt="Frontend E-Commerce Dashboard"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -1469,20 +1469,20 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 flex-1 flex flex-col">
+                            <div class="p-5 md:p-6 flex-1 flex flex-col">
                                 <h3
                                     class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                                     Frontend E-Commerce Dashboard</h3>
-                                <p class="text-textMuted text-sm mb-5 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
+                                <p class="text-textMuted text-sm leading-6 mb-4 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold">Admin dashboard</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold">Responsive frontend</span>
+                                <div class="flex flex-wrap gap-2 mb-5">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] font-semibold whitespace-nowrap">Admin dashboard</span>
+                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] font-semibold whitespace-nowrap">Responsive frontend</span>
                                 </div>
 
                                 <div
-                                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4 sm:gap-0">
-                                    <div class="flex items-center gap-2">
+                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                    <div class="flex items-center gap-2 min-w-0"
                                         <span class="text-white font-bold text-sm" x-text="ratings.ecommerce.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${''}ratings.ecommerce.totalVotes)`"></span>
                                         <div class="flex items-center gap-1 ml-1">
