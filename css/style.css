@@ -363,3 +363,99 @@ textarea:focus-visible {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+
+/* Portfolio hero - custom premium background */
+.portfolio-hero-bg {
+    background:
+        radial-gradient(circle at 18% 22%, rgba(6, 182, 212, 0.16), transparent 22%),
+        radial-gradient(circle at 82% 74%, rgba(236, 72, 153, 0.14), transparent 24%),
+        radial-gradient(circle at 62% 30%, rgba(168, 85, 247, 0.10), transparent 18%),
+        linear-gradient(115deg, #04060B 0%, #0A0C14 42%, #090A11 100%);
+}
+
+.portfolio-hero-grid,
+.portfolio-hero-vignette,
+.portfolio-hero-curve,
+.portfolio-hero-orb {
+    position: absolute;
+    inset: 0;
+}
+
+.portfolio-hero-grid {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 82px 82px;
+    mask-image: linear-gradient(to bottom, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
+    opacity: 0.22;
+}
+
+.portfolio-hero-curve {
+    inset: auto;
+    border-radius: 999px;
+    filter: blur(0.2px);
+    opacity: 0.65;
+}
+
+.portfolio-hero-curve-cyan {
+    width: 56%;
+    height: 360px;
+    right: -8%;
+    top: 12%;
+    border: 1px solid rgba(6, 182, 212, 0.16);
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.06);
+    transform: rotate(-10deg);
+}
+
+.portfolio-hero-curve-pink {
+    width: 44%;
+    height: 280px;
+    right: 4%;
+    bottom: 10%;
+    border: 1px solid rgba(236, 72, 153, 0.14);
+    box-shadow: 0 0 40px rgba(236, 72, 153, 0.06);
+    transform: rotate(14deg);
+}
+
+.portfolio-hero-orb {
+    inset: auto;
+    border-radius: 999px;
+    filter: blur(70px);
+    opacity: 0.85;
+}
+
+.portfolio-hero-orb-cyan {
+    width: 260px;
+    height: 260px;
+    left: -40px;
+    top: 120px;
+    background: rgba(6, 182, 212, 0.16);
+}
+
+.portfolio-hero-orb-pink {
+    width: 240px;
+    height: 240px;
+    right: 40px;
+    bottom: 70px;
+    background: rgba(236, 72, 153, 0.14);
+}
+
+.portfolio-hero-vignette {
+    background:
+        linear-gradient(to right, rgba(3, 3, 5, 0.92) 0%, rgba(3, 3, 5, 0.72) 30%, rgba(3, 3, 5, 0.52) 55%, rgba(3, 3, 5, 0.78) 100%),
+        linear-gradient(to bottom, rgba(3, 3, 5, 0.10), rgba(3, 3, 5, 0.28));
+}
+
+@media (max-width: 768px) {
+    .portfolio-hero-grid {
+        background-size: 56px 56px;
+        opacity: 0.18;
+    }
+
+    .portfolio-hero-curve-cyan,
+    .portfolio-hero-curve-pink {
+        width: 80%;
+        right: -20%;
+    }
+}
