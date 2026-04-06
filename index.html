@@ -1075,12 +1075,13 @@
                     </div>
                 </div>
 
-                <div class="relative z-50 overflow-visible w-full">
+                <div class="relative z-50 overflow-visible w-full">
+
                     <!-- Unified Project Cards Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-24 relative z-20">
 
                         <!-- Project 1: JobPulse (Frontend) -->
-                        <div 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
@@ -1097,22 +1098,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Market Intelligence</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
+                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Market Intelligence</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">
-                                    JobPulse</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">JobPulse</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1120,8 +1116,7 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Real repo-backed build</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.jobpulse.average"></span>
                                         <span class="text-xs text-textMuted" x-text="`(${ratings.jobpulse.totalVotes})`"></span>
@@ -1146,11 +1141,10 @@
                         </div>
 
                         <!-- Project 4: Healthcare Operations Waitlist Dashboard (Analytics) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/healthcare-operations-waitlist-dashboard" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1160,24 +1154,18 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Healthcare</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
-                                    <span
-                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Operations Analytics</span>
+                                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Healthcare</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
+                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Operations Analytics</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-emerald-400 transition-colors">
-                                    Healthcare Operations Waitlist Dashboard</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-emerald-400 transition-colors">Healthcare Operations Waitlist Dashboard</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1185,11 +1173,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Decision-support dashboard</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.healthcare.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.healthcare.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.healthcare.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1200,16 +1187,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/healthcare-operations-waitlist-dashboard" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-500/25 text-emerald-400 hover:text-white hover:bg-emerald-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 2: Frontend Kanban Board (Frontend) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1219,22 +1211,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Kanban UI</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
+                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Kanban UI</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">
-                                    Frontend Kanban Board</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">Frontend Kanban Board</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1242,11 +1229,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Product-style layout</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.kanban.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.kanban.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.kanban.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1257,16 +1243,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 3: Frontend Real Estate Finder (Frontend) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1276,22 +1267,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Real Estate UI</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
+                                    <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Real Estate UI</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-purple-400 transition-colors">
-                                    Frontend Real Estate Finder</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-purple-400 transition-colors">Frontend Real Estate Finder</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1299,11 +1285,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Filtering-focused UI</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.realestate.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.realestate.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.realestate.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1314,16 +1299,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-purple-500/25 text-purple-400 hover:text-white hover:bg-purple-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 5: Global E-Commerce Sales Tracker (Analytics) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/global-ecommerce-sales-tracker" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1333,22 +1323,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Commercial BI</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
+                                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Commercial BI</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-amber-400 transition-colors">
-                                    Global E-Commerce Sales Tracker</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-amber-400 transition-colors">Global E-Commerce Sales Tracker</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1356,11 +1341,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Multi-region tracking</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.global_sales.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.global_sales.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.global_sales.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1371,16 +1355,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/global-ecommerce-sales-tracker" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-amber-500/25 text-amber-400 hover:text-white hover:bg-amber-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 6: Customer Churn Prediction (Analytics) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1390,22 +1379,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine Learning</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
+                                    <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine Learning</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-red-400 transition-colors">
-                                    Customer Churn Prediction</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-red-400 transition-colors">Customer Churn Prediction</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1413,11 +1397,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Retention analysis</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.churn.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.churn.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.churn.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1428,16 +1411,21 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-red-500/25 text-red-400 hover:text-white hover:bg-red-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                         <!-- Project 7: Frontend E-Commerce Dashboard (Frontend) -->
-                        <a 
+                        <div
                             x-transition:enter="transition-all duration-500"
                             x-transition:enter-start="opacity-0 translate-y-8"
                             x-transition:enter-end="opacity-100 translate-y-0"
-                            href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank" rel="noopener noreferrer"
                             class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
 
                             <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
@@ -1447,22 +1435,17 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
 
                                 <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span
-                                        class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React Admin UI</span>
-                                    <span
-                                        class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
+                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React Admin UI</span>
+                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
                                 </div>
 
-                                <div
-                                    class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
                                 </div>
                             </div>
 
                             <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3
-                                    class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">
-                                    Frontend E-Commerce Dashboard</h3>
+                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">Frontend E-Commerce Dashboard</h3>
                                 <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
 
                                 <div class="flex flex-wrap gap-2 mb-5">
@@ -1470,11 +1453,10 @@
                                     <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Responsive frontend</span>
                                 </div>
 
-                                <div
-                                    class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
+                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
                                     <div class="flex items-center gap-2 min-w-0">
                                         <span class="text-white font-bold text-sm" x-text="ratings.ecommerce.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${''}ratings.ecommerce.totalVotes)`"></span>
+                                        <span class="text-xs text-textMuted" x-text="`(${ratings.ecommerce.totalVotes})`"></span>
                                         <div class="flex items-center gap-1 ml-1">
                                             <template x-for="star in 5">
                                                 <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
@@ -1485,9 +1467,15 @@
                                             </template>
                                         </div>
                                     </div>
+
+                                    <a href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank" rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
+                                        <i class="fab fa-github"></i>
+                                        <span>GitHub</span>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
 
                     </div> <!-- END PORTFOLIO GRID -->
 
