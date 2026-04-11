@@ -68,9 +68,9 @@ h1, h2, h3, h4, h5 {
 /* ─────────────────────────────────────────────
    THEMED NATIVE CURSOR
 ───────────────────────────────────────────── */
-/* Use native cursor everywhere — fast & reliable */
+/* Use a native SVG default arrow cursor but with cyan colors */
 html {
-  cursor: crosshair;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 2.5l11.5 11-4.8.7 3.5 6.7-2.6 1.4-3.5-6.8-5 5z' fill='%2300f5ff' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E"), auto;
 }
 
 a, button, [role="button"], label,
