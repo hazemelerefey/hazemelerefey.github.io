@@ -211,9 +211,27 @@
     });
   }
 
-  /* ─── 11. SCROLL PROGRESS BAR (Disabled per user request) ─────── */
+  /* ─── 11. SCROLL PROGRESS BAR ──────────────────────────────────── */
   function initScrollProgress() {
-    // Disabled
+    const bar = document.createElement('div');
+    bar.style.cssText = [
+      'position:fixed',
+      'top:0', 'left:0',
+      'height:5px',
+      'width:0%',
+      'background:#000000',
+      'z-index:99999',
+      'pointer-events:none',
+      'box-shadow:0 1px 4px rgba(255, 255, 255, 0.1)',
+      'transition:width 0.1s ease-out'
+    ].join(';');
+    document.body.appendChild(bar);
+
+    window.addEventListener('scroll', () => {
+      const total   = document.documentElement.scrollHeight - window.innerHeight;
+      const current = window.scrollY;
+      bar.style.width = ((current / total) * 100).toFixed(2) + '%';
+    }, { passive: true });
   }
 
   /* ─── 12. KINETIC BLOB PARALLAX ────────────────────────────────── */
@@ -251,6 +269,7 @@
     initSkillBars();
     initCounters();
     initMarqueePause();
+    initScrollProgress();
     initBlobParallax();
     initScanLines();
 
