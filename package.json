@@ -1,0 +1,24 @@
+{
+  "name": "hazemelerefey.github.io",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r   <img src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=THE%20MASTERPIECE&fontSize=90&animation=fadeIn&fontAlignY=38&desc=A%20Journey%20of%20Code%2C%20Design%2C%20and%20Relentless%20Perfection&descAlignY=51&descAlign=62\" />\r </div>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hazemelerefey/hazemelerefey.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hazemelerefey/hazemelerefey.github.io/issues"
+  },
+  "homepage": "https://github.com/hazemelerefey/hazemelerefey.github.io#readme",
+  "dependencies": {
+    "jsdom": "^29.0.2"
+  }
+}

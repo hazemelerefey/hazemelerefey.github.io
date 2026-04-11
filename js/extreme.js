@@ -261,7 +261,6 @@
   /* ─── BOOT ──────────────────────────────────────────────────────── */
   function boot() {
     injectElements();
-    initCursor();
     initSpotlight();
     applyRevealClasses();
     initScrollReveal();

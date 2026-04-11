@@ -66,10 +66,13 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ─────────────────────────────────────────────
-   THEMED NATIVE CURSORS
+   THEMED NATIVE CURSOR
 ───────────────────────────────────────────── */
-/* Keep the native OS cursor — fast & reliable */
-/* Use cursor: pointer on all interactive elements */
+/* Use native cursor everywhere — fast & reliable */
+html {
+  cursor: crosshair;
+}
+
 a, button, [role="button"], label,
 .expertise-card, .platform-card, .card-3d,
 .glass-extreme, .project-card-extreme,
@@ -366,12 +369,13 @@ body::after {
 
 /* ─────────────────────────────────────────────
    NAV GLOW ENHANCEMENT
+   Transparent in hero (Alpine controls bg-darkBase/90
+   via the 'scrolled' boolean). We only add the
+   bottom glow line and link highlights here.
 ───────────────────────────────────────────── */
 nav {
   border-bottom: 1px solid rgba(0,245,255,0.05) !important;
-  background: rgba(0,0,3,0.85) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  /* Background is handled by Alpine :class binding */
 }
 
 .nav-link:hover,
@@ -728,6 +732,24 @@ nav {
     border-color var(--transition-med) !important;
   position: relative;
   z-index: 2;
+}
+
+/* Neon cyan-to-pink bottom accent line */
+.expertise-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  z-index: 10;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+.expertise-card:hover::after {
+  transform: scaleX(1);
 }
 
 .expertise-card:hover {

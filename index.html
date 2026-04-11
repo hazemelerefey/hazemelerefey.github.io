@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -274,8 +274,7 @@
                 <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
                     <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
                         <span
-                            class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Front
-                            End & Data Analyst</span>
+                            class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Data Analyst | Front-End Developer</span>
                     </div>
 
                     <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
@@ -330,9 +329,11 @@
                                 </div>
                                 <div>
                                     <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
-                                        <span x-text="shown ? '50+' : '0'"
+                                        <span x-show="shown" x-transition
                                             class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
-                                            :class="shown && 'transition-all duration-1000'"></span>
+                                            data-count="50" data-suffix="+">0</span>
+                                        <span x-show="!shown"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">0</span>
                                     </div>
                                     <div
                                         class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
@@ -355,9 +356,11 @@
                                 </div>
                                 <div>
                                     <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
-                                        <span x-text="shown ? '30+' : '0'"
+                                        <span x-show="shown" x-transition
                                             class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-500"
-                                            :class="shown && 'transition-all duration-1000'"></span>
+                                            data-count="30" data-suffix="+">0</span>
+                                        <span x-show="!shown"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-500">0</span>
                                     </div>
                                     <div
                                         class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
@@ -381,9 +384,11 @@
                                 </div>
                                 <div>
                                     <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
-                                        <span x-text="shown ? '3+' : '0'"
+                                        <span x-show="shown" x-transition
                                             class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500"
-                                            :class="shown && 'transition-all duration-1000'"></span>
+                                            data-count="3" data-suffix="+">0</span>
+                                        <span x-show="!shown"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">0</span>
                                     </div>
                                     <div
                                         class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
@@ -406,9 +411,11 @@
                                 </div>
                                 <div>
                                     <div class="text-2xl md:text-3xl font-black text-white leading-none mb-1">
-                                        <span x-text="shown ? '5' : '0'"
+                                        <span x-show="shown" x-transition
                                             class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500"
-                                            :class="shown && 'transition-all duration-1000'"></span>
+                                            data-count="5" data-suffix="">0</span>
+                                        <span x-show="!shown"
+                                            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">0</span>
                                     </div>
                                     <div
                                         class="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-none">
@@ -604,7 +611,7 @@
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300">
                             <i class="fab fa-react text-cyan-400 text-2xl"></i><span
-                                class="text-white font-semibold">React Admin UI</span>
+                                class="text-white font-semibold">React</span>
                         </div>
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
@@ -672,7 +679,7 @@
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300">
                             <i class="fab fa-react text-cyan-400 text-2xl"></i><span
-                                class="text-white font-semibold">Workflow UI</span>
+                                class="text-white font-semibold">React</span>
                         </div>
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
@@ -704,7 +711,7 @@
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] transition-all duration-300">
                             <i class="fas fa-chart-bar text-amber-400 text-2xl"></i><span
-                                class="text-white font-semibold">Power BI</span>
+                                class="text-white font-semibold">Power BI / DAX</span>
                         </div>
                         <div
                             class="flex-shrink-0 bg-cardBase border border-cardBorder rounded-2xl px-6 py-4 flex items-center gap-3 hover:border-orange-500/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)] transition-all duration-300">
