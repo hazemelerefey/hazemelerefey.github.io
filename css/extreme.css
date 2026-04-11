@@ -643,6 +643,13 @@ nav {
   animation: scan-line 3s ease-in-out infinite 1s;
   pointer-events: none;
   z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide scan line only for the card being hovered */
+.expertise-card:hover .scan-line {
+  opacity: 0 !important;
+  animation-play-state: paused;
 }
 
 /* Number count-up shimmer */
