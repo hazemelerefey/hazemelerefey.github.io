@@ -217,12 +217,13 @@
     bar.style.cssText = [
       'position:fixed',
       'top:0', 'left:0',
-      'height:5px',
+      'height:6px',
       'width:0%',
-      'background:#000000',
+      'background:#0a0a0a',
       'z-index:99999',
       'pointer-events:none',
-      'box-shadow:0 1px 4px rgba(255, 255, 255, 0.1)',
+      'border-bottom: 1px solid rgba(255, 255, 255, 0.1)',
+      'box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5)',
       'transition:width 0.1s ease-out'
     ].join(';');
     document.body.appendChild(bar);
