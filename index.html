@@ -272,17 +272,17 @@
                 </div>
 
                 <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-                    <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0" class="mb-6">
                         <span
                             class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Data Analyst | Front-End Developer</span>
                     </div>
 
-                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" data-aos-offset="0"
                         class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight text-center mx-auto">
                         Hazem <span class="text-gradient-cyan-pink">Elerefy</span>
                     </h1>
 
-                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-offset="0"
                         class="text-lg md:text-xl text-textMuted max-w-2xl leading-relaxed mb-10 text-center mx-auto">
                         I build websites, dashboards, and digital experiences that combine clean frontend execution
                         with strong data thinking. My work focuses on making products feel clear, useful, and
@@ -290,7 +290,7 @@
                     </p>
 
 
-                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" data-aos-offset="0"
                         class="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
                         <a href="javascript:void(0)" @click.prevent="navTo('portfolio')"
                             class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300">
@@ -312,11 +312,11 @@
 
                     <!-- Floating Stats Cloud -->
                     <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-16 lg:mt-24 mb-6 relative z-10 w-full px-4"
-                        x-data="{ shown: false }" x-intersect.once="shown = true">
+                        x-data="{ shown: false }" x-init="$nextTick(() => { shown = true })" x-intersect.once="shown = true">
 
                         <!-- Stat 1: Projects -->
                         <div class="animate-float-1 transform md:-translate-y-6" data-aos="fade-up"
-                            data-aos-delay="400">
+                            data-aos-delay="400" data-aos-offset="0">
                             <div
                                 class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
                                 <div
@@ -343,7 +343,7 @@
                         </div>
 
                         <!-- Stat 2: Clients -->
-                        <div class="animate-float-2 transform md:translate-y-4" data-aos="fade-up" data-aos-delay="500">
+                        <div class="animate-float-2 transform md:translate-y-4" data-aos="fade-up" data-aos-delay="500" data-aos-offset="0">
                             <div
                                 class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
                                 <div
@@ -371,7 +371,7 @@
 
                         <!-- Stat 3: Experience -->
                         <div class="animate-float-3 transform md:-translate-y-2" data-aos="fade-up"
-                            data-aos-delay="600">
+                            data-aos-delay="600" data-aos-offset="0">
                             <div
                                 class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
                                 <div
@@ -398,7 +398,7 @@
                         </div>
 
                         <!-- Stat 4: Platforms -->
-                        <div class="animate-float-4 transform md:translate-y-6" data-aos="fade-up" data-aos-delay="700">
+                        <div class="animate-float-4 transform md:translate-y-6" data-aos="fade-up" data-aos-delay="700" data-aos-offset="0">
                             <div
                                 class="group relative bg-cardBase/60 backdrop-blur-xl border border-cardBorder p-4 md:p-5 rounded-2xl hover:scale-105 transition-transform shadow-lg flex items-center gap-4">
                                 <div
