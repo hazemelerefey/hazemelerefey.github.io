@@ -9,86 +9,19 @@
 (function () {
   'use strict';
 
-  /* ─── 1. INJECT DOM ELEMENTS ─────────────────────────────────── */
+  /* --- 1. INJECT DOM ELEMENTS ------------------------------------ */
   function injectElements() {
-    // Spotlight div
+    // Spotlight div (mouse glow tracker)
     const spotlight = document.createElement('div');
     spotlight.id = 'spotlight';
     document.body.prepend(spotlight);
-
-    // Custom cursor elements
-    const dot = document.createElement('div');
-    dot.id = 'cursor-dot';
-    const ring = document.createElement('div');
-    ring.id = 'cursor-ring';
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
-
-    // Ambient grid bg class on body
-    document.body.classList.add('extreme-grid-bg');
+    // NOTE: extreme-grid-bg removed from body — grid is now body::after in CSS
   }
 
-  /* ─── 2. CUSTOM CURSOR ─────────────────────────────────────────── */
-  function initCursor() {
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (!dot || !ring) return;
-
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    let rafRunning = false;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      dot.style.left  = mouseX + 'px';
-      dot.style.top   = mouseY + 'px';
-
-      if (!rafRunning) {
-        rafRunning = true;
-        requestAnimationFrame(animateRing);
-      }
-    });
-
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
-
-      if (Math.abs(mouseX - ringX) > 0.1 || Math.abs(mouseY - ringY) > 0.1) {
-        requestAnimationFrame(animateRing);
-      } else {
-        rafRunning = false;
-      }
-    }
-
-    // Hover state
-    const interactables = 'a, button, [role="button"], input, textarea, select, label, .expertise-card, .project-card-extreme, .glass-extreme, .platform-card, .card-3d';
-
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(interactables)) {
-        document.body.classList.add('cursor-hover');
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(interactables)) {
-        document.body.classList.remove('cursor-hover');
-      }
-    });
-
-    // Hide on mouse leave
-    document.addEventListener('mouseleave', () => {
-      dot.style.opacity  = '0';
-      ring.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      dot.style.opacity  = '1';
-      ring.style.opacity = '1';
-    });
-  }
+  /* --- 2. [CURSOR REMOVED] ---
+     Native OS cursor is used instead for zero-lag UX.
+     cursor: pointer is applied via CSS to all interactables.
+  */
 
   /* ─── 3. MOUSE SPOTLIGHT TRACKER ──────────────────────────────── */
   function initSpotlight() {

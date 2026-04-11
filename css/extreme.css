@@ -66,45 +66,15 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ─────────────────────────────────────────────
-   CUSTOM CURSOR
+   THEMED NATIVE CURSORS
 ───────────────────────────────────────────── */
-* { cursor: none !important; }
-
-#cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  width: 8px; height: 8px;
-  background: var(--neon-cyan);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.08s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
-  box-shadow: var(--glow-cyan-sm);
-  mix-blend-mode: screen;
-}
-
-#cursor-ring {
-  position: fixed;
-  top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(0,245,255,0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
-}
-
-body.cursor-hover #cursor-dot {
-  width: 14px; height: 14px;
-  background: var(--neon-pink);
-  box-shadow: var(--glow-pink-sm);
-}
-
-body.cursor-hover #cursor-ring {
-  width: 56px; height: 56px;
-  border-color: rgba(255,46,151,0.5);
+/* Keep the native OS cursor — fast & reliable */
+/* Use cursor: pointer on all interactive elements */
+a, button, [role="button"], label,
+.expertise-card, .platform-card, .card-3d,
+.glass-extreme, .project-card-extreme,
+.nav-link, .btn-pill, .btn-extreme-cyan, .btn-extreme-ghost {
+  cursor: pointer;
 }
 
 /* ─────────────────────────────────────────────
@@ -127,22 +97,25 @@ body.cursor-hover #cursor-ring {
 
 /* ─────────────────────────────────────────────
    AMBIENT GRID BACKGROUND
+   NOTE: Applied to a wrapper div, NOT body,
+   to avoid breaking scroll.
 ───────────────────────────────────────────── */
 .extreme-grid-bg {
   position: relative;
-  overflow: hidden;
+  /* NO overflow:hidden here — that kills body scroll */
 }
 
-.extreme-grid-bg::before {
+/* The actual grid is a fixed pseudo-element on body */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,245,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,245,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0,245,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.022) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 20%, transparent 80%);
   pointer-events: none;
   z-index: 0;
 }
