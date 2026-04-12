@@ -86,7 +86,7 @@ function appData() {
             {
                 id: 'jobpulse',
                 title: 'JobPulse',
-                image: 'images/jobpulse-hero.svg',
+                image: 'images/jobpulse-dashboard.png',
                 category: 'frontend',
                 tags: ['Market Intelligence', 'Next.js'],
                 github: 'https://github.com/hazemelerefey/jobpulse',
@@ -110,7 +110,7 @@ function appData() {
             {
                 id: 'kanban',
                 title: 'Kanban Board',
-                image: 'images/kanban-project.svg',
+                image: 'images/kanban-board.png',
                 category: 'frontend',
                 tags: ['Kanban UI', 'Frontend'],
                 github: 'https://github.com/hazemelerefey/frontend-kanban-board',
@@ -122,7 +122,7 @@ function appData() {
             {
                 id: 'realestate',
                 title: 'Real Estate Finder',
-                image: 'images/realestate-project.svg',
+                image: 'images/realestate-finder.png',
                 category: 'frontend',
                 tags: ['Real Estate UI', 'Frontend'],
                 github: 'https://github.com/hazemelerefey/frontend-realestate-finder',
@@ -146,7 +146,7 @@ function appData() {
             {
                 id: 'churn',
                 title: 'Churn Prediction',
-                image: 'images/churn-project.svg',
+                image: 'images/churn-analytics.png',
                 category: 'analytics',
                 tags: ['Machine Learning', 'Python'],
                 github: 'https://github.com/hazemelerefey/analytics-churn-prediction',
@@ -158,7 +158,7 @@ function appData() {
             {
                 id: 'ecommerce',
                 title: 'E-Commerce Admin UI',
-                image: 'images/ecommerce-admin-project.svg',
+                image: 'images/ecommerce-admin.png',
                 category: 'frontend',
                 tags: ['React Admin UI', 'Frontend'],
                 github: 'https://github.com/hazemelerefey/frontend-ecommerce-dashboard',
