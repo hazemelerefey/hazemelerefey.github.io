@@ -2578,13 +2578,13 @@
                         'bg-gradient-to-br from-amber-500/40 via-amber-900/20 to-transparent': activeStory?.color === 'amber',
                         'bg-gradient-to-br from-red-500/40 via-red-900/20 to-transparent': activeStory?.color === 'red'
                     }"></div>
-                <img :src="activeStory?.image" :alt="activeStory?.title" 
+                <img :src="activeStory?.image || ''" :alt="activeStory?.title || ''" 
                      class="absolute inset-0 w-full h-full object-cover object-top z-0 scale-105 transition-transform duration-[2000ms] group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-[#050505]/50 md:to-[#050505] z-10"></div>
                 
                 <!-- Zoom & Github Actions -->
                 <div class="absolute bottom-6 left-6 z-20 flex gap-3">
-                    <a :href="activeStory?.github" target="_blank" rel="noopener noreferrer" title="View Source"
+                    <a :href="activeStory?.github || '#'" target="_blank" rel="noopener noreferrer" title="View Source"
                        class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-xl"
                        x-show="activeStory?.github">
                         <i class="fab fa-github text-xl"></i>
@@ -2608,23 +2608,23 @@
                             'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]': activeStory?.color === 'amber',
                             'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]': activeStory?.color === 'red'
                         }"></span>
-                    <span class="text-[11px] uppercase tracking-[0.2em] font-black text-white/50" x-text="activeStory?.tags?.[0]"></span>
+                    <span class="text-[11px] uppercase tracking-[0.2em] font-black text-white/50" x-text="(activeStory?.tags || [])[0] || ''"></span>
                 </div>
                 
                 <!-- Title -->
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight" x-text="activeStory?.title"></h2>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight" x-text="activeStory?.title || ''"></h2>
                 
                 <!-- The Narrative -->
                 <div class="mb-10">
                     <h3 class="text-sm font-bold text-white/30 tracking-widest uppercase mb-4">The Story</h3>
-                    <p class="text-white/80 text-lg leading-relaxed font-light" x-text="activeStory?.story"></p>
+                    <p class="text-white/80 text-lg leading-relaxed font-light" x-text="activeStory?.story || ''"></p>
                 </div>
 
                 <!-- Features -->
                 <div>
                     <h3 class="text-sm font-bold text-white/30 tracking-widest uppercase mb-6">Technical Execution</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <template x-for="feature in activeStory?.features">
+                        <template x-for="feature in (activeStory?.features || [])">
                             <div class="flex items-start gap-4 p-4 rounded-3xl bg-white/[0.03] border border-white-[0.05] hover:bg-white/[0.05] transition-colors group">
                                 <div class="w-8 h-8 shrink-0 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
                                     <i class="fas fa-asterisk text-[10px]"
