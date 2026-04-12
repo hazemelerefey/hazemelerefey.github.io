@@ -80,6 +80,114 @@ function appData() {
                 average: 4.7
             }
         },
+
+        // --- Premium Project Story Data (Liquid Glass Gallery) ---
+        projectsList: [
+            {
+                id: 'jobpulse',
+                title: 'JobPulse',
+                image: 'images/jobpulse-hero.svg',
+                category: 'frontend',
+                tags: ['Market Intelligence', 'Next.js'],
+                github: 'https://github.com/hazemelerefey/jobpulse',
+                color: 'cyan',
+                ratingKey: 'jobpulse',
+                story: 'In an increasingly saturated tech market, job seekers often feel like they are shouting into the void. JobPulse was conceived as a premium intelligence dashboard, rather than a generic job board. By aggregating and analyzing live role demand, compensation shifts, and remote-work trends, it transforms overwhelming market noise into a sleek, actionable, product-style interface that empowers users to make precise career decisions.',
+                features: ['Live Role Demand Metrics', 'Compensation Gravity tracking', 'Skill Momentum indicators', 'Polished, glassmorphic UI architecture', 'Fully repo-backed static build']
+            },
+            {
+                id: 'healthcare',
+                title: 'Healthcare Waitlist',
+                image: 'images/healthcare-operations-overview.png',
+                category: 'analytics',
+                tags: ['Healthcare', 'Power BI'],
+                github: 'https://github.com/hazemelerefey/healthcare-operations-waitlist-dashboard',
+                color: 'emerald',
+                ratingKey: 'healthcare',
+                story: 'Patient care delays aren\'t just numbers; they represent human lives waiting for help. When a hospital faces massive waitlist pressure, standard messy spreadsheets fail to provide operational clarity. This analytics dashboard was designed to act as an executive decision-support system. It cuts through the fog of data to instantly reveal service bottlenecks, specialty backlog patterns, and critical operational priorities.',
+                features: ['Waitlist Pressure heatmapping', 'Service Bottleneck identification', 'Specialty Backlog pattern analysis', 'Clinical decision-support layout', 'Operational metrics tracking']
+            },
+            {
+                id: 'kanban',
+                title: 'Kanban Board',
+                image: 'images/kanban-project.svg',
+                category: 'frontend',
+                tags: ['Kanban UI', 'Frontend'],
+                github: 'https://github.com/hazemelerefey/frontend-kanban-board',
+                color: 'cyan',
+                ratingKey: 'kanban',
+                story: 'Productivity apps often suffer from visual clutter, hindering focus when you need it most. This frontend Kanban board was built as an exploration into product-style interfaces where fluidity and clarity are paramount. Utilizing seamless drag-and-drop mechanics and a highly polished administrative layout, it creates a distraction-free environment for task management.',
+                features: ['Fluid drag-and-drop workflow mechanics', 'Product-style layout typography', 'High-contrast board clarity', 'Interactive task progression tracking', 'Clean administrative composition']
+            },
+            {
+                id: 'realestate',
+                title: 'Real Estate Finder',
+                image: 'images/realestate-project.svg',
+                category: 'frontend',
+                tags: ['Real Estate UI', 'Frontend'],
+                github: 'https://github.com/hazemelerefey/frontend-realestate-finder',
+                color: 'purple',
+                ratingKey: 'realestate',
+                story: 'Searching for a home is an emotional, high-stakes journey that demands a flawless digital experience. This real estate interface bridges the gap between raw property data and human exploration. It heavily features advanced filtering mechanisms and listing discovery paradigms within an elegant, minimal product-style aesthetic for swift property comparison.',
+                features: ['Advanced filtering architecture', 'Listing discovery map patterns', 'Product-style property browsing', 'High-fidelity image presentation', 'Minimalist visual layout']
+            },
+            {
+                id: 'global_sales',
+                title: 'Global Sales Tracker',
+                image: 'images/global-sales-dashboard.png',
+                category: 'analytics',
+                tags: ['Commercial BI', 'Power BI'],
+                github: 'https://github.com/hazemelerefey/global-ecommerce-sales-tracker',
+                color: 'amber',
+                ratingKey: 'global_sales',
+                story: 'When an e-commerce platform scales globally, tracking revenue becomes a fragmented nightmare across multiple regions. This interactive Business Intelligence dashboard acts as the central command center. By deeply analyzing regional commercial performance, profit margins, and order fulfillment vectors, it allows stakeholders to steer massive enterprise-level sales operations with granular precision.',
+                features: ['Multi-region revenue tracking', 'Profit margin optimization metrics', 'Order fulfillment vector analysis', 'Interactive commercial performance charts', 'Executive summary BI architecture']
+            },
+            {
+                id: 'churn',
+                title: 'Churn Prediction',
+                image: 'images/churn-project.svg',
+                category: 'analytics',
+                tags: ['Machine Learning', 'Python'],
+                github: 'https://github.com/hazemelerefey/analytics-churn-prediction',
+                color: 'red',
+                ratingKey: 'churn',
+                story: 'Why do customers leave? That single question drives the billion-dollar retention industry. This project dives deep into predictive analytics to identify subtle behaviors that signal a user is about to churn. By highlighting critical risk patterns through machine learning feature importance mechanisms, businesses can shift from reacting to lost customers to proactively saving them.',
+                features: ['Predictive risk modeling algorithms', 'Customer retention behavior analysis', 'Feature importance identification tools', 'Proactive churn mitigation signals', 'Data-driven decision support']
+            },
+            {
+                id: 'ecommerce',
+                title: 'E-Commerce Admin UI',
+                image: 'images/ecommerce-admin-project.svg',
+                category: 'frontend',
+                tags: ['React Admin UI', 'Frontend'],
+                github: 'https://github.com/hazemelerefey/frontend-ecommerce-dashboard',
+                color: 'cyan',
+                ratingKey: 'ecommerce',
+                story: 'Backend administrative tools have historically been clunky and visually uninspiring. This UI challenges that norm by bringing consumer-grade premium design to the backend. It offers a pristine, responsive dashboard interface tailored for store managers—making the monitoring of sales velocity, active orders, and user activity an engaging, rather than exhausting, daily task.',
+                features: ['Responsive frontend administration', 'Live sales velocity monitoring', 'Dynamic chart integration', 'User activity tracking modules', 'Product-ready layout composition']
+            }
+        ],
+
+        // --- Liquid Glass Story Modal States ---
+        storyModalOpen: false,
+        activeStory: null,
+
+        openStory(project) {
+            this.activeStory = project;
+            this.storyModalOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closeStory() {
+            this.storyModalOpen = false;
+            // Restore background scrolling
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                this.activeStory = null;
+            }, 500); // 500ms aligns with Liquid Glass animation speed
+        },
+
         getEmotion(project) {
             return this.ratings[project].hoverScore || this.ratings[project].score || 0;
         },

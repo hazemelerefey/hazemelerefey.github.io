@@ -1105,406 +1105,109 @@
 
                 <div class="relative z-50 overflow-visible w-full">
 
-                    <!-- Unified Project Cards Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-24 relative z-20">
-
-                        <!-- Project 1: JobPulse (Frontend) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_34px_rgba(34,211,238,0.18)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full relative min-h-[430px]">
-
-                            <div class="absolute top-4 right-4 z-20">
-                                <span class="bg-white/10 text-white border border-white/15 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">Flagship</span>
-                            </div>
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer bg-[#020617]"
-                                @click.prevent="zoomedImageSrc = 'images/jobpulse-hero.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/jobpulse-hero.svg" alt="JobPulse interface preview"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Market Intelligence</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Next.js</span>
+                    <!-- Liquid Glass Project Cards Grid (Dynamic) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 relative z-20">
+                        <template x-for="project in projectsList" :key="project.id">
+                            <div 
+                                x-show="portfolioFilter === 'all' || portfolioFilter === project.category"
+                                x-transition:enter="transition-all duration-700 ease-out"
+                                x-transition:enter-start="opacity-0 translate-y-12 blur-sm"
+                                x-transition:enter-end="opacity-100 translate-y-0 blur-0"
+                                class="group relative rounded-[2rem] overflow-hidden h-[450px] cursor-pointer outline outline-1 outline-white/5 bg-[#0a0a0a] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)]"
+                                :class="{ 
+                                    'hover:shadow-[0_0_50px_rgba(34,211,238,0.15)] hover:outline-cyan-500/30': project.color === 'cyan',
+                                    'hover:shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:outline-emerald-500/30': project.color === 'emerald',
+                                    'hover:shadow-[0_0_50px_rgba(168,85,247,0.15)] hover:outline-purple-500/30': project.color === 'purple',
+                                    'hover:shadow-[0_0_50px_rgba(245,158,11,0.15)] hover:outline-amber-500/30': project.color === 'amber',
+                                    'hover:shadow-[0_0_50px_rgba(239,68,68,0.15)] hover:outline-red-500/30': project.color === 'red'
+                                }"
+                                @click="openStory(project)">
+                                
+                                <!-- Flagship Label -->
+                                <div x-show="project.id === 'jobpulse'" class="absolute top-5 right-5 z-20 transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
+                                    <span class="bg-white/10 text-white border border-white/20 text-xs font-bold px-4 py-1.5 rounded-full backdrop-blur-md shadow-2xl">Flagship</span>
                                 </div>
 
-                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
+                                <!-- Background Image with Zoom Effect -->
+                                <img :src="project.image" :alt="project.title"
+                                    class="absolute inset-0 w-full h-[60%] object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-110 z-0">
+                                
+                                <!-- Dark Gradient Base -->
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-tr from-[#050505] via-[#050505]/95 to-transparent z-0"></div>
 
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">JobPulse</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A premium job market intelligence dashboard built to surface role demand, compensation gravity, skill momentum, and remote-work trends through a polished product-style interface.</p>
+                                <!-- Dynamic Subtle Tint -->
+                                <div class="absolute inset-0 z-0 opacity-30 mix-blend-screen transition-opacity duration-700 group-hover:opacity-60"
+                                     :class="{
+                                         'bg-gradient-to-tr from-cyan-900/60 via-transparent to-transparent': project.color === 'cyan',
+                                         'bg-gradient-to-tr from-emerald-900/60 via-transparent to-transparent': project.color === 'emerald',
+                                         'bg-gradient-to-tr from-purple-900/60 via-transparent to-transparent': project.color === 'purple',
+                                         'bg-gradient-to-tr from-amber-900/60 via-transparent to-transparent': project.color === 'amber',
+                                         'bg-gradient-to-tr from-red-900/60 via-transparent to-transparent': project.color === 'red'
+                                     }"></div>
 
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Flagship project</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Real repo-backed build</span>
-                                </div>
+                                <!-- Content Overlay -->
+                                <div class="absolute inset-0 flex flex-col justify-end p-8 z-10 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                                    
+                                    <!-- Top Tags -->
+                                    <div class="absolute top-5 left-5 flex gap-2 flex-wrap transition-all duration-700 group-hover:-translate-y-4 group-hover:opacity-0 group-hover:blur-sm">
+                                        <template x-for="tag in project.tags">
+                                            <span class="bg-black/40 text-white/90 border border-white/10 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md" x-text="tag"></span>
+                                        </template>
+                                    </div>
 
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.jobpulse.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.jobpulse.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.jobpulse.hoverScore >= star || (!ratings.jobpulse.hoverScore && ratings.jobpulse.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('jobpulse', star)"
-                                                    @mouseleave="resetHover('jobpulse')"
-                                                    @click="setRating('jobpulse', star)"></i>
-                                            </template>
+                                    <!-- Main Title & Ratings -->
+                                    <div class="translate-y-6 group-hover:-translate-y-20 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                                        <h3 class="text-3xl font-black tracking-tight text-white mb-3"
+                                            :class="{ 
+                                                'group-hover:text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]': project.color === 'cyan',
+                                                'group-hover:text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]': project.color === 'emerald',
+                                                'group-hover:text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]': project.color === 'purple',
+                                                'group-hover:text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]': project.color === 'amber',
+                                                'group-hover:text-red-400 drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]': project.color === 'red'
+                                            }" x-text="project.title"></h3>
+                                        
+                                        <!-- Rating -->
+                                        <div class="flex items-center gap-2 mb-6 pointer-events-auto">
+                                            <span class="text-white font-bold text-sm" x-text="ratings[project.ratingKey].average"></span>
+                                            <div class="flex items-center gap-1">
+                                                <template x-for="star in 5">
+                                                    <i class="fas fa-star text-[10px] transition-transform hover:scale-125 cursor-pointer relative z-50"
+                                                        :class="(ratings[project.ratingKey].hoverScore >= star || (!ratings[project.ratingKey].hoverScore && ratings[project.ratingKey].score >= star)) ? 'text-amber-400' : 'text-white/20'"
+                                                        @mouseenter.stop="hoverStar(project.ratingKey, star)"
+                                                        @mouseleave.stop="resetHover(project.ratingKey)"
+                                                        @click.stop="setRating(project.ratingKey, star)"></i>
+                                                </template>
+                                            </div>
+                                            <span class="text-xs text-textMuted ml-1" x-text="`(${ratings[project.ratingKey].totalVotes})`"></span>
                                         </div>
                                     </div>
 
-                                    <a href="https://github.com/hazemelerefey/jobpulse" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 4: Healthcare Operations Waitlist Dashboard (Analytics) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/healthcare-operations-overview.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/healthcare-operations-overview.png" alt="Healthcare Operations Waitlist Dashboard"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Healthcare</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
-                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Operations Analytics</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-emerald-400 transition-colors">Healthcare Operations Waitlist Dashboard</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real healthcare operations analytics case study built to reveal waitlist pressure, service bottlenecks, specialty backlog patterns, and operational priorities through a cleaner decision-support dashboard.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Operational analytics</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Decision-support dashboard</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.healthcare.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.healthcare.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.healthcare.hoverScore >= star || (!ratings.healthcare.hoverScore && ratings.healthcare.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('healthcare', star)"
-                                                    @mouseleave="resetHover('healthcare')"
-                                                    @click="setRating('healthcare', star)"></i>
-                                            </template>
-                                        </div>
+                                    <!-- Liquid Hover Action Row -->
+                                    <div class="absolute bottom-6 left-8 right-8 opacity-0 translate-y-8 blur-sm group-hover:blur-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] delay-75">
+                                        <button @click.stop="openStory(project)" class="w-full relative overflow-hidden group/btn rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 backdrop-blur-xl transition-all duration-500 p-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                                            
+                                            <!-- Liquid Glass Glow Effect inside Button -->
+                                            <div class="absolute inset-0 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] opacity-20"
+                                                :class="{
+                                                    'bg-cyan-500': project.color === 'cyan',
+                                                    'bg-emerald-500': project.color === 'emerald',
+                                                    'bg-purple-500': project.color === 'purple',
+                                                    'bg-amber-500': project.color === 'amber',
+                                                    'bg-red-500': project.color === 'red'
+                                                }"></div>
+                                                
+                                            <span class="relative z-10 font-bold text-sm tracking-wide text-white flex items-center gap-3">
+                                                <i class="fas fa-book-open text-white/50 group-hover/btn:text-white transition-colors"></i> Read the story
+                                            </span>
+                                            
+                                            <div class="relative z-10 w-8 h-8 rounded-[10px] bg-white/10 flex items-center justify-center group-hover/btn:scale-110 transition-transform duration-500">
+                                                <i class="fas fa-arrow-right text-xs text-white"></i>
+                                            </div>
+                                        </button>
                                     </div>
-
-                                    <a href="https://github.com/hazemelerefey/healthcare-operations-waitlist-dashboard" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-500/25 text-emerald-400 hover:text-white hover:bg-emerald-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Project 2: Frontend Kanban Board (Frontend) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/kanban-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/kanban-project.svg" alt="Frontend Kanban Board"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Kanban UI</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">Frontend Kanban Board</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real product-style task management interface focused on drag-and-drop workflow, board clarity, and polished admin-style UI composition for productivity use cases.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Workflow UI</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Product-style layout</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.kanban.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.kanban.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.kanban.hoverScore >= star || (!ratings.kanban.hoverScore && ratings.kanban.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('kanban', star)"
-                                                    @mouseleave="resetHover('kanban')"
-                                                    @click="setRating('kanban', star)"></i>
-                                            </template>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://github.com/hazemelerefey/frontend-kanban-board" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 3: Frontend Real Estate Finder (Frontend) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/realestate-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/realestate-project.svg" alt="Frontend Real Estate Finder"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Real Estate UI</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-purple-400 transition-colors">Frontend Real Estate Finder</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A real estate search interface built around advanced filtering, listing discovery, and product-style browsing patterns for property exploration and comparison.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Search experience</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Filtering-focused UI</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.realestate.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.realestate.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.realestate.hoverScore >= star || (!ratings.realestate.hoverScore && ratings.realestate.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('realestate', star)"
-                                                    @mouseleave="resetHover('realestate')"
-                                                    @click="setRating('realestate', star)"></i>
-                                            </template>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://github.com/hazemelerefey/frontend-realestate-finder" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-purple-500/25 text-purple-400 hover:text-white hover:bg-purple-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 5: Global E-Commerce Sales Tracker (Analytics) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] hover:border-amber-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/global-sales-dashboard.png'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/global-sales-dashboard.png" alt="Global E-Commerce Sales Tracker"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Commercial BI</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Power BI</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-amber-400 transition-colors">Global E-Commerce Sales Tracker</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">An interactive business intelligence dashboard for tracking revenue, profit, orders, and regional commercial performance across a multi-country e-commerce dataset.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Commercial BI</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Multi-region tracking</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.global_sales.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.global_sales.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.global_sales.hoverScore >= star || (!ratings.global_sales.hoverScore && ratings.global_sales.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('global_sales', star)"
-                                                    @mouseleave="resetHover('global_sales')"
-                                                    @click="setRating('global_sales', star)"></i>
-                                            </template>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://github.com/hazemelerefey/global-ecommerce-sales-tracker" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-amber-500/25 text-amber-400 hover:text-white hover:bg-amber-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 6: Customer Churn Prediction (Analytics) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/churn-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/churn-project.svg" alt="Customer Churn Prediction"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Machine Learning</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Python</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-red-400 transition-colors">Customer Churn Prediction</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A retention-focused predictive analytics project built to identify churn risk patterns, highlight important features, and support stronger customer retention decisions through machine learning.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">ML use case</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Retention analysis</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.churn.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.churn.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.churn.hoverScore >= star || (!ratings.churn.hoverScore && ratings.churn.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('churn', star)"
-                                                    @mouseleave="resetHover('churn')"
-                                                    @click="setRating('churn', star)"></i>
-                                            </template>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://github.com/hazemelerefey/analytics-churn-prediction" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-red-500/25 text-red-400 hover:text-white hover:bg-red-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project 7: Frontend E-Commerce Dashboard (Frontend) -->
-                        <div
-                            x-transition:enter="transition-all duration-500"
-                            x-transition:enter-start="opacity-0 translate-y-8"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                            class="group bg-cardBase border border-cardBorder rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:border-cyan-500/50 transition-all duration-500 flex flex-col h-full min-h-[430px]">
-
-                            <div class="h-52 overflow-hidden relative border-b border-cardBorder cursor-pointer"
-                                @click.prevent="zoomedImageSrc = 'images/ecommerce-admin-project.svg'; zoomModalOpen = true; document.body.style.overflow = 'hidden';">
-                                <img src="images/ecommerce-admin-project.svg" alt="Frontend E-Commerce Dashboard"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBase/90 to-transparent"></div>
-
-                                <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-                                    <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">React Admin UI</span>
-                                    <span class="bg-darkBase/60 text-white border border-cardBorder text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">Frontend</span>
-                                </div>
-
-                                <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <i class="fas fa-search-plus text-3xl text-white drop-shadow-lg"></i>
-                                </div>
-                            </div>
-
-                            <div class="p-5 md:p-6 flex-1 flex flex-col">
-                                <h3 class="text-[1.15rem] md:text-xl font-semibold tracking-[-0.015em] text-white mb-2.5 group-hover:text-cyan-400 transition-colors">Frontend E-Commerce Dashboard</h3>
-                                <p class="text-textMuted/95 text-[15px] leading-6 mb-4 flex-1 line-clamp-3">A modern admin dashboard interface built to monitor sales, orders, and user activity through a clean responsive frontend experience with product-ready layout and chart integration.</p>
-
-                                <div class="flex flex-wrap gap-2 mb-5">
-                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Admin dashboard</span>
-                                    <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 text-[11px] uppercase tracking-[0.08em] font-semibold whitespace-nowrap">Responsive frontend</span>
-                                </div>
-
-                                <div class="flex items-center justify-between pt-4 border-t border-cardBorder/50 mt-auto gap-4">
-                                    <div class="flex items-center gap-2 min-w-0">
-                                        <span class="text-white font-bold text-sm" x-text="ratings.ecommerce.average"></span>
-                                        <span class="text-xs text-textMuted" x-text="`(${ratings.ecommerce.totalVotes})`"></span>
-                                        <div class="flex items-center gap-1 ml-1">
-                                            <template x-for="star in 5">
-                                                <i class="fas fa-star text-xs transition-transform hover:scale-125 cursor-pointer"
-                                                    :class="(ratings.ecommerce.hoverScore >= star || (!ratings.ecommerce.hoverScore && ratings.ecommerce.score >= star)) ? 'text-amber-400' : 'text-gray-600'"
-                                                    @mouseenter="hoverStar('ecommerce', star)"
-                                                    @mouseleave="resetHover('ecommerce')"
-                                                    @click="setRating('ecommerce', star)"></i>
-                                            </template>
-                                        </div>
-                                    </div>
-
-                                    <a href="https://github.com/hazemelerefey/frontend-ecommerce-dashboard" target="_blank" rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-cyan-500/25 text-cyan-400 hover:text-white hover:bg-cyan-500/10 transition-all duration-300 text-sm font-semibold">
-                                        <i class="fab fa-github"></i>
-                                        <span>GitHub</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
+                        </template>
                     </div> <!-- END PORTFOLIO GRID -->
 
                     <!-- Experience & Education Section -->
@@ -2831,6 +2534,116 @@
 
     <!-- Extreme UI/UX Engine -->
     <script src="js/extreme.js?v=5" defer></script>
+
+    <!-- Liquid Glass Project Story Modal -->
+    <div x-show="storyModalOpen" 
+        class="fixed inset-0 z-[200] flex items-center justify-center p-0 md:p-6"
+        x-cloak>
+        <!-- Intense Blur Overlay -->
+        <div x-show="storyModalOpen" 
+            x-transition:enter="transition ease-[cubic-bezier(0.25,1,0.5,1)] duration-700"
+            x-transition:enter-start="opacity-0 backdrop-blur-none"
+            x-transition:enter-end="opacity-100 backdrop-blur-2xl"
+            x-transition:leave="transition ease-in-out duration-500"
+            x-transition:leave-start="opacity-100 backdrop-blur-2xl"
+            x-transition:leave-end="opacity-0 backdrop-blur-none"
+            class="absolute inset-0 bg-black/60 z-0"
+            @click="closeStory()"></div>
+        
+        <!-- Story Content Container -->
+        <div x-show="storyModalOpen"
+            x-transition:enter="transition ease-[cubic-bezier(0.25,1,0.5,1)] duration-700 delay-100"
+            x-transition:enter-start="opacity-0 transform translate-y-24 scale-95"
+            x-transition:enter-end="opacity-100 transform translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 transform translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 transform translate-y-12 scale-95"
+            class="w-full h-[100dvh] md:h-auto md:max-h-[90vh] md:max-w-5xl md:rounded-[2.5rem] bg-[#050505]/80 backdrop-blur-3xl border md:border-white/10 relative z-10 flex flex-col md:flex-row overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]"
+            @click.stop>
+            
+            <!-- Close Button -->
+            <button @click="closeStory()" 
+                class="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-black/40 border border-white/20 backdrop-blur-xl flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <!-- Left Visual Side -->
+            <div class="relative w-full md:w-2/5 h-64 md:h-auto overflow-hidden shrink-0 group">
+                <!-- Color Atmosphere Glow -->
+                <div class="absolute inset-0 opacity-40 mix-blend-screen z-10 transition-colors duration-1000"
+                    :class="{
+                        'bg-gradient-to-br from-cyan-500/40 via-cyan-900/20 to-transparent': activeStory?.color === 'cyan',
+                        'bg-gradient-to-br from-emerald-500/40 via-emerald-900/20 to-transparent': activeStory?.color === 'emerald',
+                        'bg-gradient-to-br from-purple-500/40 via-purple-900/20 to-transparent': activeStory?.color === 'purple',
+                        'bg-gradient-to-br from-amber-500/40 via-amber-900/20 to-transparent': activeStory?.color === 'amber',
+                        'bg-gradient-to-br from-red-500/40 via-red-900/20 to-transparent': activeStory?.color === 'red'
+                    }"></div>
+                <img :src="activeStory?.image" :alt="activeStory?.title" 
+                     class="absolute inset-0 w-full h-full object-cover object-top z-0 scale-105 transition-transform duration-[2000ms] group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-[#050505]/50 md:to-[#050505] z-10"></div>
+                
+                <!-- Zoom & Github Actions -->
+                <div class="absolute bottom-6 left-6 z-20 flex gap-3">
+                    <a :href="activeStory?.github" target="_blank" rel="noopener noreferrer" title="View Source"
+                       class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-xl"
+                       x-show="activeStory?.github">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <button @click.stop="zoomedImageSrc = activeStory?.image; zoomModalOpen = true;" title="Zoom Image"
+                       class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-xl">
+                        <i class="fas fa-expand text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Narrative Content -->
+            <div class="flex-1 overflow-y-auto custom-scrollbar relative p-8 md:p-14 z-20 flex flex-col justify-center">
+                <!-- Eyebrow Tag -->
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full"
+                        :class="{
+                            'bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]': activeStory?.color === 'cyan',
+                            'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]': activeStory?.color === 'emerald',
+                            'bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)]': activeStory?.color === 'purple',
+                            'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]': activeStory?.color === 'amber',
+                            'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]': activeStory?.color === 'red'
+                        }"></span>
+                    <span class="text-[11px] uppercase tracking-[0.2em] font-black text-white/50" x-text="activeStory?.tags?.[0]"></span>
+                </div>
+                
+                <!-- Title -->
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight" x-text="activeStory?.title"></h2>
+                
+                <!-- The Narrative -->
+                <div class="mb-10">
+                    <h3 class="text-sm font-bold text-white/30 tracking-widest uppercase mb-4">The Story</h3>
+                    <p class="text-white/80 text-lg leading-relaxed font-light" x-text="activeStory?.story"></p>
+                </div>
+
+                <!-- Features -->
+                <div>
+                    <h3 class="text-sm font-bold text-white/30 tracking-widest uppercase mb-6">Technical Execution</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <template x-for="feature in activeStory?.features">
+                            <div class="flex items-start gap-4 p-4 rounded-3xl bg-white/[0.03] border border-white-[0.05] hover:bg-white/[0.05] transition-colors group">
+                                <div class="w-8 h-8 shrink-0 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-asterisk text-[10px]"
+                                        :class="{
+                                            'text-cyan-400': activeStory?.color === 'cyan',
+                                            'text-emerald-400': activeStory?.color === 'emerald',
+                                            'text-purple-400': activeStory?.color === 'purple',
+                                            'text-amber-400': activeStory?.color === 'amber',
+                                            'text-red-400': activeStory?.color === 'red'
+                                        }"></i>
+                                </div>
+                                <span class="text-sm font-medium text-white/70 group-hover:text-white transition-colors pt-1.5" x-text="feature"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
