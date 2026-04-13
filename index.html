@@ -1695,18 +1695,18 @@
                 <div class="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
             </div>
 
-            <!-- Services Tab Switcher -->
-            <div class="flex justify-center mb-10" data-aos="fade-up" data-aos-delay="100">
-                <div class="inline-flex items-center bg-white/[0.02] p-1.5 rounded-2xl border border-white/[0.08] shadow-lg backdrop-blur-xl w-full max-w-md mx-auto">
+            <!-- Premium Services Tab Switcher -->
+            <div class="flex justify-center mb-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative inline-flex items-center bg-white/[0.03] p-2 rounded-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-2xl w-full max-w-lg mx-auto">
                     <button @click="activeServiceTab = 'analytics'"
-                        :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-[0_4px_20px_rgba(6,182,212,0.3)]': activeServiceTab === 'analytics', 'text-white/40 hover:text-white': activeServiceTab !== 'analytics'}"
-                        class="flex-1 py-3 px-6 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer">
-                        <i class="fas fa-chart-line mr-2"></i> Analytics
+                        :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-[0_6px_24px_rgba(6,182,212,0.35),inset_0_1px_0_rgba(255,255,255,0.15)]': activeServiceTab === 'analytics', 'text-white/30 hover:text-white/60': activeServiceTab !== 'analytics'}"
+                        class="flex-1 py-3.5 px-8 rounded-xl font-bold text-sm transition-all duration-400 cursor-pointer relative overflow-hidden">
+                        <i class="fas fa-chart-line mr-2 text-xs"></i> Analytics
                     </button>
                     <button @click="activeServiceTab = 'frontend'"
-                        :class="{'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-[0_4px_20px_rgba(236,72,153,0.3)]': activeServiceTab === 'frontend', 'text-white/40 hover:text-white': activeServiceTab !== 'frontend'}"
-                        class="flex-1 py-3 px-6 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer">
-                        <i class="fas fa-paint-brush mr-2"></i> Frontend
+                        :class="{'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-[0_6px_24px_rgba(236,72,153,0.35),inset_0_1px_0_rgba(255,255,255,0.15)]': activeServiceTab === 'frontend', 'text-white/30 hover:text-white/60': activeServiceTab !== 'frontend'}"
+                        class="flex-1 py-3.5 px-8 rounded-xl font-bold text-sm transition-all duration-400 cursor-pointer relative overflow-hidden">
+                        <i class="fas fa-paint-brush mr-2 text-xs"></i> Frontend
                     </button>
                 </div>
             </div>
@@ -2065,28 +2065,28 @@
                                     x-transition:enter-end="opacity-100 translate-y-0"
                                     x-transition:leave="transition ease-in duration-150"
                                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 translate-y-2" x-cloak
-                                    class="absolute top-full left-0 w-full mt-2 bg-[#0B0B0F]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] p-6 ring-1 ring-white/5">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    class="absolute top-full left-0 w-full mt-3 bg-[#08080C]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.04)] p-8 ring-1 ring-white/5">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         <div>
-                                            <h4 class="text-pink-400 font-black mb-3 uppercase text-[9px] tracking-[0.2em] border-b border-white/5 pb-2">Frontend Services</h4>
-                                            <div class="space-y-2">
-                                                <div @click="serviceRequest.selected = 'UI/UX Design Mockups'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">UI/UX Design Mockups</div>
-                                                <div @click="serviceRequest.selected = 'Website Portfolio Development'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Website Portfolio Development</div>
-                                                <div @click="serviceRequest.selected = 'Custom Website Architecture'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Custom Website Architecture</div>
+                                            <h4 class="text-pink-400 font-black mb-4 uppercase text-[9px] tracking-[0.25em] border-b border-white/5 pb-3">Frontend Services</h4>
+                                            <div class="space-y-1">
+                                                <div @click="serviceRequest.selected = 'UI/UX Design Mockups'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fab fa-figma text-[10px] text-pink-400/50"></i> UI/UX Design Mockups</div>
+                                                <div @click="serviceRequest.selected = 'Website Portfolio Development'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-id-card text-[10px] text-pink-400/50"></i> Website Portfolio Development</div>
+                                                <div @click="serviceRequest.selected = 'Custom Website Architecture'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-layer-group text-[10px] text-pink-400/50"></i> Custom Website Architecture</div>
                                             </div>
                                         </div>
                                         <div>
-                                            <h4 class="text-cyan-400 font-black mb-3 uppercase text-[9px] tracking-[0.2em] border-b border-white/5 pb-2">Analytics Services</h4>
-                                            <div class="space-y-2">
-                                                <div @click="serviceRequest.selected = 'Data Warehousing & SQL'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Data Warehousing & SQL</div>
-                                                <div @click="serviceRequest.selected = 'Interactive Data Dashboards'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Interactive Data Dashboards</div>
-                                                <div @click="serviceRequest.selected = 'Predictive ML Models'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Predictive ML Models</div>
-                                                <div @click="serviceRequest.selected = 'Statistical Analysis'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1 py-1">Statistical Analysis</div>
+                                            <h4 class="text-cyan-400 font-black mb-4 uppercase text-[9px] tracking-[0.25em] border-b border-white/5 pb-3">Analytics Services</h4>
+                                            <div class="space-y-1">
+                                                <div @click="serviceRequest.selected = 'Data Warehousing & SQL'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-database text-[10px] text-cyan-400/50"></i> Data Warehousing & SQL</div>
+                                                <div @click="serviceRequest.selected = 'Interactive Data Dashboards'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-chart-pie text-[10px] text-cyan-400/50"></i> Interactive Data Dashboards</div>
+                                                <div @click="serviceRequest.selected = 'Predictive ML Models'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-brain text-[10px] text-cyan-400/50"></i> Predictive ML Models</div>
+                                                <div @click="serviceRequest.selected = 'Statistical Analysis'; open = false" class="text-sm text-white/40 hover:text-white cursor-pointer transition-all hover:translate-x-1.5 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] flex items-center gap-2.5"><i class="fas fa-microscope text-[10px] text-cyan-400/50"></i> Statistical Analysis</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-4 pt-3 border-t border-white/5 text-center">
-                                        <div @click="serviceRequest.selected = 'Other Inquiry'; open = false" class="text-sm text-white/30 hover:text-white cursor-pointer transition-colors italic">Got another idea? Click here.</div>
+                                    <div class="mt-6 pt-4 border-t border-white/5 text-center">
+                                        <div @click="serviceRequest.selected = 'Other Inquiry'; open = false" class="text-sm text-white/30 hover:text-white cursor-pointer transition-colors italic py-2">Got another idea? Click here.</div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="service" :value="serviceRequest.selected" required>
