@@ -1695,18 +1695,34 @@
                 <div class="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
             </div>
 
-            <!-- Premium Services Tab Switcher -->
+            <!-- Premium Separated Tab Buttons -->
             <div class="flex justify-center mb-12" data-aos="fade-up" data-aos-delay="100">
-                <div class="relative inline-flex items-center bg-white/[0.03] p-2 rounded-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-2xl w-full max-w-lg mx-auto">
+                <div class="flex items-center gap-4">
                     <button @click="activeServiceTab = 'analytics'"
-                        :class="{'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white shadow-[0_6px_24px_rgba(6,182,212,0.35),inset_0_1px_0_rgba(255,255,255,0.15)]': activeServiceTab === 'analytics', 'text-white/30 hover:text-white/60': activeServiceTab !== 'analytics'}"
-                        class="flex-1 py-3.5 px-8 rounded-xl font-bold text-sm transition-all duration-400 cursor-pointer relative overflow-hidden">
-                        <i class="fas fa-chart-line mr-2 text-xs"></i> Analytics
+                        :class="activeServiceTab === 'analytics' ? 'bg-[#0d1520] border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.15)]' : 'bg-white/[0.02] border-white/[0.06] hover:border-white/15'"
+                        class="group relative flex items-center gap-3 py-4 px-8 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden">
+                        <div :class="activeServiceTab === 'analytics' ? 'bg-cyan-500/20 border-cyan-500/30' : 'bg-white/5 border-white/10'"
+                            class="w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-300">
+                            <i class="fas fa-chart-line" :class="activeServiceTab === 'analytics' ? 'text-cyan-400' : 'text-white/30'"></i>
+                        </div>
+                        <div class="text-left">
+                            <div :class="activeServiceTab === 'analytics' ? 'text-white' : 'text-white/40'" class="text-sm font-bold transition-colors">Analytics</div>
+                            <div :class="activeServiceTab === 'analytics' ? 'text-cyan-400/60' : 'text-white/20'" class="text-[9px] uppercase tracking-[0.2em] font-bold transition-colors">Data & BI</div>
+                        </div>
+                        <div x-show="activeServiceTab === 'analytics'" class="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
                     </button>
                     <button @click="activeServiceTab = 'frontend'"
-                        :class="{'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-[0_6px_24px_rgba(236,72,153,0.35),inset_0_1px_0_rgba(255,255,255,0.15)]': activeServiceTab === 'frontend', 'text-white/30 hover:text-white/60': activeServiceTab !== 'frontend'}"
-                        class="flex-1 py-3.5 px-8 rounded-xl font-bold text-sm transition-all duration-400 cursor-pointer relative overflow-hidden">
-                        <i class="fas fa-paint-brush mr-2 text-xs"></i> Frontend
+                        :class="activeServiceTab === 'frontend' ? 'bg-[#1a0d18] border-pink-500/40 shadow-[0_0_30px_rgba(236,72,153,0.15)]' : 'bg-white/[0.02] border-white/[0.06] hover:border-white/15'"
+                        class="group relative flex items-center gap-3 py-4 px-8 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden">
+                        <div :class="activeServiceTab === 'frontend' ? 'bg-pink-500/20 border-pink-500/30' : 'bg-white/5 border-white/10'"
+                            class="w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-300">
+                            <i class="fas fa-paint-brush" :class="activeServiceTab === 'frontend' ? 'text-pink-400' : 'text-white/30'"></i>
+                        </div>
+                        <div class="text-left">
+                            <div :class="activeServiceTab === 'frontend' ? 'text-white' : 'text-white/40'" class="text-sm font-bold transition-colors">Frontend</div>
+                            <div :class="activeServiceTab === 'frontend' ? 'text-pink-400/60' : 'text-white/20'" class="text-[9px] uppercase tracking-[0.2em] font-bold transition-colors">UI & Web</div>
+                        </div>
+                        <div x-show="activeServiceTab === 'frontend'" class="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
                     </button>
                 </div>
             </div>
@@ -2065,7 +2081,7 @@
                                     x-transition:enter-end="opacity-100 translate-y-0"
                                     x-transition:leave="transition ease-in duration-150"
                                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 translate-y-2" x-cloak
-                                    class="absolute top-full left-0 w-full mt-3 bg-[#08080C]/98 backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.04)] p-8 ring-1 ring-white/5">
+                                    class="absolute top-full left-0 w-full mt-3 bg-[#08080C] border border-white/[0.1] rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,1),0_0_0_1px_rgba(255,255,255,0.05)] p-8">
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                                         <div>
                                             <h4 class="text-pink-400 font-black mb-4 uppercase text-[9px] tracking-[0.25em] border-b border-white/5 pb-3">Frontend Services</h4>
