@@ -808,58 +808,91 @@
             x-transition:leave-end="opacity-0 transform translate-y-12">
             <!-- Hero Section -->
             <header id="portfolio-hero"
-                class="relative min-h-[90vh] pt-40 pb-20 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+                class="relative min-h-[85vh] pt-40 pb-24 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
 
-                <!-- Clean Dark Hero Background -->
-                <div class="absolute inset-0 z-0 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-darkBase via-cardBase to-darkBase opacity-95"></div>
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.10),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(236,72,153,0.10),transparent_26%)]"></div>
-                    <div class="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-darkBase via-darkBase/96 to-transparent"></div>
-                    <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/35 to-transparent"></div>
-                    <div class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-darkBase via-darkBase/88 to-transparent"></div>
-                    <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-darkBase/88 to-transparent"></div>
+                <!-- ================================================ -->
+                <!-- PREMIUM CODED BACKGROUND                        -->
+                <!-- ================================================ -->
+                <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                    <!-- Base gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#030014] via-[#0a0a1a] to-[#030014]"></div>
+
+                    <!-- Animated grid lines -->
+                    <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(6,182,212,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+                    
+                    <!-- Floating orbital glows -->
+                    <div class="absolute top-[15%] left-[20%] w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[150px] animate-pulse" style="animation-duration: 6s;"></div>
+                    <div class="absolute bottom-[10%] right-[15%] w-[400px] h-[400px] bg-pink-500/8 rounded-full blur-[120px] animate-pulse" style="animation-duration: 8s;"></div>
+                    <div class="absolute top-[50%] left-[60%] w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[100px] animate-pulse" style="animation-duration: 10s;"></div>
+
+                    <!-- Diagonal accent lines -->
+                    <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+                        <div class="absolute -top-[50%] -left-[10%] w-[1px] h-[200%] bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent rotate-[25deg]"></div>
+                        <div class="absolute -top-[50%] left-[30%] w-[1px] h-[200%] bg-gradient-to-b from-transparent via-pink-500/10 to-transparent rotate-[25deg]"></div>
+                        <div class="absolute -top-[50%] right-[20%] w-[1px] h-[200%] bg-gradient-to-b from-transparent via-purple-500/10 to-transparent rotate-[25deg]"></div>
+                    </div>
+
+                    <!-- Code rain decoration (static CSS dots) -->
+                    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+                    <!-- Top/Bottom fade to maintain clean transitions -->
+                    <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#030014] to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-darkBase via-darkBase/90 to-transparent"></div>
                 </div>
 
-                <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-                    <!-- Profile Picture Column (Rectangle format) -->
-                    <div data-aos="zoom-in" data-aos-duration="1000"
-                        class="md:w-1/3 flex justify-center order-2 md:order-1">
-                        <div
-                            class="relative w-64 h-80 md:w-80 md:h-96 rounded-2xl p-2 bg-gradient-to-tr from-pink-400 via-purple-500 to-cyan-500 shadow-[0_0_50px_rgba(6,182,212,0.3)] hover:shadow-[0_0_80px_rgba(236,72,153,0.4)] transition-shadow duration-500 animate-float">
-                            <img src="images/profile.jpg" alt="Hazem Khaled Ezat Profile"
-                                class="w-full h-full object-cover rounded-xl">
+                <!-- ================================================ -->
+                <!-- HERO CONTENT                                     -->
+                <!-- ================================================ -->
+                <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    
+                    <!-- Profile Picture Column -->
+                    <div data-aos="fade-right" data-aos-duration="1200" class="md:w-[38%] flex justify-center order-2 md:order-1">
+                        <div class="relative group cursor-pointer">
+                            <!-- Outer glow ring -->
+                            <div class="absolute -inset-3 bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 blur-xl group-hover:opacity-60 transition-opacity duration-700"></div>
+                            
+                            <!-- Photo container -->
+                            <div class="relative w-64 h-80 md:w-72 md:h-[22rem] rounded-2xl p-[3px] bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 shadow-2xl group-hover:shadow-[0_0_60px_rgba(168,85,247,0.4)] transition-shadow duration-700">
+                                <img src="images/profile.jpg" alt="Hazem Khaled Ezat - Data Analyst"
+                                    class="w-full h-full object-cover rounded-[13px] grayscale-[20%] group-hover:grayscale-0 transition-all duration-700">
+                            </div>
+                            
+                            <!-- Floating status badge -->
+                            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#0a0a1a]/90 backdrop-blur-xl border border-white/10 px-5 py-2 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]"></div>
+                                <span class="text-white/80 text-xs font-bold tracking-wider uppercase">Available for hire</span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Text Column -->
-                    <div
-                        class="md:w-2/3 text-center md:text-left order-1 md:order-2 flex flex-col items-center md:items-start">
+                    <div class="md:w-[62%] text-center md:text-left order-1 md:order-2 flex flex-col items-center md:items-start">
 
                         <!-- Intro Label -->
-                        <div data-aos="fade-up" data-aos-duration="1000" class="mb-6">
-                            <span
-                                class="uppercase tracking-[0.2em] text-cyan-400 text-sm font-bold bg-cyan-900/30 px-4 py-2 rounded-full border border-cyan-500/30">Data
-                                Analyst | Frontend Background</span>
+                        <div data-aos="fade-up" data-aos-duration="1000" class="mb-5">
+                            <span class="inline-flex items-center gap-2 uppercase tracking-[0.2em] text-cyan-400 text-[11px] font-bold bg-cyan-500/10 px-5 py-2.5 rounded-full border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                                <i class="fas fa-chart-line text-[10px]"></i>
+                                Data Analyst
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                Frontend Background
+                            </span>
                         </div>
 
                         <!-- Main Headline -->
                         <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-                            class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-                            Hazem <span class="text-gradient-cyan-pink">Khaled Ezat</span>
+                            class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-5 leading-[1.1] tracking-tight">
+                            Hazem <br/><span class="text-gradient-cyan-pink">Khaled Ezat</span>
                         </h1>
 
-                        <!-- Subheadline (Professional Summary) -->
-                        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
-                            class="text-lg md:text-xl text-textMuted max-w-3xl leading-relaxed mb-6 text-left space-y-4">
-                            <p>
-                                I'm a <strong class="text-white">Data Analyst</strong> with a strong <strong class="text-pink-400">front-end background</strong>, and that helps me make dashboards and digital work look clearer, cleaner, and easier to understand.
-                            </p>
-                        </div>
+                        <!-- Tagline -->
+                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed mb-8 font-light">
+                            Translating complex data into <strong class="text-white/80 font-semibold">pixel-perfect dashboards</strong> and premium digital experiences.
+                        </p>
 
-
+                        <!-- CTA Row -->
                         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"
                             class="flex flex-col sm:flex-row gap-4 mt-2">
-                            <!-- High-Visibility CV Download Background Trigger -->
+                            <!-- Download CV -->
                             <a href="assets/Hazemelerefy CV.pdf" download="Hazemelerefy_CV.pdf" @click.prevent="
                             fetch($el.href)
                                 .then(res => res.blob())
@@ -874,28 +907,25 @@
                                     window.URL.revokeObjectURL(url);
                                 })
                                 .catch(() => window.open($el.href, '_blank'));
-                        " class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.6)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300">
+                        " class="btn-pill relative group shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(236,72,153,0.5)] !bg-gradient-to-r from-pink-500 to-cyan-500 !text-white border-none transition-all duration-300 cursor-pointer">
                                 <span class="relative z-10 flex items-center font-bold tracking-wide">
                                     <i class="fas fa-file-download mr-2 text-lg"></i> Download CV
                                 </span>
-                                <div
-                                    class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full">
-                                </div>
+                                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-full"></div>
                             </a>
-                            <!-- Contact Me CTA & Socials -->
+                            <!-- Contact + Socials -->
                             <div class="flex items-center gap-3">
                                 <a href="#contact"
-                                    class="btn-pill !bg-darkBase/50 backdrop-blur-md !text-white !border-cardBorder hover:!border-white hover:!bg-white/10 transition-colors duration-300">
+                                    class="btn-pill !bg-white/5 backdrop-blur-md !text-white !border-white/10 hover:!border-white/30 hover:!bg-white/10 transition-all duration-300 cursor-pointer">
                                     Contact Me
                                 </a>
-                                <a href="https://github.com/hazemelerefey" target="_blank" rel="noopener noreferrer" aria-label="Visit Hazem Elerefy on GitHub"
-                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                                    <i class="fab fa-github text-2xl"></i>
+                                <a href="https://github.com/hazemelerefey" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+                                    class="w-[48px] h-[48px] rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300 cursor-pointer">
+                                    <i class="fab fa-github text-xl"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/hazemelerefy" target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="w-[52px] h-[52px] rounded-full border border-cardBorder bg-darkBase/50 backdrop-blur-md flex items-center justify-center text-textMuted hover:text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/10 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(10,102,194,0.3)]">
-                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                <a href="https://www.linkedin.com/in/hazemelerefy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                                    class="w-[48px] h-[48px] rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:bg-[#0A66C2]/10 transition-all duration-300 cursor-pointer">
+                                    <i class="fab fa-linkedin-in text-lg"></i>
                                 </a>
                             </div>
                         </div>
