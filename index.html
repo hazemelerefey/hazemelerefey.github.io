@@ -835,9 +835,8 @@
                     <!-- Code rain decoration (static CSS dots) -->
                     <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 30px 30px;"></div>
 
-                    <!-- Top/Bottom fade to maintain clean transitions -->
-                    <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#030014] to-transparent"></div>
-                    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-darkBase via-darkBase/90 to-transparent"></div>
+                    <!-- Subtle bottom-only fade for seamless section transition -->
+                    <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-darkBase/60 to-transparent"></div>
                 </div>
 
                 <!-- ================================================ -->
@@ -857,10 +856,24 @@
                                     class="w-full h-full object-cover rounded-[13px] grayscale-[20%] group-hover:grayscale-0 transition-all duration-700">
                             </div>
                             
-                            <!-- Floating status badge -->
-                            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#0a0a1a]/90 backdrop-blur-xl border border-white/10 px-5 py-2 rounded-full flex items-center gap-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]"></div>
-                                <span class="text-white/80 text-xs font-bold tracking-wider uppercase">Available for hire</span>
+                            <!-- Premium Floating Status Indicator -->
+                            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-max">
+                                <div class="relative bg-gradient-to-r from-[#0a0a1a]/95 via-[#0d0d20]/95 to-[#0a0a1a]/95 backdrop-blur-2xl border border-white/[0.08] px-6 py-3 rounded-2xl flex items-center gap-3 shadow-[0_15px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)] overflow-hidden group/badge cursor-default">
+                                    <!-- Shimmer sweep -->
+                                    <div class="absolute inset-0 -translate-x-full group-hover/badge:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent"></div>
+                                    <!-- Breathing glow dot -->
+                                    <div class="relative flex items-center justify-center">
+                                        <div class="absolute w-5 h-5 rounded-full bg-emerald-400/20 animate-ping" style="animation-duration: 2.5s;"></div>
+                                        <div class="relative w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.7),0_0_20px_rgba(52,211,153,0.3)]"></div>
+                                    </div>
+                                    <!-- Text -->
+                                    <div class="flex flex-col leading-none">
+                                        <span class="text-white/90 text-[11px] font-bold tracking-[0.15em] uppercase">Open to Work</span>
+                                        <span class="text-white/30 text-[9px] font-medium tracking-wider uppercase mt-0.5">Freelance & Full-time</span>
+                                    </div>
+                                    <!-- Accent border glow -->
+                                    <div class="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
