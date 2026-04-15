@@ -366,23 +366,3 @@ textarea:focus-visible {
 
 
 
-
-/* ─────────────────────────────────────────────
-   REDUCED MOTION SAFETY (style.css)
-───────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
-
-  .animate-blob,
-  .animate-float,
-  .animate-cinematic-pan,
-  .animate-marquee-left,
-  .animate-marquee-right,
-  .animate-tear,
-  .animate-joy-bounce {
-    animation: none !important;
-    will-change: auto !important;
-  }
-}

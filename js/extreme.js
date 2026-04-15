@@ -231,7 +231,7 @@
     window.addEventListener('scroll', () => {
       const total   = document.documentElement.scrollHeight - window.innerHeight;
       const current = window.scrollY;
-      bar.style.transform = 'scaleX(' + (current / total).toFixed(4) + ')';
+      bar.style.width = ((current / total) * 100).toFixed(2) + '%';
     }, { passive: true });
   }
 
